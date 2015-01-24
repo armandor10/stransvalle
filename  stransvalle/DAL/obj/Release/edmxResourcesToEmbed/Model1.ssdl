@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dirproyectsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="dirproyectsModelStoreContainer">
+    <EntitySet Name="proyects" EntityType="dirproyectsModel.Store.proyects" store:Type="Tables" Schema="dirproyects" />
+    <EntitySet Name="users" EntityType="dirproyectsModel.Store.users" store:Type="Tables" Schema="dirproyects" />
+    <AssociationSet Name="pkPro" Association="dirproyectsModel.Store.pkPro">
+      <End Role="proyects" EntitySet="proyects" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="proyects">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="varchar" MaxLength="45" />
+    <Property Name="Ip" Type="varchar" MaxLength="45" />
+    <Property Name="Empresa" Type="varchar" MaxLength="45" />
+    <Property Name="IdProyectoGCM" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="IdProyect" />
+    </Key>
+    <Property Name="IdProyect" Type="int" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="45" />
+    <Property Name="IdGCM" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="pkPro">
+    <End Role="proyects" Type="dirproyectsModel.Store.proyects" Multiplicity="1" />
+    <End Role="users" Type="dirproyectsModel.Store.users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="proyects">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="IdProyect" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

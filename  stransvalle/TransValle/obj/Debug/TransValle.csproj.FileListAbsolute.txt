@@ -1,0 +1,5 @@
+C:\Users\Orley\Desktop\sTransValle\TransValle\bin\TransValle.dll
+C:\Users\Orley\Desktop\sTransValle\TransValle\bin\TransValle.pdb
+C:\Users\Orley\Desktop\sTransValle\TransValle\obj\Debug\TransValle.csprojResolveAssemblyReference.cache
+C:\Users\Orley\Desktop\sTransValle\TransValle\obj\Debug\TransValle.dll
+C:\Users\Orley\Desktop\sTransValle\TransValle\obj\Debug\TransValle.pdb

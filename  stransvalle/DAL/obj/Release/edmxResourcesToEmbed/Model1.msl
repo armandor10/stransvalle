@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dirproyectsModelStoreContainer" CdmEntityContainer="dpEntities">
+    <EntitySetMapping Name="proyects">
+      <EntityTypeMapping TypeName="dirproyectsModel.proyects">
+        <MappingFragment StoreEntitySet="proyects">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Ip" ColumnName="Ip" />
+          <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+          <ScalarProperty Name="IdProyectoGCM" ColumnName="IdProyectoGCM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="dirproyectsModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="IdProyect" ColumnName="IdProyect" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="IdGCM" ColumnName="IdGCM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

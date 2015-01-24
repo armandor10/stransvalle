@@ -1,0 +1,48 @@
+D:\Programas\svnSircc\svnSircc_27092013\ByA\bin\Debug\ByA.dll
+D:\Programas\svnSircc\svnSircc_27092013\ByA\bin\Debug\ByA.pdb
+D:\Programas\svnSircc\svnSircc_27092013\ByA\obj\Debug\ByA.csprojResolveAssemblyReference.cache
+D:\Programas\svnSircc\svnSircc_27092013\ByA\obj\Debug\ByA.dll
+D:\Programas\svnSircc\svnSircc_27092013\ByA\obj\Debug\ByA.pdb
+D:\Programas\svnSircc\svnSircc4_12\ByA\bin\Debug\ByA.dll
+D:\Programas\svnSircc\svnSircc4_12\ByA\bin\Debug\ByA.pdb
+D:\Programas\svnSircc\svnSircc4_12\ByA\obj\Debug\ByA.csprojResolveAssemblyReference.cache
+D:\Programas\svnSircc\svnSircc4_12\ByA\obj\Debug\ByA.dll
+D:\Programas\svnSircc\svnSircc4_12\ByA\obj\Debug\ByA.pdb
+C:\Users\Kevinhmendoza\Documents\Visual Studio 2012\Projects\Sircc4_Kevin\ByA\bin\Debug\ByA.dll
+C:\Users\Kevinhmendoza\Documents\Visual Studio 2012\Projects\Sircc4_Kevin\ByA\bin\Debug\ByA.pdb
+C:\Users\Kevinhmendoza\Documents\Visual Studio 2012\Projects\Sircc4_Kevin\ByA\obj\Debug\ByA.dll
+C:\Users\Kevinhmendoza\Documents\Visual Studio 2012\Projects\Sircc4_Kevin\ByA\obj\Debug\ByA.pdb
+D:\Dev\Sircc47\ByA\bin\Debug\ByA.dll
+D:\Dev\Sircc47\ByA\bin\Debug\ByA.pdb
+D:\Dev\Sircc47\ByA\obj\Debug\ByA.csprojResolveAssemblyReference.cache
+D:\Dev\Sircc47\ByA\obj\Debug\ByA.dll
+D:\Dev\Sircc47\ByA\obj\Debug\ByA.pdb
+D:\Dev\byacomercio\ByA\bin\Debug\ByA.dll.config
+D:\Dev\byacomercio\ByA\bin\Debug\ByA.dll
+D:\Dev\byacomercio\ByA\bin\Debug\ByA.pdb
+D:\Dev\byacomercio\ByA\bin\Debug\EntityFramework.dll
+D:\Dev\byacomercio\ByA\bin\Debug\EntityFramework.SqlServer.dll
+D:\Dev\byacomercio\ByA\bin\Debug\EntityFramework.xml
+D:\Dev\byacomercio\ByA\bin\Debug\EntityFramework.SqlServer.xml
+D:\Dev\byacomercio\ByA\obj\Debug\ByA.csprojResolveAssemblyReference.cache
+D:\Dev\byacomercio\ByA\obj\Debug\ByA.dll
+D:\Dev\byacomercio\ByA\obj\Debug\ByA.pdb
+D:\Dev\byacomercio4\ByA\bin\Debug\ByA.dll.config
+D:\Dev\byacomercio4\ByA\bin\Debug\ByA.dll
+D:\Dev\byacomercio4\ByA\bin\Debug\ByA.pdb
+D:\Dev\byacomercio4\ByA\bin\Debug\EntityFramework.dll
+D:\Dev\byacomercio4\ByA\bin\Debug\EntityFramework.SqlServer.dll
+D:\Dev\byacomercio4\ByA\bin\Debug\EntityFramework.xml
+D:\Dev\byacomercio4\ByA\bin\Debug\EntityFramework.SqlServer.xml
+D:\Dev\byacomercio4\ByA\obj\Debug\ByA.dll
+D:\Dev\byacomercio4\ByA\obj\Debug\ByA.pdb
+D:\Dev\byaDirProyects\ByA\bin\Debug\ByA.dll.config
+D:\Dev\byaDirProyects\ByA\bin\Debug\ByA.dll
+D:\Dev\byaDirProyects\ByA\bin\Debug\ByA.pdb
+D:\Dev\byaDirProyects\ByA\bin\Debug\EntityFramework.dll
+D:\Dev\byaDirProyects\ByA\bin\Debug\EntityFramework.SqlServer.dll
+D:\Dev\byaDirProyects\ByA\bin\Debug\EntityFramework.xml
+D:\Dev\byaDirProyects\ByA\bin\Debug\EntityFramework.SqlServer.xml
+D:\Dev\byaDirProyects\ByA\obj\Debug\ByA.csprojResolveAssemblyReference.cache
+D:\Dev\byaDirProyects\ByA\obj\Debug\ByA.dll
+D:\Dev\byaDirProyects\ByA\obj\Debug\ByA.pdb

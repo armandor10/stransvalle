@@ -1,0 +1,10 @@
+D:\Dev\byaDirProyects\Entidades\bin\Debug\Entidades.dll
+D:\Dev\byaDirProyects\Entidades\bin\Debug\Entidades.pdb
+D:\Dev\byaDirProyects\Entidades\obj\Debug\Entidades.dll
+D:\Dev\byaDirProyects\Entidades\obj\Debug\Entidades.pdb
+D:\Dev\byaDirProyects\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
+C:\Users\Orley\Desktop\byaDirProyects\Entidades\bin\Debug\Entidades.dll
+C:\Users\Orley\Desktop\byaDirProyects\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Orley\Desktop\byaDirProyects\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
+C:\Users\Orley\Desktop\byaDirProyects\Entidades\obj\Debug\Entidades.dll
+C:\Users\Orley\Desktop\byaDirProyects\Entidades\obj\Debug\Entidades.pdb
