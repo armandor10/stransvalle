@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dirproyectsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dpEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="proyects" EntityType="dirproyectsModel.proyects" />
+    <EntitySet Name="users" EntityType="dirproyectsModel.users" />
+    <AssociationSet Name="pkPro" Association="dirproyectsModel.pkPro">
+      <End Role="proyects" EntitySet="proyects" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="proyects">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Ip" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Empresa" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="IdProyectoGCM" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="users" Relationship="dirproyectsModel.pkPro" FromRole="proyects" ToRole="users" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="IdProyect" />
+    </Key>
+    <Property Name="IdProyect" Type="Int32" Nullable="false" />
+    <Property Name="Usuario" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="IdGCM" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="proyects" Relationship="dirproyectsModel.pkPro" FromRole="users" ToRole="proyects" />
+  </EntityType>
+  <Association Name="pkPro">
+    <End Role="proyects" Type="dirproyectsModel.proyects" Multiplicity="1" />
+    <End Role="users" Type="dirproyectsModel.users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="proyects">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="IdProyect" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

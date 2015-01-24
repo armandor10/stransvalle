@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbtransvalleModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbtransvalleEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="bus" EntityType="dbtransvalleModel1.bus" />
+    <EntitySet Name="coordenadasruta" EntityType="dbtransvalleModel1.coordenadasruta" />
+    <EntitySet Name="documentos" EntityType="dbtransvalleModel1.documentos" />
+    <EntitySet Name="documentos_has_bus" EntityType="dbtransvalleModel1.documentos_has_bus" />
+    <EntitySet Name="fallasreportadas" EntityType="dbtransvalleModel1.fallasreportadas" />
+    <EntitySet Name="gastos" EntityType="dbtransvalleModel1.gastos" />
+    <EntitySet Name="historialmovimiento" EntityType="dbtransvalleModel1.historialmovimiento" />
+    <EntitySet Name="perfil" EntityType="dbtransvalleModel1.perfil" />
+    <EntitySet Name="persona" EntityType="dbtransvalleModel1.persona" />
+    <EntitySet Name="persona_has_documentos" EntityType="dbtransvalleModel1.persona_has_documentos" />
+    <EntitySet Name="planillacontrol" EntityType="dbtransvalleModel1.planillacontrol" />
+    <EntitySet Name="planillarecaudo" EntityType="dbtransvalleModel1.planillarecaudo" />
+    <EntitySet Name="puntoscontrol" EntityType="dbtransvalleModel1.puntoscontrol" />
+    <EntitySet Name="recorrido" EntityType="dbtransvalleModel1.recorrido" />
+    <EntitySet Name="ruta" EntityType="dbtransvalleModel1.ruta" />
+    <EntitySet Name="tallas" EntityType="dbtransvalleModel1.tallas" />
+    <EntitySet Name="tarjetadespacho" EntityType="dbtransvalleModel1.tarjetadespacho" />
+    <EntitySet Name="transvalle" EntityType="dbtransvalleModel1.transvalle" />
+    <EntitySet Name="usuario" EntityType="dbtransvalleModel1.usuario" />
+    <AssociationSet Name="fk_Bus_PlanillaControl1" Association="dbtransvalleModel1.fk_Bus_PlanillaControl1">
+      <End Role="planillacontrol" EntitySet="planillacontrol" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Bus_PlanillaRecaudo1" Association="dbtransvalleModel1.fk_Bus_PlanillaRecaudo1">
+      <End Role="planillarecaudo" EntitySet="planillarecaudo" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Bus_Transvalle1" Association="dbtransvalleModel1.fk_Bus_Transvalle1">
+      <End Role="transvalle" EntitySet="transvalle" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Bus_Usuario1" Association="dbtransvalleModel1.fk_Bus_Usuario1">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CordenadasRuta_Ruta1" Association="dbtransvalleModel1.fk_CordenadasRuta_Ruta1">
+      <End Role="ruta" EntitySet="ruta" />
+      <End Role="coordenadasruta" EntitySet="coordenadasruta" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Documentos_has_Bus_Documentos1" Association="dbtransvalleModel1.fk_Documentos_has_Bus_Documentos1">
+      <End Role="documentos" EntitySet="documentos" />
+      <End Role="documentos_has_bus" EntitySet="documentos_has_bus" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Persona_has_Documentos_Documentos1" Association="dbtransvalleModel1.fk_Persona_has_Documentos_Documentos1">
+      <End Role="documentos" EntitySet="documentos" />
+      <End Role="persona_has_documentos" EntitySet="persona_has_documentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Gastos_PlanillaRecaudo1" Association="dbtransvalleModel1.fk_Gastos_PlanillaRecaudo1">
+      <End Role="planillarecaudo" EntitySet="planillarecaudo" />
+      <End Role="gastos" EntitySet="gastos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Perfil_Usuario1" Association="dbtransvalleModel1.fk_Perfil_Usuario1">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="perfil" EntitySet="perfil" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Persona_Transvalle1" Association="dbtransvalleModel1.fk_Persona_Transvalle1">
+      <End Role="transvalle" EntitySet="transvalle" />
+      <End Role="persona" EntitySet="persona" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Persona_Usuario1" Association="dbtransvalleModel1.fk_Persona_Usuario1">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="persona" EntitySet="persona" />
+    </AssociationSet>
+    <AssociationSet Name="fk_PlanillaControl_PlanillaRecaudo" Association="dbtransvalleModel1.fk_PlanillaControl_PlanillaRecaudo">
+      <End Role="planillarecaudo" EntitySet="planillarecaudo" />
+      <End Role="planillacontrol" EntitySet="planillacontrol" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Recorrido_PlanillaControl1" Association="dbtransvalleModel1.fk_Recorrido_PlanillaControl1">
+      <End Role="planillacontrol" EntitySet="planillacontrol" />
+      <End Role="recorrido" EntitySet="recorrido" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Recorrido_TarjetaDespacho1" Association="dbtransvalleModel1.fk_Recorrido_TarjetaDespacho1">
+      <End Role="tarjetadespacho" EntitySet="tarjetadespacho" />
+      <End Role="recorrido" EntitySet="recorrido" />
+    </AssociationSet>
+    <AssociationSet Name="planillacontrol_has_ruta" Association="dbtransvalleModel1.planillacontrol_has_ruta">
+      <End Role="planillacontrol" EntitySet="planillacontrol" />
+      <End Role="ruta" EntitySet="ruta" />
+    </AssociationSet>
+    <AssociationSet Name="ruta_has_puntoscontrol" Association="dbtransvalleModel1.ruta_has_puntoscontrol">
+      <End Role="puntoscontrol" EntitySet="puntoscontrol" />
+      <End Role="ruta" EntitySet="ruta" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="bus">
+    <Key>
+      <PropertyRef Name="Placa" />
+      <PropertyRef Name="Vial" />
+      <PropertyRef Name="Usuario_idUsuario" />
+    </Key>
+    <Property Name="Placa" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="Vial" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="Capacidad" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Clase" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="ClaseServicio" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Estado" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="fechaMatricula" Type="DateTime" />
+    <Property Name="Grupo" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Marca" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="Modelo" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="NumChasis" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="NumMotor" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="TO" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="VidaUtil" Type="DateTime" />
+    <Property Name="PlanillaRecaudo_idPlanillaRecaudo" Type="Int32" Nullable="false" />
+    <Property Name="PlanillaControl_idPlanillaControl" Type="Int32" Nullable="false" />
+    <Property Name="Transvalle_Nit" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="Usuario_idUsuario" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="planillacontrol" Relationship="dbtransvalleModel1.fk_Bus_PlanillaControl1" FromRole="bus" ToRole="planillacontrol" />
+    <NavigationProperty Name="planillarecaudo" Relationship="dbtransvalleModel1.fk_Bus_PlanillaRecaudo1" FromRole="bus" ToRole="planillarecaudo" />
+    <NavigationProperty Name="transvalle" Relationship="dbtransvalleModel1.fk_Bus_Transvalle1" FromRole="bus" ToRole="transvalle" />
+    <NavigationProperty Name="usuario" Relationship="dbtransvalleModel1.fk_Bus_Usuario1" FromRole="bus" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="coordenadasruta">
+    <Key>
+      <PropertyRef Name="idCordenadasRuta" />
+    </Key>
+    <Property Name="idCordenadasRuta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Item" Type="Int32" />
+    <Property Name="Latitud" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Longitud" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Ruta_idRuta" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ruta" Relationship="dbtransvalleModel1.fk_CordenadasRuta_Ruta1" FromRole="coordenadasruta" ToRole="ruta" />
+  </EntityType>
+  <EntityType Name="documentos">
+    <Key>
+      <PropertyRef Name="idDocumentos" />
+    </Key>
+    <Property Name="idDocumentos" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Aseguradora" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="FchExpedicion" Type="DateTime" />
+    <Property Name="FchExpiracion" Type="DateTime" />
+    <Property Name="nombre" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Numero" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="documentos_has_bus" Relationship="dbtransvalleModel1.fk_Documentos_has_Bus_Documentos1" FromRole="documentos" ToRole="documentos_has_bus" />
+    <NavigationProperty Name="persona_has_documentos" Relationship="dbtransvalleModel1.fk_Persona_has_Documentos_Documentos1" FromRole="documentos" ToRole="persona_has_documentos" />
+  </EntityType>
+  <EntityType Name="documentos_has_bus">
+    <Key>
+      <PropertyRef Name="Documentos_idDocumentos" />
+      <PropertyRef Name="Bus_Placa" />
+      <PropertyRef Name="Bus_Vial" />
+    </Key>
+    <Property Name="Documentos_idDocumentos" Type="Int32" Nullable="false" />
+    <Property Name="Bus_Placa" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="Bus_Vial" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="documentos" Relationship="dbtransvalleModel1.fk_Documentos_has_Bus_Documentos1" FromRole="documentos_has_bus" ToRole="documentos" />
+  </EntityType>
+  <EntityType Name="fallasreportadas">
+    <Key>
+      <PropertyRef Name="idFallasReportadas" />
+    </Key>
+    <Property Name="idFallasReportadas" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Estado" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Falla" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="FchReporte" Type="DateTime" />
+    <Property Name="Observaciones" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="PV" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="TrabajoRealizado" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Bus_Placa" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="Bus_Vial" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="gastos">
+    <Key>
+      <PropertyRef Name="idGastos" />
+    </Key>
+    <Property Name="idGastos" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ACPM" Type="Int32" Nullable="false" />
+    <Property Name="Aseo" Type="Int32" Nullable="false" />
+    <Property Name="Otros" Type="Int32" Nullable="false" />
+    <Property Name="ProducidoNeto" Type="Int32" Nullable="false" />
+    <Property Name="SueldoConductor" Type="Int32" Nullable="false" />
+    <Property Name="TGasto" Type="Int32" Nullable="false" />
+    <Property Name="Turno" Type="Int32" Nullable="false" />
+    <Property Name="PlanillaRecaudo_idPlanillaRecaudo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="planillarecaudo" Relationship="dbtransvalleModel1.fk_Gastos_PlanillaRecaudo1" FromRole="gastos" ToRole="planillarecaudo" />
+  </EntityType>
+  <EntityType Name="historialmovimiento">
+    <Key>
+      <PropertyRef Name="idHistorialMovimiento" />
+    </Key>
+    <Property Name="idHistorialMovimiento" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Latitud" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Longitud" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="fecha" Type="DateTime" />
+    <Property Name="Velocidad" Type="Int32" />
+    <Property Name="Punto" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Bus_Placa" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="Bus_Vial" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="perfil">
+    <Key>
+      <PropertyRef Name="idPerfil" />
+      <PropertyRef Name="Usuario_idUsuario" />
+    </Key>
+    <Property Name="idPerfil" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Perfil1" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="Usuario_idUsuario" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="usuario" Relationship="dbtransvalleModel1.fk_Perfil_Usuario1" FromRole="perfil" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="persona">
+    <Key>
+      <PropertyRef Name="Cedula" />
+      <PropertyRef Name="Usuario_idUsuario" />
+    </Key>
+    <Property Name="PApellido" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="SApellido" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="PNombre" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="SNombre" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="Cedula" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="FchNac" Type="DateTime" Nullable="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="EPS" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Pension" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="RH" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="TConductor" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Transvalle_Nit" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="Usuario_idUsuario" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="transvalle" Relationship="dbtransvalleModel1.fk_Persona_Transvalle1" FromRole="persona" ToRole="transvalle" />
+    <NavigationProperty Name="usuario" Relationship="dbtransvalleModel1.fk_Persona_Usuario1" FromRole="persona" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="persona_has_documentos">
+    <Key>
+      <PropertyRef Name="Persona_Cedula" />
+      <PropertyRef Name="Documentos_idDocumentos" />
+    </Key>
+    <Property Name="Persona_Cedula" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="Documentos_idDocumentos" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="documentos" Relationship="dbtransvalleModel1.fk_Persona_has_Documentos_Documentos1" FromRole="persona_has_documentos" ToRole="documentos" />
+  </EntityType>
+  <EntityType Name="planillacontrol">
+    <Key>
+      <PropertyRef Name="idPlanillaControl" />
+    </Key>
+    <Property Name="idPlanillaControl" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="PlanillaRecaudo_idPlanillaRecaudo" Type="Int32" Nullable="false" />
+    <Property Name="Persona_Cedula" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="bus" Relationship="dbtransvalleModel1.fk_Bus_PlanillaControl1" FromRole="planillacontrol" ToRole="bus" />
+    <NavigationProperty Name="planillarecaudo" Relationship="dbtransvalleModel1.fk_PlanillaControl_PlanillaRecaudo" FromRole="planillacontrol" ToRole="planillarecaudo" />
+    <NavigationProperty Name="recorrido" Relationship="dbtransvalleModel1.fk_Recorrido_PlanillaControl1" FromRole="planillacontrol" ToRole="recorrido" />
+    <NavigationProperty Name="ruta" Relationship="dbtransvalleModel1.planillacontrol_has_ruta" FromRole="planillacontrol" ToRole="ruta" />
+  </EntityType>
+  <EntityType Name="planillarecaudo">
+    <Key>
+      <PropertyRef Name="idPlanillaRecaudo" />
+    </Key>
+    <Property Name="idPlanillaRecaudo" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" />
+    <Property Name="HoraSalida" Type="DateTime" Nullable="false" />
+    <Property Name="InicioTorniquete" Type="Int64" Nullable="false" />
+    <Property Name="FinTorniquete" Type="Int64" Nullable="false" />
+    <Property Name="NumPasajeros" Type="Int32" />
+    <Property Name="ProducidoBruto" Type="Int32" />
+    <Property Name="REC" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Persona_Cedula" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="bus" Relationship="dbtransvalleModel1.fk_Bus_PlanillaRecaudo1" FromRole="planillarecaudo" ToRole="bus" />
+    <NavigationProperty Name="gastos" Relationship="dbtransvalleModel1.fk_Gastos_PlanillaRecaudo1" FromRole="planillarecaudo" ToRole="gastos" />
+    <NavigationProperty Name="planillacontrol" Relationship="dbtransvalleModel1.fk_PlanillaControl_PlanillaRecaudo" FromRole="planillarecaudo" ToRole="planillacontrol" />
+  </EntityType>
+  <EntityType Name="puntoscontrol">
+    <Key>
+      <PropertyRef Name="idPuntosControl" />
+    </Key>
+    <Property Name="idPuntosControl" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Latitud" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Longitud" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="ruta" Relationship="dbtransvalleModel1.ruta_has_puntoscontrol" FromRole="puntoscontrol" ToRole="ruta" />
+  </EntityType>
+  <EntityType Name="recorrido">
+    <Key>
+      <PropertyRef Name="idRecorrido" />
+    </Key>
+    <Property Name="idRecorrido" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Coleo" Type="Int32" />
+    <Property Name="HEntrada" Type="DateTime" Nullable="false" />
+    <Property Name="HSalida" Type="DateTime" />
+    <Property Name="NumRecorrido" Type="Int32" />
+    <Property Name="PlanillaControl_idPlanillaControl" Type="Int32" Nullable="false" />
+    <Property Name="TarjetaDespacho_NumTarjeta" Type="String" Nullable="false" MaxLength="14" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="planillacontrol" Relationship="dbtransvalleModel1.fk_Recorrido_PlanillaControl1" FromRole="recorrido" ToRole="planillacontrol" />
+    <NavigationProperty Name="tarjetadespacho" Relationship="dbtransvalleModel1.fk_Recorrido_TarjetaDespacho1" FromRole="recorrido" ToRole="tarjetadespacho" />
+  </EntityType>
+  <EntityType Name="ruta">
+    <Key>
+      <PropertyRef Name="idRuta" />
+    </Key>
+    <Property Name="idRuta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Capacidad" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Frecuencia" Type="Int32" Nullable="false" />
+    <Property Name="Gabela" Type="Int32" Nullable="false" />
+    <Property Name="Longitud" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="TiempRecorrido" Type="Int32" Nullable="false" />
+    <Property Name="Persona_Cedula" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="coordenadasruta" Relationship="dbtransvalleModel1.fk_CordenadasRuta_Ruta1" FromRole="ruta" ToRole="coordenadasruta" />
+    <NavigationProperty Name="planillacontrol" Relationship="dbtransvalleModel1.planillacontrol_has_ruta" FromRole="ruta" ToRole="planillacontrol" />
+    <NavigationProperty Name="puntoscontrol" Relationship="dbtransvalleModel1.ruta_has_puntoscontrol" FromRole="ruta" ToRole="puntoscontrol" />
+  </EntityType>
+  <EntityType Name="tallas">
+    <Key>
+      <PropertyRef Name="Persona_Cedula" />
+    </Key>
+    <Property Name="Calzado" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="Camisa" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="Pantalon" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="Persona_Cedula" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tarjetadespacho">
+    <Key>
+      <PropertyRef Name="NumTarjeta" />
+    </Key>
+    <Property Name="NumTarjeta" Type="String" Nullable="false" MaxLength="14" Unicode="false" FixedLength="false" />
+    <Property Name="Fecha" Type="DateTime" />
+    <Property Name="Persona_Cedula" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="Bus_Placa" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="Bus_Vial" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="recorrido" Relationship="dbtransvalleModel1.fk_Recorrido_TarjetaDespacho1" FromRole="tarjetadespacho" ToRole="recorrido" />
+  </EntityType>
+  <EntityType Name="transvalle">
+    <Key>
+      <PropertyRef Name="Nit" />
+    </Key>
+    <Property Name="Nit" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="bus" Relationship="dbtransvalleModel1.fk_Bus_Transvalle1" FromRole="transvalle" ToRole="bus" />
+    <NavigationProperty Name="persona" Relationship="dbtransvalleModel1.fk_Persona_Transvalle1" FromRole="transvalle" ToRole="persona" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int64" Nullable="false" />
+    <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="Contrasena" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="bus" Relationship="dbtransvalleModel1.fk_Bus_Usuario1" FromRole="usuario" ToRole="bus" />
+    <NavigationProperty Name="perfil" Relationship="dbtransvalleModel1.fk_Perfil_Usuario1" FromRole="usuario" ToRole="perfil" />
+    <NavigationProperty Name="persona" Relationship="dbtransvalleModel1.fk_Persona_Usuario1" FromRole="usuario" ToRole="persona" />
+  </EntityType>
+  <Association Name="fk_Bus_PlanillaControl1">
+    <End Role="planillacontrol" Type="dbtransvalleModel1.planillacontrol" Multiplicity="1" />
+    <End Role="bus" Type="dbtransvalleModel1.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="planillacontrol">
+        <PropertyRef Name="idPlanillaControl" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="PlanillaControl_idPlanillaControl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Bus_PlanillaRecaudo1">
+    <End Role="planillarecaudo" Type="dbtransvalleModel1.planillarecaudo" Multiplicity="1" />
+    <End Role="bus" Type="dbtransvalleModel1.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="planillarecaudo">
+        <PropertyRef Name="idPlanillaRecaudo" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="PlanillaRecaudo_idPlanillaRecaudo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Bus_Transvalle1">
+    <End Role="transvalle" Type="dbtransvalleModel1.transvalle" Multiplicity="1" />
+    <End Role="bus" Type="dbtransvalleModel1.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transvalle">
+        <PropertyRef Name="Nit" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="Transvalle_Nit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Bus_Usuario1">
+    <End Role="usuario" Type="dbtransvalleModel1.usuario" Multiplicity="1" />
+    <End Role="bus" Type="dbtransvalleModel1.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="Usuario_idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CordenadasRuta_Ruta1">
+    <End Role="ruta" Type="dbtransvalleModel1.ruta" Multiplicity="1" />
+    <End Role="coordenadasruta" Type="dbtransvalleModel1.coordenadasruta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ruta">
+        <PropertyRef Name="idRuta" />
+      </Principal>
+      <Dependent Role="coordenadasruta">
+        <PropertyRef Name="Ruta_idRuta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Documentos_has_Bus_Documentos1">
+    <End Role="documentos" Type="dbtransvalleModel1.documentos" Multiplicity="1" />
+    <End Role="documentos_has_bus" Type="dbtransvalleModel1.documentos_has_bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentos">
+        <PropertyRef Name="idDocumentos" />
+      </Principal>
+      <Dependent Role="documentos_has_bus">
+        <PropertyRef Name="Documentos_idDocumentos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Persona_has_Documentos_Documentos1">
+    <End Role="documentos" Type="dbtransvalleModel1.documentos" Multiplicity="1" />
+    <End Role="persona_has_documentos" Type="dbtransvalleModel1.persona_has_documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentos">
+        <PropertyRef Name="idDocumentos" />
+      </Principal>
+      <Dependent Role="persona_has_documentos">
+        <PropertyRef Name="Documentos_idDocumentos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Gastos_PlanillaRecaudo1">
+    <End Role="planillarecaudo" Type="dbtransvalleModel1.planillarecaudo" Multiplicity="1" />
+    <End Role="gastos" Type="dbtransvalleModel1.gastos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="planillarecaudo">
+        <PropertyRef Name="idPlanillaRecaudo" />
+      </Principal>
+      <Dependent Role="gastos">
+        <PropertyRef Name="PlanillaRecaudo_idPlanillaRecaudo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Perfil_Usuario1">
+    <End Role="usuario" Type="dbtransvalleModel1.usuario" Multiplicity="1" />
+    <End Role="perfil" Type="dbtransvalleModel1.perfil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="perfil">
+        <PropertyRef Name="Usuario_idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Persona_Transvalle1">
+    <End Role="transvalle" Type="dbtransvalleModel1.transvalle" Multiplicity="1" />
+    <End Role="persona" Type="dbtransvalleModel1.persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transvalle">
+        <PropertyRef Name="Nit" />
+      </Principal>
+      <Dependent Role="persona">
+        <PropertyRef Name="Transvalle_Nit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Persona_Usuario1">
+    <End Role="usuario" Type="dbtransvalleModel1.usuario" Multiplicity="1" />
+    <End Role="persona" Type="dbtransvalleModel1.persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="persona">
+        <PropertyRef Name="Usuario_idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_PlanillaControl_PlanillaRecaudo">
+    <End Role="planillarecaudo" Type="dbtransvalleModel1.planillarecaudo" Multiplicity="1" />
+    <End Role="planillacontrol" Type="dbtransvalleModel1.planillacontrol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="planillarecaudo">
+        <PropertyRef Name="idPlanillaRecaudo" />
+      </Principal>
+      <Dependent Role="planillacontrol">
+        <PropertyRef Name="PlanillaRecaudo_idPlanillaRecaudo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Recorrido_PlanillaControl1">
+    <End Role="planillacontrol" Type="dbtransvalleModel1.planillacontrol" Multiplicity="1" />
+    <End Role="recorrido" Type="dbtransvalleModel1.recorrido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="planillacontrol">
+        <PropertyRef Name="idPlanillaControl" />
+      </Principal>
+      <Dependent Role="recorrido">
+        <PropertyRef Name="PlanillaControl_idPlanillaControl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Recorrido_TarjetaDespacho1">
+    <End Role="tarjetadespacho" Type="dbtransvalleModel1.tarjetadespacho" Multiplicity="1" />
+    <End Role="recorrido" Type="dbtransvalleModel1.recorrido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tarjetadespacho">
+        <PropertyRef Name="NumTarjeta" />
+      </Principal>
+      <Dependent Role="recorrido">
+        <PropertyRef Name="TarjetaDespacho_NumTarjeta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="planillacontrol_has_ruta">
+    <End Role="planillacontrol" Type="dbtransvalleModel1.planillacontrol" Multiplicity="*" />
+    <End Role="ruta" Type="dbtransvalleModel1.ruta" Multiplicity="*" />
+  </Association>
+  <Association Name="ruta_has_puntoscontrol">
+    <End Role="puntoscontrol" Type="dbtransvalleModel1.puntoscontrol" Multiplicity="*" />
+    <End Role="ruta" Type="dbtransvalleModel1.ruta" Multiplicity="*" />
+  </Association>
+</Schema>

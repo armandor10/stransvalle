@@ -1,0 +1,15 @@
+D:\Dev\byaDirProyects\DAL\bin\Release\DAL.dll.config
+D:\Dev\byaDirProyects\DAL\bin\Release\DAL.dll
+D:\Dev\byaDirProyects\DAL\bin\Release\DAL.pdb
+D:\Dev\byaDirProyects\DAL\bin\Release\EntityFramework.dll
+D:\Dev\byaDirProyects\DAL\bin\Release\EntityFramework.SqlServer.dll
+D:\Dev\byaDirProyects\DAL\bin\Release\MySql.Data.dll
+D:\Dev\byaDirProyects\DAL\bin\Release\MySql.Data.Entity.EF5.dll
+D:\Dev\byaDirProyects\DAL\bin\Release\MySql.Data.Entity.EF6.dll
+D:\Dev\byaDirProyects\DAL\bin\Release\MySql.Fabric.Plugin.dll
+D:\Dev\byaDirProyects\DAL\bin\Release\MySql.Web.dll
+D:\Dev\byaDirProyects\DAL\bin\Release\EntityFramework.xml
+D:\Dev\byaDirProyects\DAL\bin\Release\EntityFramework.SqlServer.xml
+D:\Dev\byaDirProyects\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+D:\Dev\byaDirProyects\DAL\obj\Release\DAL.dll
+D:\Dev\byaDirProyects\DAL\obj\Release\DAL.pdb
