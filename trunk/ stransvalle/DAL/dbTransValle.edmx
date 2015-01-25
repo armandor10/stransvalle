@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="transvalleModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="transvalleModelStoreContainer">
+          <EntitySet Name="buses" EntityType="transvalleModel.Store.buses" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="clasesbuses" EntityType="transvalleModel.Store.clasesbuses" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="clasesservicio" EntityType="transvalleModel.Store.clasesservicio" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="rolesusuariosplataforma" EntityType="transvalleModel.Store.rolesusuariosplataforma" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.Store.usuariosplataforma" store:Type="Tables" Schema="transvalle" />
+          <AssociationSet Name="pkbusclasebus" Association="transvalleModel.Store.pkbusclasebus">
+            <End Role="clasesbuses" EntitySet="clasesbuses" />
+            <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
+          <AssociationSet Name="pkbusclaseservicio" Association="transvalleModel.Store.pkbusclaseservicio">
+            <End Role="clasesservicio" EntitySet="clasesservicio" />
+            <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
+          <AssociationSet Name="pkuserrol" Association="transvalleModel.Store.pkuserrol">
+            <End Role="rolesusuariosplataforma" EntitySet="rolesusuariosplataforma" />
+            <End Role="usuariosplataforma" EntitySet="usuariosplataforma" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="buses">
+          <Key>
+            <PropertyRef Name="Placa" />
+          </Key>
+          <Property Name="Placa" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Vial" Type="varchar" MaxLength="45" />
+          <Property Name="Capacidad" Type="varchar" MaxLength="45" />
+          <Property Name="ClaseBus" Type="int" />
+          <Property Name="ClaseServicio" Type="int" />
+          <Property Name="FechaMatricula" Type="datetime" />
+          <Property Name="Marca" Type="varchar" MaxLength="45" />
+          <Property Name="Modelo" Type="varchar" MaxLength="45" />
+          <Property Name="NumeroChasis" Type="varchar" MaxLength="45" />
+          <Property Name="NumeroMotor" Type="varchar" MaxLength="45" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="45" />
+          <Property Name="Password" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="clasesbuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="clasesservicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="rolesusuariosplataforma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="usuariosplataforma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Roll" Type="int" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="pkbusclasebus">
+          <End Role="clasesbuses" Type="transvalleModel.Store.clasesbuses" Multiplicity="0..1" />
+          <End Role="buses" Type="transvalleModel.Store.buses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clasesbuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="buses">
+              <PropertyRef Name="ClaseBus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkbusclaseservicio">
+          <End Role="clasesservicio" Type="transvalleModel.Store.clasesservicio" Multiplicity="0..1" />
+          <End Role="buses" Type="transvalleModel.Store.buses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clasesservicio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="buses">
+              <PropertyRef Name="ClaseServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkuserrol">
+          <End Role="rolesusuariosplataforma" Type="transvalleModel.Store.rolesusuariosplataforma" Multiplicity="0..1" />
+          <End Role="usuariosplataforma" Type="transvalleModel.Store.usuariosplataforma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rolesusuariosplataforma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuariosplataforma">
+              <PropertyRef Name="Roll" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="transvalleModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="tvEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="buses" EntityType="transvalleModel.buses" />
+          <EntitySet Name="clasesbuses" EntityType="transvalleModel.clasesbuses" />
+          <EntitySet Name="clasesservicio" EntityType="transvalleModel.clasesservicio" />
+          <EntitySet Name="rolesusuariosplataforma" EntityType="transvalleModel.rolesusuariosplataforma" />
+          <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.usuariosplataforma" />
+          <AssociationSet Name="pkbusclasebus" Association="transvalleModel.pkbusclasebus">
+            <End Role="clasesbuses" EntitySet="clasesbuses" />
+            <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
+          <AssociationSet Name="pkbusclaseservicio" Association="transvalleModel.pkbusclaseservicio">
+            <End Role="clasesservicio" EntitySet="clasesservicio" />
+            <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
+          <AssociationSet Name="pkuserrol" Association="transvalleModel.pkuserrol">
+            <End Role="rolesusuariosplataforma" EntitySet="rolesusuariosplataforma" />
+            <End Role="usuariosplataforma" EntitySet="usuariosplataforma" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="buses">
+          <Key>
+            <PropertyRef Name="Placa" />
+          </Key>
+          <Property Name="Placa" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Vial" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Capacidad" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="ClaseBus" Type="Int32" />
+          <Property Name="ClaseServicio" Type="Int32" />
+          <Property Name="FechaMatricula" Type="DateTime" />
+          <Property Name="Marca" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Modelo" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="NumeroChasis" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="NumeroMotor" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="clasesbuses" Relationship="transvalleModel.pkbusclasebus" FromRole="buses" ToRole="clasesbuses" />
+          <NavigationProperty Name="clasesservicio" Relationship="transvalleModel.pkbusclaseservicio" FromRole="buses" ToRole="clasesservicio" />
+        </EntityType>
+        <EntityType Name="clasesbuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="buses" Relationship="transvalleModel.pkbusclasebus" FromRole="clasesbuses" ToRole="buses" />
+        </EntityType>
+        <EntityType Name="clasesservicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="buses" Relationship="transvalleModel.pkbusclaseservicio" FromRole="clasesservicio" ToRole="buses" />
+        </EntityType>
+        <EntityType Name="rolesusuariosplataforma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="usuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="rolesusuariosplataforma" ToRole="usuariosplataforma" />
+        </EntityType>
+        <EntityType Name="usuariosplataforma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Roll" Type="Int32" />
+          <Property Name="Contraseña" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="rolesusuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="usuariosplataforma" ToRole="rolesusuariosplataforma" />
+        </EntityType>
+        <Association Name="pkbusclasebus">
+          <End Role="clasesbuses" Type="transvalleModel.clasesbuses" Multiplicity="0..1" />
+          <End Role="buses" Type="transvalleModel.buses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clasesbuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="buses">
+              <PropertyRef Name="ClaseBus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkbusclaseservicio">
+          <End Role="clasesservicio" Type="transvalleModel.clasesservicio" Multiplicity="0..1" />
+          <End Role="buses" Type="transvalleModel.buses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clasesservicio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="buses">
+              <PropertyRef Name="ClaseServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkuserrol">
+          <End Role="rolesusuariosplataforma" Type="transvalleModel.rolesusuariosplataforma" Multiplicity="0..1" />
+          <End Role="usuariosplataforma" Type="transvalleModel.usuariosplataforma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rolesusuariosplataforma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuariosplataforma">
+              <PropertyRef Name="Roll" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="transvalleModelStoreContainer" CdmEntityContainer="tvEntities">
+          <EntitySetMapping Name="buses">
+            <EntityTypeMapping TypeName="transvalleModel.buses">
+              <MappingFragment StoreEntitySet="buses">
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Vial" ColumnName="Vial" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+                <ScalarProperty Name="ClaseBus" ColumnName="ClaseBus" />
+                <ScalarProperty Name="ClaseServicio" ColumnName="ClaseServicio" />
+                <ScalarProperty Name="FechaMatricula" ColumnName="FechaMatricula" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="NumeroChasis" ColumnName="NumeroChasis" />
+                <ScalarProperty Name="NumeroMotor" ColumnName="NumeroMotor" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clasesbuses">
+            <EntityTypeMapping TypeName="transvalleModel.clasesbuses">
+              <MappingFragment StoreEntitySet="clasesbuses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clasesservicio">
+            <EntityTypeMapping TypeName="transvalleModel.clasesservicio">
+              <MappingFragment StoreEntitySet="clasesservicio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rolesusuariosplataforma">
+            <EntityTypeMapping TypeName="transvalleModel.rolesusuariosplataforma">
+              <MappingFragment StoreEntitySet="rolesusuariosplataforma">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuariosplataforma">
+            <EntityTypeMapping TypeName="transvalleModel.usuariosplataforma">
+              <MappingFragment StoreEntitySet="usuariosplataforma">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
