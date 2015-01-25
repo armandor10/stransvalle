@@ -8,13 +8,13 @@
         <EntityTypeShape EntityType="dbtransvalleModel1.bus" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.coordenadasruta" Width="1.5" PointX="10.5" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.documentos" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbtransvalleModel1.documentos_has_bus" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtransvalleModel1.documentos_has_bus" Width="2.25" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.fallasreportadas" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.gastos" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.historialmovimiento" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.perfil" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.persona" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbtransvalleModel1.persona_has_documentos" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtransvalleModel1.persona_has_documentos" Width="3" PointX="3.375" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.planillacontrol" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.planillarecaudo" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="dbtransvalleModel1.puntoscontrol" Width="1.5" PointX="6" PointY="22" IsExpanded="true" />

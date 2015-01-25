@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TransValle</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+      html, body,#map-canvas {
+        width:100%;
+        height: 650px;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">TransValle</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrador <b class="caret"></b></a>
+                    <ul class="dropdown-menu">                        
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar sesion</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="#"><i class="fa fa-fw fa-bus"></i> Gestor de buses</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-arrows-alt"></i> Gestor de rutas</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-user"></i> Gestor de conductores</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-eye"></i> Visualizar ruta</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-list"></i> Historial de movimientos</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-list-alt"></i> Informe recaudo producido</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-list-ul"></i> Informe venta de tarjetas</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> Informe de recorridos</a>
+                    </li>                   
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-dollar"></i> Venta de tarjetas</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-file-archive-o"></i> Crear planilla recaudo</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper" style="height:650px">
+            <br /><br />
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Gestion de Buses</h2>
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-inverse">
+                      <div class="container-fluid">
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="Div1">
+                          <ul class="nav navbar-nav">
+                            <li><a id="btnNuevoBus">Registrar</a></li>
+                            <li><a id="btnDetallesBus">Detalles</a></li>
+                            <li><a id="btnEditarBus">Editar</a></li>
+                            <li><a id="btnEliminarBus">Eliminar</a></li>
+                          </ul>
+                        </div><!-- /.navbar-collapse -->
+                      </div><!-- /.container-fluid -->
+                    </nav>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-hover table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Placa</th>
+                                <th>Vial</th>
+                                <th>Marca</th>                                
+                                <th>Matricula</th>
+                                <th>Clase de servicio</th>
+                                <th>Clase de bus</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-left" id="tableBuses">
+                                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>   
+        </div>
+
+        <div class="modal fade bs-example-modal-sm" id="ModalDetallesBus" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Bus</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Placa: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="txtPlacabus" /><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Vial: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="txtVial" /><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Capacidad: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="txtCapacidad" /><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Clase de bus: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <select class="form-control" id="cboClaseBus"></select><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Clase de servicio: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <select class="form-control" id="cboClaseServicio"></select><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Fecha de matricula: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="date" class="form-control" id="fchMatricula" /><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Marca: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="txtMarca" /><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Modelo: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="txtModelo" /><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Numero chasis: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="txtNumeroChasis" /><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Numero motor: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="txtNumeroMotor" /><br />
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 text-right">
+                                <strong>Observaciones: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <textarea class="form-control" id="txtObservaciones" rows="4" cols="8"></textarea><br />
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script type="text/javascript" src="jsPropios/gBuses.js"></script>    
+</body>
+
+</html>
