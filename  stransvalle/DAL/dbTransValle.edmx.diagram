@@ -9,10 +9,10 @@
         <EntityTypeShape EntityType="transvalleModel.clasesbuses" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="transvalleModel.clasesservicio" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="transvalleModel.rolesusuariosplataforma" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="transvalleModel.usuariosplataforma" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="transvalleModel.pkbusclasebus" ManuallyRouted="false" />
         <AssociationConnector Association="transvalleModel.pkbusclaseservicio" ManuallyRouted="false" />
-        <AssociationConnector Association="transvalleModel.pkuserrol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="transvalleModel.usuariosplataforma" Width="1.5" PointX="8" PointY="1.5" />
+        <AssociationConnector Association="transvalleModel.pkuserrol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

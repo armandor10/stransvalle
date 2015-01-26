@@ -8,9 +8,9 @@ namespace Entidades
 {
     public class usuariosplataformaDto
     {
-        public int id { get; set; }
         public Nullable<int> Roll { get; set; }
         public string Contraseña { get; set; }
+        public string User { get; set; }
 
         public string NombreRoll { get; set; }
     }

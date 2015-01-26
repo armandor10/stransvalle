@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="transvalleModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="transvalleModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="transvalleModelStoreContainer">
           <EntitySet Name="buses" EntityType="transvalleModel.Store.buses" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="clasesbuses" EntityType="transvalleModel.Store.clasesbuses" store:Type="Tables" Schema="transvalle" />
@@ -64,11 +64,11 @@
         </EntityType>
         <EntityType Name="usuariosplataforma">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="User" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Roll" Type="int" />
           <Property Name="Contraseña" Type="varchar" MaxLength="45" />
+          <Property Name="User" Type="varchar" Nullable="false" MaxLength="45" />
         </EntityType>
         <Association Name="pkbusclasebus">
           <End Role="clasesbuses" Type="transvalleModel.Store.clasesbuses" Multiplicity="0..1" />
@@ -106,8 +106,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="transvalleModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -116,7 +115,6 @@
           <EntitySet Name="clasesbuses" EntityType="transvalleModel.clasesbuses" />
           <EntitySet Name="clasesservicio" EntityType="transvalleModel.clasesservicio" />
           <EntitySet Name="rolesusuariosplataforma" EntityType="transvalleModel.rolesusuariosplataforma" />
-          <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.usuariosplataforma" />
           <AssociationSet Name="pkbusclasebus" Association="transvalleModel.pkbusclasebus">
             <End Role="clasesbuses" EntitySet="clasesbuses" />
             <End Role="buses" EntitySet="buses" />
@@ -125,6 +123,7 @@
             <End Role="clasesservicio" EntitySet="clasesservicio" />
             <End Role="buses" EntitySet="buses" />
           </AssociationSet>
+          <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.usuariosplataforma" />
           <AssociationSet Name="pkuserrol" Association="transvalleModel.pkuserrol">
             <End Role="rolesusuariosplataforma" EntitySet="rolesusuariosplataforma" />
             <End Role="usuariosplataforma" EntitySet="usuariosplataforma" />
@@ -173,15 +172,6 @@
           <Property Name="Nombre" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="usuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="rolesusuariosplataforma" ToRole="usuariosplataforma" />
         </EntityType>
-        <EntityType Name="usuariosplataforma">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Roll" Type="Int32" />
-          <Property Name="Contraseña" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="rolesusuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="usuariosplataforma" ToRole="rolesusuariosplataforma" />
-        </EntityType>
         <Association Name="pkbusclasebus">
           <End Role="clasesbuses" Type="transvalleModel.clasesbuses" Multiplicity="0..1" />
           <End Role="buses" Type="transvalleModel.buses" Multiplicity="*" />
@@ -206,9 +196,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="usuariosplataforma">
+          <Key>
+            <PropertyRef Name="User" />
+          </Key>
+          <Property Type="Int32" Name="Roll" />
+          <Property Type="String" Name="Contraseña" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="rolesusuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="usuariosplataforma" ToRole="rolesusuariosplataforma" />
+        </EntityType>
         <Association Name="pkuserrol">
-          <End Role="rolesusuariosplataforma" Type="transvalleModel.rolesusuariosplataforma" Multiplicity="0..1" />
-          <End Role="usuariosplataforma" Type="transvalleModel.usuariosplataforma" Multiplicity="*" />
+          <End Type="transvalleModel.rolesusuariosplataforma" Role="rolesusuariosplataforma" Multiplicity="0..1" />
+          <End Type="transvalleModel.usuariosplataforma" Role="usuariosplataforma" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="rolesusuariosplataforma">
               <PropertyRef Name="id" />
@@ -269,9 +268,9 @@
           <EntitySetMapping Name="usuariosplataforma">
             <EntityTypeMapping TypeName="transvalleModel.usuariosplataforma">
               <MappingFragment StoreEntitySet="usuariosplataforma">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="User" ColumnName="User" />
                 <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

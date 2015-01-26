@@ -58,10 +58,10 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">                
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrador <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dvdUser"></a>
                     <ul class="dropdown-menu">                        
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar sesion</a>
+                            <a id="btnCerrarSesion"><i class="fa fa-fw fa-power-off"></i> Cerrar sesion</a>
                         </li>
                     </ul>
                 </li>
@@ -69,34 +69,34 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="#"><i class="fa fa-fw fa-bus"></i> Gestor de buses</a>
+                    <li class="active" id="dvdGestorBuses" style="display:none">
+                        <a href="gBuses.html"><i class="fa fa-fw fa-bus"></i> Gestor de buses</a>
                     </li>
-                    <li>
+                    <li id="dvdGestorRutas" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-arrows-alt"></i> Gestor de rutas</a>
                     </li>
-                    <li>
+                    <li id="dvdGestorConductores" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-user"></i> Gestor de conductores</a>
                     </li>
-                    <li>
+                    <li id="dvdVisualizarRuta" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-eye"></i> Visualizar ruta</a>
                     </li>
-                    <li>
+                    <li id="dvdHistorialMovimiento" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-list"></i> Historial de movimientos</a>
                     </li>
-                    <li>
+                    <li id="dvdInformeRecaudoProducido" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-list-alt"></i> Informe recaudo producido</a>
                     </li>
-                    <li>
+                    <li id="dvdInformeVentaTarjetas" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-list-ul"></i> Informe venta de tarjetas</a>
                     </li>
-                    <li>
+                    <li id="dvdInformeRecorridos" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-file-text-o"></i> Informe de recorridos</a>
                     </li>                   
-                    <li>
+                    <li id="dvdVentaTarjetas" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-dollar"></i> Venta de tarjetas</a>
                     </li>
-                    <li>
+                    <li id="dvdCrearPlanillaRecaudo" style="display:none">
                         <a href="#"><i class="fa fa-fw fa-file-archive-o"></i> Crear planilla recaudo</a>
                     </li>
                 </ul>
@@ -261,8 +261,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-
+    <script src="jsPropios/varLocal.js"></script>
+    <script src="jsPropios/app.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
     <script type="text/javascript" src="jsPropios/gBuses.js"></script>    
 </body>
