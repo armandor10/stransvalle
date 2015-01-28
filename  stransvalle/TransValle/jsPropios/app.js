@@ -48,8 +48,34 @@ var UsersDAO = (function () {
         }
     }
 }());
-
-
+var BusesDAO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsBuses.asmx/");
+    return {
+        Gets: function (fCorrecto) {
+            proxy._doAjax("GET", "Gets", null, fCorrecto, null, true);
+        },
+        Insert: function (objBus, fCorrecto) {
+            var Parametro = {
+                Reg: JSON.stringify(objBus)
+            }
+            proxy._doAjax("GET", "Insert", Parametro, fCorrecto, null, true);
+        },
+        Delete: function (Placa, fCorrecto) {
+            var Parametro = {
+                Placa: "'" + Placa + "'"
+            }
+            proxy._doAjax("GET", "Delete", Parametro, fCorrecto, null, true);
+        }
+    }
+}());
+var DatosBasicosDAO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsDatosBasicos.asmx/");
+    return {
+        Get: function (fCorrecto) {
+            proxy._doAjax("GET", "GetDatosBasicos", null, fCorrecto, null, true);
+        }
+    }
+}());
 
 
 

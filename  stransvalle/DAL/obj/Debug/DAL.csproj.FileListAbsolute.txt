@@ -43,3 +43,17 @@ C:\Users\Orley\Desktop\sTransValle\DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Orley\Desktop\sTransValle\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Orley\Desktop\sTransValle\DAL\obj\Debug\DAL.dll
 C:\Users\Orley\Desktop\sTransValle\DAL\obj\Debug\DAL.pdb
+D:\Dev\TransValle\DAL\bin\Debug\DAL.dll.config
+D:\Dev\TransValle\DAL\bin\Debug\DAL.dll
+D:\Dev\TransValle\DAL\bin\Debug\DAL.pdb
+D:\Dev\TransValle\DAL\bin\Debug\EntityFramework.dll
+D:\Dev\TransValle\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Dev\TransValle\DAL\bin\Debug\MySql.Data.dll
+D:\Dev\TransValle\DAL\bin\Debug\MySql.Data.Entity.EF5.dll
+D:\Dev\TransValle\DAL\bin\Debug\MySql.Data.Entity.EF6.dll
+D:\Dev\TransValle\DAL\bin\Debug\MySql.Fabric.Plugin.dll
+D:\Dev\TransValle\DAL\bin\Debug\EntityFramework.xml
+D:\Dev\TransValle\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Dev\TransValle\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Dev\TransValle\DAL\obj\Debug\DAL.dll
+D:\Dev\TransValle\DAL\obj\Debug\DAL.pdb
