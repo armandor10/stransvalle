@@ -115,6 +115,7 @@
           <EntitySet Name="clasesbuses" EntityType="transvalleModel.clasesbuses" />
           <EntitySet Name="clasesservicio" EntityType="transvalleModel.clasesservicio" />
           <EntitySet Name="rolesusuariosplataforma" EntityType="transvalleModel.rolesusuariosplataforma" />
+          <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.usuariosplataforma" />
           <AssociationSet Name="pkbusclasebus" Association="transvalleModel.pkbusclasebus">
             <End Role="clasesbuses" EntitySet="clasesbuses" />
             <End Role="buses" EntitySet="buses" />
@@ -123,7 +124,6 @@
             <End Role="clasesservicio" EntitySet="clasesservicio" />
             <End Role="buses" EntitySet="buses" />
           </AssociationSet>
-          <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.usuariosplataforma" />
           <AssociationSet Name="pkuserrol" Association="transvalleModel.pkuserrol">
             <End Role="rolesusuariosplataforma" EntitySet="rolesusuariosplataforma" />
             <End Role="usuariosplataforma" EntitySet="usuariosplataforma" />
@@ -133,18 +133,18 @@
           <Key>
             <PropertyRef Name="Placa" />
           </Key>
-          <Property Name="Placa" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="Vial" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="Capacidad" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="ClaseBus" Type="Int32" />
-          <Property Name="ClaseServicio" Type="Int32" />
-          <Property Name="FechaMatricula" Type="DateTime" />
-          <Property Name="Marca" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="Modelo" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="NumeroChasis" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="NumeroMotor" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="Observaciones" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
-          <Property Name="Password" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="Placa" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Vial" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Capacidad" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ClaseBus" />
+          <Property Type="Int32" Name="ClaseServicio" />
+          <Property Type="DateTime" Name="FechaMatricula" />
+          <Property Type="String" Name="Marca" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Modelo" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NumeroChasis" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NumeroMotor" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Observaciones" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="clasesbuses" Relationship="transvalleModel.pkbusclasebus" FromRole="buses" ToRole="clasesbuses" />
           <NavigationProperty Name="clasesservicio" Relationship="transvalleModel.pkbusclaseservicio" FromRole="buses" ToRole="clasesservicio" />
         </EntityType>
@@ -152,29 +152,38 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="buses" Relationship="transvalleModel.pkbusclasebus" FromRole="clasesbuses" ToRole="buses" />
         </EntityType>
         <EntityType Name="clasesservicio">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="buses" Relationship="transvalleModel.pkbusclaseservicio" FromRole="clasesservicio" ToRole="buses" />
         </EntityType>
         <EntityType Name="rolesusuariosplataforma">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="usuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="rolesusuariosplataforma" ToRole="usuariosplataforma" />
         </EntityType>
+        <EntityType Name="usuariosplataforma">
+          <Key>
+            <PropertyRef Name="User" />
+          </Key>
+          <Property Type="Int32" Name="Roll" />
+          <Property Type="String" Name="Contraseña" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="rolesusuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="usuariosplataforma" ToRole="rolesusuariosplataforma" />
+        </EntityType>
         <Association Name="pkbusclasebus">
-          <End Role="clasesbuses" Type="transvalleModel.clasesbuses" Multiplicity="0..1" />
-          <End Role="buses" Type="transvalleModel.buses" Multiplicity="*" />
+          <End Type="transvalleModel.clasesbuses" Role="clasesbuses" Multiplicity="0..1" />
+          <End Type="transvalleModel.buses" Role="buses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="clasesbuses">
               <PropertyRef Name="id" />
@@ -185,8 +194,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="pkbusclaseservicio">
-          <End Role="clasesservicio" Type="transvalleModel.clasesservicio" Multiplicity="0..1" />
-          <End Role="buses" Type="transvalleModel.buses" Multiplicity="*" />
+          <End Type="transvalleModel.clasesservicio" Role="clasesservicio" Multiplicity="0..1" />
+          <End Type="transvalleModel.buses" Role="buses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="clasesservicio">
               <PropertyRef Name="id" />
@@ -196,15 +205,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="usuariosplataforma">
-          <Key>
-            <PropertyRef Name="User" />
-          </Key>
-          <Property Type="Int32" Name="Roll" />
-          <Property Type="String" Name="Contraseña" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="User" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="rolesusuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="usuariosplataforma" ToRole="rolesusuariosplataforma" />
-        </EntityType>
         <Association Name="pkuserrol">
           <End Type="transvalleModel.rolesusuariosplataforma" Role="rolesusuariosplataforma" Multiplicity="0..1" />
           <End Type="transvalleModel.usuariosplataforma" Role="usuariosplataforma" Multiplicity="*" />
@@ -217,7 +217,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -226,42 +226,42 @@
           <EntitySetMapping Name="buses">
             <EntityTypeMapping TypeName="transvalleModel.buses">
               <MappingFragment StoreEntitySet="buses">
-                <ScalarProperty Name="Placa" ColumnName="Placa" />
-                <ScalarProperty Name="Vial" ColumnName="Vial" />
-                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
-                <ScalarProperty Name="ClaseBus" ColumnName="ClaseBus" />
-                <ScalarProperty Name="ClaseServicio" ColumnName="ClaseServicio" />
-                <ScalarProperty Name="FechaMatricula" ColumnName="FechaMatricula" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
-                <ScalarProperty Name="NumeroChasis" ColumnName="NumeroChasis" />
-                <ScalarProperty Name="NumeroMotor" ColumnName="NumeroMotor" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="NumeroMotor" ColumnName="NumeroMotor" />
+                <ScalarProperty Name="NumeroChasis" ColumnName="NumeroChasis" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="FechaMatricula" ColumnName="FechaMatricula" />
+                <ScalarProperty Name="ClaseServicio" ColumnName="ClaseServicio" />
+                <ScalarProperty Name="ClaseBus" ColumnName="ClaseBus" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+                <ScalarProperty Name="Vial" ColumnName="Vial" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="clasesbuses">
             <EntityTypeMapping TypeName="transvalleModel.clasesbuses">
               <MappingFragment StoreEntitySet="clasesbuses">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="clasesservicio">
             <EntityTypeMapping TypeName="transvalleModel.clasesservicio">
               <MappingFragment StoreEntitySet="clasesservicio">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="rolesusuariosplataforma">
             <EntityTypeMapping TypeName="transvalleModel.rolesusuariosplataforma">
               <MappingFragment StoreEntitySet="rolesusuariosplataforma">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

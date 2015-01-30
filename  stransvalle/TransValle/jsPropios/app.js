@@ -60,6 +60,12 @@ var BusesDAO = (function () {
             }
             proxy._doAjax("GET", "Insert", Parametro, fCorrecto, null, true);
         },
+        Update: function (objBus, fCorrecto) {
+            var Parametro = {
+                Reg: JSON.stringify(objBus)
+            }
+            proxy._doAjax("GET", "Update", Parametro, fCorrecto, null, true);
+        },
         Delete: function (Placa, fCorrecto) {
             var Parametro = {
                 Placa: "'" + Placa + "'"
