@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1fe7026bf2804e068105a498ae50e94e" Name="Diagrama1" ZoomLevel="82">
-        <EntityTypeShape EntityType="transvalleModel.buses" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="transvalleModel.clasesbuses" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="transvalleModel.clasesservicio" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="transvalleModel.rolesusuariosplataforma" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="transvalleModel.pkbusclasebus" ManuallyRouted="false" />
-        <AssociationConnector Association="transvalleModel.pkbusclaseservicio" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="transvalleModel.usuariosplataforma" Width="1.5" PointX="8" PointY="1.5" />
+      <Diagram DiagramId="1fe7026bf2804e068105a498ae50e94e" Name="Diagrama1" ZoomLevel="13">
+        <EntityTypeShape EntityType="transvalleModel.buses" Width="1.5" PointX="8.5881154893842133" PointY="22.99690630612751" />
+        <EntityTypeShape EntityType="transvalleModel.clasesbuses" Width="1.5" PointX="10.604184468558144" PointY="16.941618152401233" />
+        <EntityTypeShape EntityType="transvalleModel.clasesservicio" Width="1.5" PointX="11.720955602694748" PointY="27.584648934930865" />
+        <EntityTypeShape EntityType="transvalleModel.rolesusuariosplataforma" Width="1.5" PointX="6.7124550504202283" PointY="17.365640305618587" />
+        <EntityTypeShape EntityType="transvalleModel.usuariosplataforma" Width="1.5" PointX="7.50317585072628" PointY="13.838165736681859" />
+        <AssociationConnector Association="transvalleModel.pkbusclasebus" />
+        <AssociationConnector Association="transvalleModel.pkbusclaseservicio" />
         <AssociationConnector Association="transvalleModel.pkuserrol" />
       </Diagram>
     </edmx:Diagrams>
