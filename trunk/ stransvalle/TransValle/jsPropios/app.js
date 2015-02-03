@@ -82,6 +82,32 @@ var DatosBasicosDAO = (function () {
         }
     }
 }());
+var RutasDAO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsRutas.asmx/");
+    return {
+        Gets: function (fCorrecto) {
+            proxy._doAjax("GET", "Gets", null, fCorrecto, null, true);
+        },
+        Insert: function (objRuta, fCorrecto) {
+            var Parametro = {
+                Reg: JSON.stringify(objRuta)
+            }
+            proxy._doAjax("GET", "Insert", Parametro, fCorrecto, null, true);
+        },
+        Delete: function (mNomRuta, fCorrecto) {
+            var Parametro = {
+                NomRuta: "'" + mNomRuta + "'"
+            }
+            proxy._doAjax("GET", "Delete", Parametro, fCorrecto, null, true);
+        },
+        AsignarPuntosRuta: function (lCoor, fCorrecto) {
+            var Parametro = {
+                Reg: JSON.stringify(lCoor)
+            }
+            proxy._doAjax("GET", "AsigPuntosRuta", Parametro, fCorrecto, null, true);
+        }
+    }
+}());
 
 
 

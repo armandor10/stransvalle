@@ -24,7 +24,6 @@
         }
         else return false;
     };
-
     var initializeMap = function () {
         var haightAshbury = new google.maps.LatLng(10.466606, -73.252523);
         var mapOptions = {
@@ -33,7 +32,7 @@
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
-    }
+    };
     
     return {
         init: function () {
