@@ -43,7 +43,7 @@
     var _VerificarPermisos = function () {
         var user = varLocal.getUser();
         var rol = varLocal.getRol();
-        if ((user != null) && (rol != null)) {
+        if ((user != null) && (rol != null) && (rol == 3)) {
             $("#dvdUser").html('<i class="fa fa-user"></i> ' + user + ' <b class="caret">');
             listaPermisos = Permisos.Get(rol);
             $.each(listaPermisos, function (index, item) {
