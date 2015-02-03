@@ -73,9 +73,16 @@ namespace BLL
                     rutas oRuta = ctx.rutas.Where(t => t.NomRuta == NomRuta).FirstOrDefault();
                     if (oRuta != null)
                     {
+                        foreach (coordenadasrutas item in oRuta.coordenadasrutas.ToList())
+                        {
+                            ctx.coordenadasrutas.Remove(item);
+                            ctx.SaveChanges();
+                        }
+
                         ctx.rutas.Remove(oRuta);
                         ctx.SaveChanges();
                         Res.Error = false;
+
                         Res.Mensaje = "Operacion realizada satisfactoriamente!!!";
                     }
                     else

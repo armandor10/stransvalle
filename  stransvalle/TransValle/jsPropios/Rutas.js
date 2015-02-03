@@ -39,6 +39,9 @@
             var NombreRutaActual = $("#cboRutasInformacion").val();
             VerInformacionRuta(NombreRutaActual);
         });
+        $("#btnEliminarRuta").click(function () {
+            EliminarRuta($("#cboRutasBorrar").val());
+        });
     };
     var _createElements = function () {
     };
@@ -205,12 +208,21 @@
         var poly = {};
         poly = new google.maps.Polyline(polyOptions);
         poly.setMap(map);
-        
+
         $.each(listaCoordenadas, function (index, item) {
             var path = poly.getPath();
             path.push(new google.maps.LatLng(item.Latitud, item.Longitud));
         });
-    }
+    };
+    var EliminarRuta = function (NomRutaEliminar) {
+        RutasDAO.Delete(NomRutaEliminar, function (result) {
+            var respuesta = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+            if (respuesta.Error == false) {
+                TraerRutas();
+            }
+            alert(respuesta.Mensaje);
+        });
+    };
 
     return {
         init: function () {
