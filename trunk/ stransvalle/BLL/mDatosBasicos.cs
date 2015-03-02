@@ -16,12 +16,14 @@ namespace BLL
         {
             Mapper.CreateMap<clasesbuses, clasesbusesDto>();
             Mapper.CreateMap<clasesservicio,clasesservicioDto>();
+            Mapper.CreateMap<gruposbuses, gruposbusesDto>();
         }
         public DatosBasicosDto GetDatosBasicos()
         {
             DatosBasicosDto objDatosBasicos = new DatosBasicosDto();
             objDatosBasicos.lClasesBuses = GetClasesBuses();
             objDatosBasicos.lClasesServicio = GetClasesServicio();
+            objDatosBasicos.lGruposBuses = GetGruposBuses();
             return objDatosBasicos;
         }
         public List<clasesservicioDto> GetClasesServicio()
@@ -40,6 +42,16 @@ namespace BLL
             {
                 List<clasesbusesDto> lRes = new List<clasesbusesDto>();
                 List<clasesbuses> mObj = ctx.clasesbuses.ToList();
+                Mapper.Map(mObj, lRes);
+                return lRes;
+            }
+        }
+        public List<gruposbusesDto> GetGruposBuses()
+        {
+            using (ctx = new tvEntities())
+            {
+                List<gruposbusesDto> lRes = new List<gruposbusesDto>();
+                List<gruposbuses> mObj = ctx.gruposbuses.ToList();
                 Mapper.Map(mObj, lRes);
                 return lRes;
             }

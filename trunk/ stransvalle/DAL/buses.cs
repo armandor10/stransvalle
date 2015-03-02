@@ -14,6 +14,11 @@ namespace DAL
     
     public partial class buses
     {
+        public buses()
+        {
+            this.detallesplanilla = new HashSet<detallesplanilla>();
+        }
+    
         public string Placa { get; set; }
         public string Vial { get; set; }
         public string Capacidad { get; set; }
@@ -26,8 +31,11 @@ namespace DAL
         public string NumeroMotor { get; set; }
         public string Observaciones { get; set; }
         public string Password { get; set; }
+        public Nullable<int> Grupo { get; set; }
     
         public virtual clasesbuses clasesbuses { get; set; }
         public virtual clasesservicio clasesservicio { get; set; }
+        public virtual gruposbuses gruposbuses { get; set; }
+        public virtual ICollection<detallesplanilla> detallesplanilla { get; set; }
     }
 }

@@ -12,23 +12,17 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class rutas
+    public partial class planillacontrol
     {
-        public rutas()
+        public planillacontrol()
         {
-            this.coordenadasrutas = new HashSet<coordenadasrutas>();
             this.detallesplanilla = new HashSet<detallesplanilla>();
         }
     
-        public string NomRuta { get; set; }
-        public string Descripcion { get; set; }
-        public Nullable<int> Frecuencia { get; set; }
-        public Nullable<int> Gabela { get; set; }
-        public string Longitud { get; set; }
-        public Nullable<int> Capacidad { get; set; }
-        public Nullable<int> TiempoRecorrido { get; set; }
+        public int id { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public string Observaciones { get; set; }
     
-        public virtual ICollection<coordenadasrutas> coordenadasrutas { get; set; }
         public virtual ICollection<detallesplanilla> detallesplanilla { get; set; }
     }
 }

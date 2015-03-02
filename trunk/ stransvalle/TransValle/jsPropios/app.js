@@ -54,6 +54,12 @@ var BusesDAO = (function () {
         Gets: function (fCorrecto) {
             proxy._doAjax("GET", "Gets", null, fCorrecto, null, true);
         },
+        InsertGrupo: function (NombreGrupo, fCorrecto) {
+            var Parametro = {
+                NombreGrupo: "'" + NombreGrupo + "'"
+            }
+            proxy._doAjax("GET", "InsertGrupo", Parametro, fCorrecto, null, true);
+        },
         Insert: function (objBus, fCorrecto) {
             var Parametro = {
                 Reg: JSON.stringify(objBus)

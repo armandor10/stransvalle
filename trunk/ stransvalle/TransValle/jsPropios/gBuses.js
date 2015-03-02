@@ -36,6 +36,16 @@
             var confirmacion = confirm("Esta seguro que quiere eliminar el bus de placa " + lBuses[indexBusSeleccionado].Placa + "?\nUna vez borrado no podra recuperar ninguna informacion de ese bus");
             if(confirmacion) EliminarBus();
         });
+        $("#btnNuevoGrupo").click(function () {
+            $("#txtNombreGrupo").val("");
+            $("#modalNuevoGrupo").modal("show");
+        });
+        $("#btnGuardarNuevoGrupo").click(function () {
+            var NomGrup = $("#txtNombreGrupo").val();
+            if (NomGrup != "") {
+                NuevoGrupo(NomGrup);
+            } else alert("Debe especificar un nombre para el grupo...");
+        });
     };
     var _createElements = function () {
         CargarDatosBasicos();
@@ -59,7 +69,7 @@
             $("#tableBuses").html("");
             $.each(lBuses, function (index, item) {
                 var Fecha = byaPage.converJSONDate(item.FechaMatricula);
-                $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th></tr>");
+                $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th><th>" + item.NombreGrupo + "</th></tr>");
             });
         });
     };
@@ -73,6 +83,10 @@
 
             $("#cboClaseServicio").byaCombo({
                 DataSource: DatosBasicos.lClasesServicio, placeHolder: 'Seleccione...', Display: "Nombre", Value: "id"
+            });
+
+            $("#cboGrupoBus").byaCombo({
+                DataSource: DatosBasicos.lGruposBuses, placeHolder: 'Seleccione...', Display: "Nombre", Value: "id"
             });
         });
     };
@@ -115,6 +129,7 @@
         e.NumeroMotor = $("#txtNumeroMotor").val();
         e.Observaciones = $("#txtObservaciones").val();
         e.Password = $("#txtPassword").val();
+        e.Grupo =  $("#cboGrupoBus").val();
 
         var fecha = "" + $("#fchMatricula").val(); + "";
         fecha = fecha.split("-");
@@ -143,14 +158,15 @@
         $("#tableBuses").html("");
         $.each(lBuses, function (index, item) {
             var Fecha = byaPage.converJSONDate(item.FechaMatricula);
-            if (indexactual == index) $("#tableBuses").append("<tr class='info' id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th></tr>");
-            else $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th></tr>");
+            if (indexactual == index) $("#tableBuses").append("<tr class='info' id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th><th>" + item.NombreGrupo + "</th></tr>");
+            else $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th><th>" + item.NombreGrupo + "</th></tr>");
         });
     };
     var VerDetallesBusSeleccionado = function () {
         $("#txtPlacabus").val(lBuses[indexBusSeleccionado].Placa);
         $("#txtVial").val(lBuses[indexBusSeleccionado].Vial);
         $("#txtCapacidad").val(lBuses[indexBusSeleccionado].Capacidad);
+        $("#cboGrupoBus").val(lBuses[indexBusSeleccionado].Grupo);
         $("#cboClaseBus").val(lBuses[indexBusSeleccionado].ClaseBus);
         $("#cboClaseServicio").val(lBuses[indexBusSeleccionado].ClaseServicio);
         $("#txtMarca").val(lBuses[indexBusSeleccionado].Marca);
@@ -184,7 +200,17 @@
 
             });
         }
-    }
+    };
+    var NuevoGrupo = function (NomGru) {
+        BusesDAO.InsertGrupo(NomGru, function (result) {
+            var respuesta = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+            if (respuesta.Error == false) {
+                CargarDatosBasicos();
+                $("#modalNuevoGrupo").modal("hide");
+            } 
+            alert(respuesta.Mensaje);
+        });
+    };
     
     return {
         init: function () {
@@ -208,7 +234,9 @@
             $("#txtNumeroMotor").byaSetHabilitar(true);
             $("#txtObservaciones").byaSetHabilitar(true);
             $("#txtPassword").byaSetHabilitar(true);
+            $("#cboGrupoBus").byaSetHabilitar(true);
 
+            $("#cboGrupoBus").val("");
             $("#txtPlacabus").val("");
             $("#txtVial").val("");
             $("#txtCapacidad").val("");
@@ -235,7 +263,9 @@
             $("#txtNumeroMotor").byaSetHabilitar(false);
             $("#txtObservaciones").byaSetHabilitar(false);
             $("#txtPassword").byaSetHabilitar(false);
+            $("#cboGrupoBus").byaSetHabilitar(false);
 
+            $("#cboGrupoBus").val("");
             $("#txtPlacabus").val("");
             $("#txtVial").val("");
             $("#txtCapacidad").val("");

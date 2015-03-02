@@ -10,5 +10,6 @@ namespace Entidades
     {
         public List<clasesbusesDto> lClasesBuses;
         public List<clasesservicioDto> lClasesServicio;
+        public List<gruposbusesDto> lGruposBuses;
     }
 }

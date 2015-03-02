@@ -4,18 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1fe7026bf2804e068105a498ae50e94e" Name="Diagrama1" ZoomLevel="59">
-        <EntityTypeShape EntityType="transvalleModel.buses" Width="1.5" PointX="2.121106301490733" PointY="24.343875195991188" />
-        <EntityTypeShape EntityType="transvalleModel.clasesbuses" Width="1.5" PointX="7.0640510558448977" PointY="20.367822298951364" />
-        <EntityTypeShape EntityType="transvalleModel.clasesservicio" Width="1.5" PointX="3.1597824167272925" PointY="0.5068249555802089" />
-        <EntityTypeShape EntityType="transvalleModel.rolesusuariosplataforma" Width="1.5" PointX="11.535704405762118" PointY="24.803727668152995" />
-        <EntityTypeShape EntityType="transvalleModel.rutas" Width="1.5" PointX="4.8901089024218312" PointY="4.50717832357957" />
-        <EntityTypeShape EntityType="transvalleModel.usuariosplataforma" Width="1.5" PointX="11.884086577167775" PointY="29.740263446113218" />
+      <Diagram DiagramId="1fe7026bf2804e068105a498ae50e94e" Name="Diagrama1" ZoomLevel="67">
+        <EntityTypeShape EntityType="transvalleModel.buses" Width="1.5" PointX="9.5" PointY="7.125" />
+        <EntityTypeShape EntityType="transvalleModel.clasesbuses" Width="1.5" PointX="3.75" PointY="3.625" />
+        <EntityTypeShape EntityType="transvalleModel.clasesservicio" Width="1.5" PointX="12.25" PointY="3.625" />
+        <EntityTypeShape EntityType="transvalleModel.coordenadasrutas" Width="1.5" PointX="12" PointY="7.125" />
+        <EntityTypeShape EntityType="transvalleModel.rolesusuariosplataforma" Width="1.5" PointX="6.375" PointY="8.5" />
+        <EntityTypeShape EntityType="transvalleModel.rutas" Width="1.5" PointX="6.75" PointY="3.375" />
+        <EntityTypeShape EntityType="transvalleModel.usuariosplataforma" Width="1.5" PointX="9.625" PointY="3.625" />
         <AssociationConnector Association="transvalleModel.pkbusclasebus" />
         <AssociationConnector Association="transvalleModel.pkbusclaseservicio" />
-        <AssociationConnector Association="transvalleModel.pkuserrol" />
-        <EntityTypeShape EntityType="transvalleModel.coordenadasrutas" Width="1.5" PointX="2.5861297690244993" PointY="8.2448016741521659" />
         <AssociationConnector Association="transvalleModel.pk_cooo_Ruta" />
+        <AssociationConnector Association="transvalleModel.pkuserrol" />
+        <EntityTypeShape EntityType="transvalleModel.gruposbuses" Width="1.5" PointX="4.125" PointY="11.125" />
+        <EntityTypeShape EntityType="transvalleModel.personas" Width="1.5" PointX="6.375" PointY="11.5" />
+        <EntityTypeShape EntityType="transvalleModel.planillacontrol" Width="1.5" PointX="12.75" PointY="10.625" />
+        <EntityTypeShape EntityType="transvalleModel.tipostrabajador" Width="1.5" PointX="9.75" PointY="12.75" />
+        <AssociationConnector Association="transvalleModel.pk_bus_grupos" />
+        <AssociationConnector Association="transvalleModel.pe_Per_Tipo" />
+        <EntityTypeShape EntityType="transvalleModel.detallesplanilla" Width="1.5" PointX="3.625" PointY="13.875" />
+        <AssociationConnector Association="transvalleModel.pk_placa_Bus" />
+        <AssociationConnector Association="transvalleModel.pk_planilla" />
+        <AssociationConnector Association="transvalleModel.pkRuta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
