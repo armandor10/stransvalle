@@ -28,9 +28,14 @@ namespace DAL
         public DbSet<buses> buses { get; set; }
         public DbSet<clasesbuses> clasesbuses { get; set; }
         public DbSet<clasesservicio> clasesservicio { get; set; }
+        public DbSet<coordenadasrutas> coordenadasrutas { get; set; }
         public DbSet<rolesusuariosplataforma> rolesusuariosplataforma { get; set; }
         public DbSet<rutas> rutas { get; set; }
         public DbSet<usuariosplataforma> usuariosplataforma { get; set; }
-        public DbSet<coordenadasrutas> coordenadasrutas { get; set; }
+        public DbSet<gruposbuses> gruposbuses { get; set; }
+        public DbSet<personas> personas { get; set; }
+        public DbSet<planillacontrol> planillacontrol { get; set; }
+        public DbSet<tipostrabajador> tipostrabajador { get; set; }
+        public DbSet<detallesplanilla> detallesplanilla { get; set; }
     }
 }

@@ -54,5 +54,13 @@ namespace TransValle.Servicios
             mBuses objBuses = new mBuses();
             return objBuses.Delete(Placa);
         }
+
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public objRes InsertGrupo(string NombreGrupo) 
+        {
+            mBuses o = new mBuses();
+            return o.InsertGrupo(NombreGrupo);
+        }
     }
 }

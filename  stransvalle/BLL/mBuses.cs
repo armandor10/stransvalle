@@ -16,8 +16,11 @@ namespace BLL
         {
             Mapper.CreateMap<buses, busesDto>()
                 .ForMember(dest => dest.NombreClaseBus, opt => opt.MapFrom(src => src.clasesbuses.Nombre))
-                .ForMember(dest => dest.NombreClaseServicio, opt => opt.MapFrom(src => src.clasesservicio.Nombre));
+                .ForMember(dest => dest.NombreClaseServicio, opt => opt.MapFrom(src => src.clasesservicio.Nombre))
+                .ForMember(dest => dest.NombreGrupo, opt => opt.MapFrom(src => src.gruposbuses.Nombre));
             Mapper.CreateMap<busesDto, buses>();
+            Mapper.CreateMap<gruposbuses, gruposbusesDto>();
+            Mapper.CreateMap<gruposbusesDto, gruposbuses>();
         }
         public List<busesDto> Gets()
         {
@@ -27,6 +30,29 @@ namespace BLL
                 List<buses> lBuses = ctx.buses.ToList();
                 Mapper.Map(lBuses, lrBuses);
                 return lrBuses;
+            }
+        }
+        public objRes InsertGrupo(string NombreGrupo)
+        {
+            using (ctx = new tvEntities())
+            {
+                objRes res = new objRes();
+                gruposbuses grupo = ctx.gruposbuses.Where(t => t.Nombre == NombreGrupo).FirstOrDefault();
+                if (grupo == null)
+                {
+                    grupo = new gruposbuses();
+                    grupo.Nombre = NombreGrupo;
+                    ctx.gruposbuses.Add(grupo);
+                    ctx.SaveChanges();
+                    res.Error = false;
+                    res.Mensaje = "Operacion Realizada Satisfactoriamente...";
+                }
+                else
+                {
+                    res.Error = true;
+                    res.Mensaje = "Ya existe un grupo con es nombre...";
+                }
+                return res;
             }
         }
         public objRes Insert(busesDto Reg)

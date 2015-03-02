@@ -95,11 +95,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbTransValle.edmx</DependentUpon>
     </Compile>
+    <Compile Include="detallesplanilla.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gruposbuses.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="personas.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="planillacontrol.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rolesusuariosplataforma.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="rutas.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipostrabajador.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="usuariosplataforma.cs">

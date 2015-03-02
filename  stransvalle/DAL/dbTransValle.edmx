@@ -10,12 +10,33 @@
           <EntitySet Name="clasesbuses" EntityType="transvalleModel.Store.clasesbuses" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="clasesservicio" EntityType="transvalleModel.Store.clasesservicio" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="coordenadasrutas" EntityType="transvalleModel.Store.coordenadasrutas" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="detallesplanilla" EntityType="transvalleModel.Store.detallesplanilla" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="gruposbuses" EntityType="transvalleModel.Store.gruposbuses" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="personas" EntityType="transvalleModel.Store.personas" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="planillacontrol" EntityType="transvalleModel.Store.planillacontrol" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="rolesusuariosplataforma" EntityType="transvalleModel.Store.rolesusuariosplataforma" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="rutas" EntityType="transvalleModel.Store.rutas" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="tipostrabajador" EntityType="transvalleModel.Store.tipostrabajador" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.Store.usuariosplataforma" store:Type="Tables" Schema="transvalle" />
+          <AssociationSet Name="pe_Per_Tipo" Association="transvalleModel.Store.pe_Per_Tipo">
+            <End Role="tipostrabajador" EntitySet="tipostrabajador" />
+            <End Role="personas" EntitySet="personas" />
+          </AssociationSet>
+          <AssociationSet Name="pk_bus_grupos" Association="transvalleModel.Store.pk_bus_grupos">
+            <End Role="gruposbuses" EntitySet="gruposbuses" />
+            <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
           <AssociationSet Name="pk_cooo_Ruta" Association="transvalleModel.Store.pk_cooo_Ruta">
             <End Role="rutas" EntitySet="rutas" />
             <End Role="coordenadasrutas" EntitySet="coordenadasrutas" />
+          </AssociationSet>
+          <AssociationSet Name="pk_placa_Bus" Association="transvalleModel.Store.pk_placa_Bus">
+            <End Role="buses" EntitySet="buses" />
+            <End Role="detallesplanilla" EntitySet="detallesplanilla" />
+          </AssociationSet>
+          <AssociationSet Name="pk_planilla" Association="transvalleModel.Store.pk_planilla">
+            <End Role="planillacontrol" EntitySet="planillacontrol" />
+            <End Role="detallesplanilla" EntitySet="detallesplanilla" />
           </AssociationSet>
           <AssociationSet Name="pkbusclasebus" Association="transvalleModel.Store.pkbusclasebus">
             <End Role="clasesbuses" EntitySet="clasesbuses" />
@@ -24,6 +45,10 @@
           <AssociationSet Name="pkbusclaseservicio" Association="transvalleModel.Store.pkbusclaseservicio">
             <End Role="clasesservicio" EntitySet="clasesservicio" />
             <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
+          <AssociationSet Name="pkRuta" Association="transvalleModel.Store.pkRuta">
+            <End Role="rutas" EntitySet="rutas" />
+            <End Role="detallesplanilla" EntitySet="detallesplanilla" />
           </AssociationSet>
           <AssociationSet Name="pkuserrol" Association="transvalleModel.Store.pkuserrol">
             <End Role="rolesusuariosplataforma" EntitySet="rolesusuariosplataforma" />
@@ -46,6 +71,7 @@
           <Property Name="NumeroMotor" Type="varchar" MaxLength="45" />
           <Property Name="Observaciones" Type="varchar" MaxLength="45" />
           <Property Name="Password" Type="varchar" MaxLength="45" />
+          <Property Name="Grupo" Type="int" />
         </EntityType>
         <EntityType Name="clasesbuses">
           <Key>
@@ -71,6 +97,48 @@
           <Property Name="Latitud" Type="varchar" MaxLength="100" />
           <Property Name="Longitud" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="detallesplanilla">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idPlanillaControl" Type="int" />
+          <Property Name="PlacaBus" Type="varchar" MaxLength="45" />
+          <Property Name="Ruta" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="gruposbuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="personas">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Cedula" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="varchar" MaxLength="50" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="45" />
+          <Property Name="Cedula" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Direccion" Type="varchar" MaxLength="45" />
+          <Property Name="Telefono" Type="varchar" MaxLength="45" />
+          <Property Name="EPS" Type="varchar" MaxLength="45" />
+          <Property Name="Pension" Type="varchar" MaxLength="45" />
+          <Property Name="TipoSangre" Type="varchar" MaxLength="45" />
+          <Property Name="TipoPersona" Type="int" />
+          <Property Name="Usuario" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="planillacontrol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="rolesusuariosplataforma">
           <Key>
             <PropertyRef Name="id" />
@@ -90,6 +158,13 @@
           <Property Name="Capacidad" Type="int" />
           <Property Name="TiempoRecorrido" Type="int" />
         </EntityType>
+        <EntityType Name="tipostrabajador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
         <EntityType Name="usuariosplataforma">
           <Key>
             <PropertyRef Name="User" />
@@ -98,6 +173,30 @@
           <Property Name="Contraseña" Type="varchar" MaxLength="45" />
           <Property Name="User" Type="varchar" Nullable="false" MaxLength="45" />
         </EntityType>
+        <Association Name="pe_Per_Tipo">
+          <End Role="tipostrabajador" Type="transvalleModel.Store.tipostrabajador" Multiplicity="0..1" />
+          <End Role="personas" Type="transvalleModel.Store.personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipostrabajador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personas">
+              <PropertyRef Name="TipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_bus_grupos">
+          <End Role="gruposbuses" Type="transvalleModel.Store.gruposbuses" Multiplicity="0..1" />
+          <End Role="buses" Type="transvalleModel.Store.buses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gruposbuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="buses">
+              <PropertyRef Name="Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="pk_cooo_Ruta">
           <End Role="rutas" Type="transvalleModel.Store.rutas" Multiplicity="1" />
           <End Role="coordenadasrutas" Type="transvalleModel.Store.coordenadasrutas" Multiplicity="*" />
@@ -107,6 +206,30 @@
             </Principal>
             <Dependent Role="coordenadasrutas">
               <PropertyRef Name="NomRuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_placa_Bus">
+          <End Role="buses" Type="transvalleModel.Store.buses" Multiplicity="0..1" />
+          <End Role="detallesplanilla" Type="transvalleModel.Store.detallesplanilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buses">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="detallesplanilla">
+              <PropertyRef Name="PlacaBus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_planilla">
+          <End Role="planillacontrol" Type="transvalleModel.Store.planillacontrol" Multiplicity="0..1" />
+          <End Role="detallesplanilla" Type="transvalleModel.Store.detallesplanilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="planillacontrol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="detallesplanilla">
+              <PropertyRef Name="idPlanillaControl" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -134,6 +257,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="pkRuta">
+          <End Role="rutas" Type="transvalleModel.Store.rutas" Multiplicity="0..1" />
+          <End Role="detallesplanilla" Type="transvalleModel.Store.detallesplanilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rutas">
+              <PropertyRef Name="NomRuta" />
+            </Principal>
+            <Dependent Role="detallesplanilla">
+              <PropertyRef Name="Ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="pkuserrol">
           <End Role="rolesusuariosplataforma" Type="transvalleModel.Store.rolesusuariosplataforma" Multiplicity="0..1" />
           <End Role="usuariosplataforma" Type="transvalleModel.Store.usuariosplataforma" Multiplicity="*" />
@@ -154,6 +289,7 @@
           <EntitySet Name="buses" EntityType="transvalleModel.buses" />
           <EntitySet Name="clasesbuses" EntityType="transvalleModel.clasesbuses" />
           <EntitySet Name="clasesservicio" EntityType="transvalleModel.clasesservicio" />
+          <EntitySet Name="coordenadasrutas" EntityType="transvalleModel.coordenadasrutas" />
           <EntitySet Name="rolesusuariosplataforma" EntityType="transvalleModel.rolesusuariosplataforma" />
           <EntitySet Name="rutas" EntityType="transvalleModel.rutas" />
           <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.usuariosplataforma" />
@@ -165,14 +301,38 @@
             <End Role="clasesservicio" EntitySet="clasesservicio" />
             <End Role="buses" EntitySet="buses" />
           </AssociationSet>
+          <AssociationSet Name="pk_cooo_Ruta" Association="transvalleModel.pk_cooo_Ruta">
+            <End Role="rutas" EntitySet="rutas" />
+            <End Role="coordenadasrutas" EntitySet="coordenadasrutas" />
+          </AssociationSet>
           <AssociationSet Name="pkuserrol" Association="transvalleModel.pkuserrol">
             <End Role="rolesusuariosplataforma" EntitySet="rolesusuariosplataforma" />
             <End Role="usuariosplataforma" EntitySet="usuariosplataforma" />
           </AssociationSet>
-          <EntitySet Name="coordenadasrutas" EntityType="transvalleModel.coordenadasrutas" />
-          <AssociationSet Name="pk_cooo_Ruta" Association="transvalleModel.pk_cooo_Ruta">
+          <EntitySet Name="gruposbuses" EntityType="transvalleModel.gruposbuses" />
+          <EntitySet Name="personas" EntityType="transvalleModel.personas" />
+          <EntitySet Name="planillacontrol" EntityType="transvalleModel.planillacontrol" />
+          <EntitySet Name="tipostrabajador" EntityType="transvalleModel.tipostrabajador" />
+          <AssociationSet Name="pk_bus_grupos" Association="transvalleModel.pk_bus_grupos">
+            <End Role="gruposbuses" EntitySet="gruposbuses" />
+            <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
+          <AssociationSet Name="pe_Per_Tipo" Association="transvalleModel.pe_Per_Tipo">
+            <End Role="tipostrabajador" EntitySet="tipostrabajador" />
+            <End Role="personas" EntitySet="personas" />
+          </AssociationSet>
+          <EntitySet Name="detallesplanilla" EntityType="transvalleModel.detallesplanilla" />
+          <AssociationSet Name="pk_placa_Bus" Association="transvalleModel.pk_placa_Bus">
+            <End Role="buses" EntitySet="buses" />
+            <End Role="detallesplanilla" EntitySet="detallesplanilla" />
+          </AssociationSet>
+          <AssociationSet Name="pk_planilla" Association="transvalleModel.pk_planilla">
+            <End Role="planillacontrol" EntitySet="planillacontrol" />
+            <End Role="detallesplanilla" EntitySet="detallesplanilla" />
+          </AssociationSet>
+          <AssociationSet Name="pkRuta" Association="transvalleModel.pkRuta">
             <End Role="rutas" EntitySet="rutas" />
-            <End Role="coordenadasrutas" EntitySet="coordenadasrutas" />
+            <End Role="detallesplanilla" EntitySet="detallesplanilla" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="buses">
@@ -193,6 +353,9 @@
           <Property Type="String" Name="Password" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="clasesbuses" Relationship="transvalleModel.pkbusclasebus" FromRole="buses" ToRole="clasesbuses" />
           <NavigationProperty Name="clasesservicio" Relationship="transvalleModel.pkbusclaseservicio" FromRole="buses" ToRole="clasesservicio" />
+          <Property Type="Int32" Name="Grupo" />
+          <NavigationProperty Name="gruposbuses" Relationship="transvalleModel.pk_bus_grupos" FromRole="buses" ToRole="gruposbuses" />
+          <NavigationProperty Name="detallesplanilla" Relationship="transvalleModel.pk_placa_Bus" FromRole="buses" ToRole="detallesplanilla" />
         </EntityType>
         <EntityType Name="clasesbuses">
           <Key>
@@ -209,6 +372,17 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Nombre" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="buses" Relationship="transvalleModel.pkbusclaseservicio" FromRole="clasesservicio" ToRole="buses" />
+        </EntityType>
+        <EntityType Name="coordenadasrutas">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="NomRuta" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="NomRuta" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Latitud" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Longitud" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="rutas" Relationship="transvalleModel.pk_cooo_Ruta" FromRole="coordenadasrutas" ToRole="rutas" />
         </EntityType>
         <EntityType Name="rolesusuariosplataforma">
           <Key>
@@ -230,6 +404,7 @@
           <Property Type="Int32" Name="Capacidad" />
           <Property Type="Int32" Name="TiempoRecorrido" />
           <NavigationProperty Name="coordenadasrutas" Relationship="transvalleModel.pk_cooo_Ruta" FromRole="rutas" ToRole="coordenadasrutas" />
+          <NavigationProperty Name="detallesplanilla" Relationship="transvalleModel.pkRuta" FromRole="rutas" ToRole="detallesplanilla" />
         </EntityType>
         <EntityType Name="usuariosplataforma">
           <Key>
@@ -264,29 +439,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="pkuserrol">
-          <End Type="transvalleModel.rolesusuariosplataforma" Role="rolesusuariosplataforma" Multiplicity="0..1" />
-          <End Type="transvalleModel.usuariosplataforma" Role="usuariosplataforma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="rolesusuariosplataforma">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="usuariosplataforma">
-              <PropertyRef Name="Roll" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="coordenadasrutas">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="NomRuta" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="NomRuta" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Latitud" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Longitud" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="rutas" Relationship="transvalleModel.pk_cooo_Ruta" FromRole="coordenadasrutas" ToRole="rutas" />
-        </EntityType>
         <Association Name="pk_cooo_Ruta">
           <End Type="transvalleModel.rutas" Role="rutas" Multiplicity="1" />
           <End Type="transvalleModel.coordenadasrutas" Role="coordenadasrutas" Multiplicity="*" />
@@ -299,6 +451,134 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="pkuserrol">
+          <End Type="transvalleModel.rolesusuariosplataforma" Role="rolesusuariosplataforma" Multiplicity="0..1" />
+          <End Type="transvalleModel.usuariosplataforma" Role="usuariosplataforma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rolesusuariosplataforma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuariosplataforma">
+              <PropertyRef Name="Roll" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="gruposbuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="buses" Relationship="transvalleModel.pk_bus_grupos" FromRole="gruposbuses" ToRole="buses" />
+        </EntityType>
+        <EntityType Name="personas">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Cedula" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombres" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Apellidos" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="FechaNacimiento" />
+          <Property Type="String" Name="Direccion" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Telefono" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EPS" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Pension" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TipoSangre" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TipoPersona" />
+          <Property Type="String" Name="Usuario" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tipostrabajador" Relationship="transvalleModel.pe_Per_Tipo" FromRole="personas" ToRole="tipostrabajador" />
+        </EntityType>
+        <EntityType Name="planillacontrol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Fecha" />
+          <Property Type="String" Name="Observaciones" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="detallesplanilla" Relationship="transvalleModel.pk_planilla" FromRole="planillacontrol" ToRole="detallesplanilla" />
+        </EntityType>
+        <EntityType Name="tipostrabajador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personas" Relationship="transvalleModel.pe_Per_Tipo" FromRole="tipostrabajador" ToRole="personas" />
+        </EntityType>
+        <Association Name="pk_bus_grupos">
+          <End Type="transvalleModel.gruposbuses" Role="gruposbuses" Multiplicity="0..1" />
+          <End Type="transvalleModel.buses" Role="buses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gruposbuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="buses">
+              <PropertyRef Name="Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pe_Per_Tipo">
+          <End Type="transvalleModel.tipostrabajador" Role="tipostrabajador" Multiplicity="0..1" />
+          <End Type="transvalleModel.personas" Role="personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipostrabajador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personas">
+              <PropertyRef Name="TipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="detallesplanilla">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idPlanillaControl" />
+          <Property Type="String" Name="PlacaBus" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Ruta" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="buses" Relationship="transvalleModel.pk_placa_Bus" FromRole="detallesplanilla" ToRole="buses" />
+          <NavigationProperty Name="planillacontrol" Relationship="transvalleModel.pk_planilla" FromRole="detallesplanilla" ToRole="planillacontrol" />
+          <NavigationProperty Name="rutas" Relationship="transvalleModel.pkRuta" FromRole="detallesplanilla" ToRole="rutas" />
+        </EntityType>
+        <Association Name="pk_placa_Bus">
+          <End Type="transvalleModel.buses" Role="buses" Multiplicity="0..1" />
+          <End Type="transvalleModel.detallesplanilla" Role="detallesplanilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buses">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="detallesplanilla">
+              <PropertyRef Name="PlacaBus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_planilla">
+          <End Type="transvalleModel.planillacontrol" Role="planillacontrol" Multiplicity="0..1" />
+          <End Type="transvalleModel.detallesplanilla" Role="detallesplanilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="planillacontrol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="detallesplanilla">
+              <PropertyRef Name="idPlanillaControl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkRuta">
+          <End Type="transvalleModel.rutas" Role="rutas" Multiplicity="0..1" />
+          <End Type="transvalleModel.detallesplanilla" Role="detallesplanilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rutas">
+              <PropertyRef Name="NomRuta" />
+            </Principal>
+            <Dependent Role="detallesplanilla">
+              <PropertyRef Name="Ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -308,6 +588,7 @@
           <EntitySetMapping Name="buses">
             <EntityTypeMapping TypeName="transvalleModel.buses">
               <MappingFragment StoreEntitySet="buses">
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="NumeroMotor" ColumnName="NumeroMotor" />
@@ -335,6 +616,16 @@
             <EntityTypeMapping TypeName="transvalleModel.clasesservicio">
               <MappingFragment StoreEntitySet="clasesservicio">
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coordenadasrutas">
+            <EntityTypeMapping TypeName="transvalleModel.coordenadasrutas">
+              <MappingFragment StoreEntitySet="coordenadasrutas">
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="NomRuta" ColumnName="NomRuta" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -369,12 +660,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="coordenadasrutas">
-            <EntityTypeMapping TypeName="transvalleModel.coordenadasrutas">
-              <MappingFragment StoreEntitySet="coordenadasrutas">
-                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
-                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
-                <ScalarProperty Name="NomRuta" ColumnName="NomRuta" />
+          <EntitySetMapping Name="gruposbuses">
+            <EntityTypeMapping TypeName="transvalleModel.gruposbuses">
+              <MappingFragment StoreEntitySet="gruposbuses">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personas">
+            <EntityTypeMapping TypeName="transvalleModel.personas">
+              <MappingFragment StoreEntitySet="personas">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+                <ScalarProperty Name="TipoSangre" ColumnName="TipoSangre" />
+                <ScalarProperty Name="Pension" ColumnName="Pension" />
+                <ScalarProperty Name="EPS" ColumnName="EPS" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="planillacontrol">
+            <EntityTypeMapping TypeName="transvalleModel.planillacontrol">
+              <MappingFragment StoreEntitySet="planillacontrol">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipostrabajador">
+            <EntityTypeMapping TypeName="transvalleModel.tipostrabajador">
+              <MappingFragment StoreEntitySet="tipostrabajador">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detallesplanilla">
+            <EntityTypeMapping TypeName="transvalleModel.detallesplanilla">
+              <MappingFragment StoreEntitySet="detallesplanilla">
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+                <ScalarProperty Name="PlacaBus" ColumnName="PlacaBus" />
+                <ScalarProperty Name="idPlanillaControl" ColumnName="idPlanillaControl" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
