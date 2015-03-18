@@ -114,6 +114,36 @@ var RutasDAO = (function () {
         }
     }
 }());
+var PlanillaControlDAO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsPlanillaControl.asmx/");
+    return {        
+        GetsRotacionBuses: function (Mes,Grupo,fCorrecto) {
+            var Parametro = {
+                mes: "'" + Mes + "'",
+                grupo: "'" + Grupo + "'"
+            }
+            proxy._doAjax("GET", "getRotacionBuses", Parametro, fCorrecto, null, true);
+        },
+        Update: function (vBuses, fCorrecto) {
+            var Parametro = {
+                lDpDTO: JSON.stringify(vBuses)
+            }
+            
+            proxy._doAjax("GET", "update", Parametro, fCorrecto, null, true);
+        }
+    }
+}());
+var horarioDTO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsHorario.asmx/");
+    return {
+        GetsHorario: function (NomRuta, fCorrecto) {
+            var Parametro = {
+                nomRuta: "'" + NomRuta + "'"
+            }
+            proxy._doAjax("GET", "getHorario", Parametro, fCorrecto, null, true);
+        }
+    }
+}());
 
 
 
