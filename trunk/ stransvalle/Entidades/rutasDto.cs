@@ -15,6 +15,7 @@ namespace Entidades
         public string Longitud { get; set; }
         public Nullable<int> Capacidad { get; set; }
         public Nullable<int> TiempoRecorrido { get; set; }
+        public Nullable<int> idHorario { get; set; }
 
         public List<coordenadasrutasDto> lCoordenadas { get; set; }
     }
