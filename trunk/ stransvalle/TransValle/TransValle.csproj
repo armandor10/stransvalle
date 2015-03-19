@@ -99,6 +99,7 @@
     <Content Include="jsPropios\gBuses.js" />
     <Content Include="jsPropios\Home.js" />
     <Content Include="jsPropios\index.js" />
+    <Content Include="jsPropios\PlanillaControl.js" />
     <Content Include="jsPropios\Rutas.js" />
     <Content Include="jsPropios\varLocal.js" />
     <Content Include="js\bootstrap.js" />
@@ -119,9 +120,12 @@
     <Content Include="js\plugins\morris\morris.min.js" />
     <Content Include="js\plugins\morris\raphael.min.js" />
     <Content Include="js\prefixfree.min.js" />
+    <Content Include="PlanillaControl.html" />
     <Content Include="Rutas.html" />
     <Content Include="Servicios\wsBuses.asmx" />
     <Content Include="Servicios\wsDatosBasicos.asmx" />
+    <Content Include="Servicios\wsHorario.asmx" />
+    <Content Include="Servicios\wsPlanillaControl.asmx" />
     <Content Include="Servicios\wsRutas.asmx" />
     <Content Include="Servicios\wsUsers.asmx" />
     <Content Include="Web.config" />
@@ -135,6 +139,12 @@
     <Compile Include="Servicios\wsDatosBasicos.asmx.cs">
       <DependentUpon>wsDatosBasicos.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Servicios\wsHorario.asmx.cs">
+      <DependentUpon>wsHorario.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="Servicios\wsPlanillaControl.asmx.cs">
+      <DependentUpon>wsPlanillaControl.asmx</DependentUpon>
     </Compile>
     <Compile Include="Servicios\wsRutas.asmx.cs">
       <DependentUpon>wsRutas.asmx</DependentUpon>
