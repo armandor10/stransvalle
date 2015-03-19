@@ -37,5 +37,7 @@ namespace DAL
         public DbSet<planillacontrol> planillacontrol { get; set; }
         public DbSet<tipostrabajador> tipostrabajador { get; set; }
         public DbSet<detallesplanilla> detallesplanilla { get; set; }
+        public DbSet<horario> horario { get; set; }
+        public DbSet<rutagrupo> rutagrupo { get; set; }
     }
 }

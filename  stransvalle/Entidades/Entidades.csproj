@@ -44,7 +44,10 @@
     <Compile Include="clasesservicioDto.cs" />
     <Compile Include="coordenadasrutasDto.cs" />
     <Compile Include="DatosBasicosDto.cs" />
+    <Compile Include="detallesplanillaDTO.cs" />
     <Compile Include="gruposbusesDto.cs" />
+    <Compile Include="horarioDTO.cs" />
+    <Compile Include="planillacontrolDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="objRes.cs" />
     <Compile Include="rutasDto.cs" />

@@ -12,18 +12,16 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class gruposbuses
+    public partial class horario
     {
-        public gruposbuses()
+        public horario()
         {
-            this.buses = new HashSet<buses>();
-            this.rutagrupo = new HashSet<rutagrupo>();
+            this.rutas = new HashSet<rutas>();
         }
     
         public int id { get; set; }
-        public string Nombre { get; set; }
+        public Nullable<System.TimeSpan> hora { get; set; }
     
-        public virtual ICollection<buses> buses { get; set; }
-        public virtual ICollection<rutagrupo> rutagrupo { get; set; }
+        public virtual ICollection<rutas> rutas { get; set; }
     }
 }

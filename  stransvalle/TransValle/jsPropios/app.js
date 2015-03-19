@@ -11,9 +11,7 @@ ServiceProxy = function (baseUrl) //constructor for the proxy
 ServiceProxy.prototype =
 {
     _defaultErrorHandler: function (xhr, status, error) {
-        alert(JSON.stringify(error));
         alert(JSON.stringify(xhr));
-        alert(JSON.stringify(status));
     },
     _defaultBefore: function (xhr) {
     },

@@ -26,6 +26,11 @@
         <AssociationConnector Association="transvalleModel.pk_placa_Bus" />
         <AssociationConnector Association="transvalleModel.pk_planilla" />
         <AssociationConnector Association="transvalleModel.pkRuta" />
+        <EntityTypeShape EntityType="transvalleModel.horario" Width="1.5" PointX="2" PointY="10.875" />
+        <EntityTypeShape EntityType="transvalleModel.rutagrupo" Width="1.5" PointX="11.342845312945007" PointY="19.26584283414569" />
+        <AssociationConnector Association="transvalleModel.pk_rutagrupo_grupo" />
+        <AssociationConnector Association="transvalleModel.fk_horario" />
+        <AssociationConnector Association="transvalleModel.pk_rutagrupo_ruta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
