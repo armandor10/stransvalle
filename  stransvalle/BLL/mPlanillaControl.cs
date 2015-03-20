@@ -65,7 +65,7 @@ namespace BLL
             DateTime fchaF = new DateTime(DateTime.Now.Year, mes, diasMes);           
 
             //planillacontrol pC ;//= ctx.planillacontrol.Where(t => t.Fecha >= fchaI && t.Fecha<=fchaF).FirstOrDefault();
-            List<planillacontrol> lpC = ctx.planillacontrol.OrderBy(t=> t.id) .Where(t => t.Fecha >= fchaI && t.Fecha <= fchaF).ToList();
+            List<planillacontrol> lpC = ctx.planillacontrol.OrderBy(t=> t.id) .Where(t => t.Fecha >= fchaI && t.Fecha <= fchaF && t.Grupo==grupo).ToList();
                         
             if (lpC.Count<1)
             {
@@ -217,6 +217,7 @@ namespace BLL
                 ////Creo una nueva Planilla control
                 pC = new planillacontrol();
                 pC.Fecha = new DateTime(DateTime.Now.Year,mes,d);
+                pC.Grupo = grupo;
                 ctx.planillacontrol.Add(pC);
                 ctx.SaveChanges();
                 d++;
