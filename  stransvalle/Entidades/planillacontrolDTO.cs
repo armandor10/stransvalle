@@ -11,5 +11,6 @@ namespace Entidades
         public int id { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public string Observaciones { get; set; }
+        public Nullable<int> Grupo { get; set; }
     }
 }
