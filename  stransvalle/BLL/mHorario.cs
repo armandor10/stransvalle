@@ -58,6 +58,72 @@ namespace BLL
            }                  
        }
 
+       public List<List<horarioDTO>> getHorarioPlanilla(string nomRuta,DateTime fecha,int grupo) {
+           List<List<horarioDTO>> llHorDTO = new List<List<horarioDTO>>();
+           List<horarioDTO> lHorDTO = new List<horarioDTO>();
+           horarioDTO horDTO=new horarioDTO();
+           TimeSpan extra;
+           int cap = 0;
+
+           using (ctx = new tvEntities()) {
+               rutas ruta = ctx.rutas.Where(t => t.NomRuta == nomRuta).FirstOrDefault();
+               horario Hor=ctx.horario.Where(t=>t.id==ruta.idHorario).FirstOrDefault();
+               planillacontrol pC=ctx.planillacontrol.Where(t=>t.Fecha==fecha && t.Grupo==grupo).FirstOrDefault();              
+               cap=ctx.detallesplanilla.Where(t=>t.Ruta==nomRuta && t.idPlanillaControl==pC.id ).Count();
+
+               if (ruta!=null||Hor !=null||pC!=null||cap!=0)
+               {
+                   ruta.Capacidad = cap;/// capacidad del Bus
+               
+               for (int i = 1; i <= ruta.NumeroRecorridos; i++) {
+                   createListaHor(ref lHorDTO, ruta, Hor);
+
+                   if (nomRuta.ToUpper() == "RUTA 18T")
+                   {
+                       extra = new TimeSpan(0, 0, 0);
+                   }
+                   else
+                   {
+                       if (nomRuta.ToUpper() != "RUTA 10B")
+                       {
+                           if (i % 2 == 0 && i != 1)
+                           {
+                               extra = new TimeSpan(0, 8, 0);
+                           }
+                           else
+                           {
+                               extra = new TimeSpan(0, 0, 0);
+                           }
+                       }
+                       else
+                       {
+                           if (i % 2 == 0 && i != 1)
+                           {
+                               extra = new TimeSpan(0, 0, 0);
+                           }
+                           else
+                           {
+                               extra = new TimeSpan(0, 8, 0);
+                           }
+                       }
+                   }
+
+                   Hor.hora = lHorDTO.ElementAt(0).hora + new TimeSpan(0, ruta.TiempoRecorrido.Value, 0) + extra;
+                   llHorDTO.Add(lHorDTO);
+                   lHorDTO = new List<horarioDTO>();                                 
+               }
+
+               return llHorDTO; 
+              
+               }else{
+                   return null;               
+               }
+
+               
+           }
+    
+       }
+
        private void createListaHor(ref List<horarioDTO> lHor, rutas ruta, horario hor)
        {
           horarioDTO horDTO = new horarioDTO();
