@@ -28,5 +28,14 @@ namespace TransValle.Servicios
             List<horarioDTO> lHor = lg.get(nomRuta);
             return lHor;
         }
+
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public List<List<horarioDTO>> getHorarioPlanilla(string nomRuta, DateTime fecha,int grupo)
+        {
+            mHorario lg = new mHorario();
+           List<List<horarioDTO>> lHor = lg.getHorarioPlanilla(nomRuta,fecha,grupo);
+            return lHor;
+        }
     }
 }
