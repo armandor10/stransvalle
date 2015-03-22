@@ -19,6 +19,14 @@ namespace UnitTest
             List<horarioDTO> lHor = lg.get("ruta 12");
             Assert.IsNotNull(lHor);
         }
+
+        [TestMethod]
+        public void getHorarioPlanilla()
+        {
+            mHorario lg = new mHorario();           
+            List<List<horarioDTO>> llHor = lg.getHorarioPlanilla("ruta 10b",(new DateTime(2015,1,1)),4);                                   
+            Assert.IsNotNull(llHor);
+        }
        
     }
 }
