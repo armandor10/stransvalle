@@ -139,6 +139,15 @@ var horarioDTO = (function () {
                 nomRuta: "'" + NomRuta + "'"
             }
             proxy._doAjax("GET", "getHorario", Parametro, fCorrecto, null, true);
+        },
+        GetHorarioPlanilla: function (NomRuta, Fecha,Grupo, fCorrecto) {
+            //alert("app");
+            var Parametro = {
+                nomRuta: "'" + NomRuta + "'",
+                fecha: JSON.stringify(Fecha),
+                grupo: "'" + Grupo + "'"
+            }
+            proxy._doAjax("GET", "getHorarioPlanilla", Parametro, fCorrecto, null, true);
         }
     }
 }());

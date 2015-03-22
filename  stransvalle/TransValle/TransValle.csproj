@@ -78,6 +78,7 @@
   <ItemGroup>
     <Content Include="css\bootstrap-rtl.css" />
     <Content Include="css\bootstrap-rtl.min.css" />
+    <Content Include="css\bootstrap-table.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\plugins\morris.css" />
@@ -102,6 +103,7 @@
     <Content Include="jsPropios\PlanillaControl.js" />
     <Content Include="jsPropios\Rutas.js" />
     <Content Include="jsPropios\varLocal.js" />
+    <Content Include="js\bootstrap-table.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\bya_Page.js" />
@@ -142,9 +144,11 @@
     </Compile>
     <Compile Include="Servicios\wsHorario.asmx.cs">
       <DependentUpon>wsHorario.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Servicios\wsPlanillaControl.asmx.cs">
       <DependentUpon>wsPlanillaControl.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Servicios\wsRutas.asmx.cs">
       <DependentUpon>wsRutas.asmx</DependentUpon>
