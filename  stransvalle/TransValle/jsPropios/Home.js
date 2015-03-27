@@ -37,9 +37,14 @@
     return {
         init: function () {
             if (_VerificarPermisos()) {
+
+                var rol = varLocal.getRol();
                 _createElements();
                 _addHandlers();
-                initializeMap();
+               
+                if (rol == 2) { window.location.href = "PlanillaRecaudo.html";}
+                else {initializeMap();}
+                
             } else window.location.href = "index.html";
         }
     };
