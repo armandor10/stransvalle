@@ -29,11 +29,11 @@ var Permisos = {
         var obj = ["dvdInformeRecaudoProducido", "dvdInformeVentaTarjetas", "dvdInformeRecorridos"];
     },
     Contador: function () {
-        var obj = ["dvdVentaTarjetas", "dvdCrearPlanillaRecaudo"];
+        var obj = ["dvdVentaTarjetas", "dvdGestionPlanillaRecaudo"];
         return obj;
     },
     Admin: function () {
-        var obj = ["dvdVentaTarjetas", "dvdCrearPlanillaRecaudo", "dvdInformeRecaudoProducido", "dvdInformeVentaTarjetas", "dvdInformeRecorridos", "dvdGestorBuses", "dvdGestorRutas", "dvdGestorConductores", "dvdVisualizarRuta", "dvdHistorialMovimiento","dvdPlanillaControl"];
+        var obj = ["dvdVentaTarjetas", "dvdGestionPlanillaRecaudo", "dvdInformeRecaudoProducido", "dvdInformeVentaTarjetas", "dvdInformeRecorridos", "dvdGestorBuses", "dvdGestorRutas", "dvdGestorConductores", "dvdVisualizarRuta", "dvdHistorialMovimiento", "dvdPlanillaControl"];
         return obj;
     },
     Get: function (rol) {
@@ -41,11 +41,11 @@ var Permisos = {
         switch (rol) {
             case "1": per = ["dvdInformeRecaudoProducido", "dvdInformeVentaTarjetas", "dvdInformeRecorridos"];
                 break;
-            case "2": per = ["dvdVentaTarjetas", "dvdCrearPlanillaRecaudo"];
+            case "2": per = ["dvdVentaTarjetas", "dvdGestionPlanillaRecaudo"];
                 break;
             case "3": per = ["dvdGestorBuses", "dvdGestorRutas", "dvdGestorConductores", "dvdVisualizarRuta", "dvdHistorialMovimiento", "dvdPlanillaControl"];                            
                 break;
-            case "4": per = ["dvdVentaTarjetas", "dvdCrearPlanillaRecaudo", "dvdInformeRecaudoProducido", "dvdInformeVentaTarjetas", "dvdInformeRecorridos", "dvdGestorBuses", "dvdGestorRutas", "dvdGestorConductores", "dvdVisualizarRuta", "dvdHistorialMovimiento", "dvdPlanillaControl"];
+            case "4": per = ["dvdVentaTarjetas", "dvdGestionPlanillaRecaudo", "dvdInformeRecaudoProducido", "dvdInformeVentaTarjetas", "dvdInformeRecorridos", "dvdGestorBuses", "dvdGestorRutas", "dvdGestorConductores", "dvdVisualizarRuta", "dvdHistorialMovimiento", "dvdPlanillaControl"];
                 break;
         }
         return per;
