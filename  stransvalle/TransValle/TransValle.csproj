@@ -81,6 +81,8 @@
     <Content Include="css\bootstrap-table.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\plugins\bootstrap-datetimepicker\bootstrap-datetimepicker.css" />
+    <Content Include="css\plugins\DataTables\dataTables.bootstrap.css" />
     <Content Include="css\plugins\morris.css" />
     <Content Include="css\sb-admin-rtl.css" />
     <Content Include="css\sb-admin.css" />
@@ -101,8 +103,10 @@
     <Content Include="jsPropios\Home.js" />
     <Content Include="jsPropios\index.js" />
     <Content Include="jsPropios\PlanillaControl.js" />
+    <Content Include="jsPropios\PlanillaRecaudo.js" />
     <Content Include="jsPropios\Rutas.js" />
     <Content Include="jsPropios\varLocal.js" />
+    <Content Include="js\plugins\autoNumeric.js" />
     <Content Include="js\bootstrap-table.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -111,6 +115,11 @@
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery_ext.js" />
     <Content Include="js\modernizr.js" />
+    <Content Include="js\plugins\bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
+    <Content Include="js\plugins\bootstrap-datetimepicker\moment-with-locales.js" />
+    <Content Include="js\plugins\DataTables\dataTables.bootstrap.js" />
+    <Content Include="js\plugins\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="js\plugins\DataTables\jquery.dataTables.js" />
     <Content Include="js\plugins\flot\excanvas.min.js" />
     <Content Include="js\plugins\flot\flot-data.js" />
     <Content Include="js\plugins\flot\jquery.flot.js" />
@@ -123,11 +132,13 @@
     <Content Include="js\plugins\morris\raphael.min.js" />
     <Content Include="js\prefixfree.min.js" />
     <Content Include="PlanillaControl.html" />
+    <Content Include="PlanillaRecaudo.html" />
     <Content Include="Rutas.html" />
     <Content Include="Servicios\wsBuses.asmx" />
     <Content Include="Servicios\wsDatosBasicos.asmx" />
     <Content Include="Servicios\wsHorario.asmx" />
     <Content Include="Servicios\wsPlanillaControl.asmx" />
+    <Content Include="Servicios\wsPlanillaRecaudo.asmx" />
     <Content Include="Servicios\wsRutas.asmx" />
     <Content Include="Servicios\wsUsers.asmx" />
     <Content Include="Web.config" />
@@ -148,6 +159,10 @@
     </Compile>
     <Compile Include="Servicios\wsPlanillaControl.asmx.cs">
       <DependentUpon>wsPlanillaControl.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Servicios\wsPlanillaRecaudo.asmx.cs">
+      <DependentUpon>wsPlanillaRecaudo.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Servicios\wsRutas.asmx.cs">

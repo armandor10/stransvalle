@@ -151,6 +151,24 @@ var horarioDTO = (function () {
         }
     }
 }());
+var PlanillaRecaudoDTO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsPlanillaRecaudo.asmx/");
+    return {
+        Get: function (Fecha, Grupo, fCorrecto) {
+            var Parametro = {
+                fecha: JSON.stringify(Fecha),
+                grupo: "'" + Grupo + "'"
+            }
+            proxy._doAjax("GET", "get", Parametro, fCorrecto, null, true);
+        },
+        Update: function (PRec, fCorrecto) {
+            var Parametro = {
+                pR: JSON.stringify(PRec)
+            }
+            proxy._doAjax("GET", "update", Parametro, fCorrecto, null, true);
+        }
+    }
+}());
 
 
 
