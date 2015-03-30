@@ -75,6 +75,7 @@
     <Compile Include="mPlanillaControl.cs" />
     <Compile Include="mRutas.cs" />
     <Compile Include="mUsers.cs" />
+    <Compile Include="mPlanillaRecaudo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

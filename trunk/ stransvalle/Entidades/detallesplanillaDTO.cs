@@ -12,6 +12,7 @@ namespace Entidades
       public int idPlanillaControl { get; set; }
       public string PlacaBus { get; set; }
       public string Ruta { get; set; }
+      public Nullable<System.TimeSpan> HoraSalida { get; set; }
 
       public string Vial { get; set; }
 

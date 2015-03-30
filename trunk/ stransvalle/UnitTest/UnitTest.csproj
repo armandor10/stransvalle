@@ -72,6 +72,7 @@
     <Compile Include="tPlanillaControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tHorario.cs" />
+    <Compile Include="tPlanillaRecaudo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

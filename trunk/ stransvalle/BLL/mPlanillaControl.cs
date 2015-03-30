@@ -24,6 +24,8 @@ namespace BLL
 
       }
 
+      private static System.TimeSpan time;
+
     private  int[,] mesTurno = {   
                                   { 1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	13,	14 }, 
                                   { 2,	1,	4,	3,	6,	5,	8,	7,	10,	9,	12,	11,	14,	13 }, 
@@ -222,15 +224,23 @@ namespace BLL
                 ctx.SaveChanges();
                 d++;
 
+                string ru = lDp.ElementAt(0).Ruta;
+                rutas ruta = ctx.rutas.Where(t => t.NomRuta == ru).FirstOrDefault();
+                int frec = ruta.Frecuencia.Value;
+                time = ctx.horario.Where(t => t.id == ruta.idHorario).FirstOrDefault().hora.Value;
+
                 foreach (detallesplanillaDTO DpDTO in lDp)
                 {
                     DpDTO.idPlanillaControl = pC.id;
                     DpDTO.Ruta = lDp.ElementAt(0).Ruta;
+                    DpDTO.HoraSalida = time;
                     detallesplanilla dP = new detallesplanilla();
                     Mapper.Map(DpDTO, dP);
                     ctx.detallesplanilla.Add(dP);
                     ctx.SaveChanges();
                     DpDTO.id = dP.id;
+
+                    time = time + new TimeSpan(0, frec, 0);
                 }
             }
             

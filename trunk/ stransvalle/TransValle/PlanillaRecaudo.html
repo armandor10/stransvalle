@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TransValle</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- DateTimePicker -->
+    <link href="css/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <!-- DataTables -->
+    <link href="css/plugins/DataTables/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <style>
+      html, body,#map-canvas {
+        width:100%;
+        height: 650px;
+        margin: 0px;
+        padding: 0px
+      }
+        /* centered columns styles */
+      .row-centered {
+              text-align:center;
+
+      }
+      .col-centered {              
+          display:inline-block;                  
+          float:none;                      
+          /* reset the text-align */                          
+          text-align:left;                              
+          /* inline-block space fix */    
+          margin-right:-4px;
+      }
+      #table-row, #table-col, #table-wrapper {    
+          height: 400px;
+          width:1070px;
+      }
+      tr {    
+          line-height: 25px;
+          width:1070px;
+      }
+        th {
+            white-space: nowrap;
+        }
+      div#contenido{    
+          height: 60%;
+          width:1124px;        
+      }
+      table {    
+          height: 100%
+      }
+      #topics tr {    
+          line-height: 14px;
+      }
+      div#pc{ 
+          width:598px;          
+      }
+
+      .glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+      @-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+      @keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+            
+      /*Nuevo*/   
+      a {cursor:pointer;}
+        .snumero,.snumero2 {
+            text-align:right;
+        } 
+
+    </style>
+
+    <title></title>   
+
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">TransValle</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dvdUser"></a>
+                    <ul class="dropdown-menu">                        
+                        <li>
+                            <a id="btnCerrarSesion"><i class="fa fa-fw fa-power-off"></i> Cerrar sesion</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li id="dvdGestorBuses" style="display:none">
+                        <a href="gBuses.html"><i class="fa fa-fw fa-bus"></i> Gestor de buses</a>
+                    </li>
+                    <li id="dvdGestorRutas" style="display:none">
+                        <a href="Rutas.html"><i class="fa fa-fw fa-arrows-alt"></i> Gestor de rutas</a>
+                    </li>
+                    <li id="dvdGestorConductores" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-user"></i> Gestor de conductores</a>
+                    </li>
+                    <li id="dvdVisualizarRuta" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-eye"></i> Visualizar ruta</a>
+                    </li>
+                    <li id="dvdHistorialMovimiento" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-list"></i> Historial de movimientos</a>
+                    </li>
+                    <li id="dvdPlanillaControl" class="active" style="display:none">
+                        <a href="PlanillaControl.html"><i class="fa fa-fw fa-list-alt"></i> Planilla de control</a>
+                    </li>
+                    <li id="dvdInformeRecaudoProducido" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-list-alt"></i> Informe recaudo producido</a>
+                    </li>
+                    <li id="dvdInformeVentaTarjetas" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-list-ul"></i> Informe venta de tarjetas</a>
+                    </li>
+                    <li id="dvdInformeRecorridos" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> Informe de recorridos</a>
+                    </li>                   
+                    <li id="dvdVentaTarjetas" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-dollar"></i> Venta de tarjetas</a>
+                    </li>
+                    <li id="dvdGestionPlanillaRecaudo" style="display:none">
+                        <a href="PlanillaRecaudo.html"><i class="fa fa-fw fa-file-archive-o"></i> Crear planilla recaudo</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper" style="height:700px">
+            <br /><br />
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Planilla De Recaudo</h2>
+                </div>
+            </div>   
+    
+            <!--<form class="form-inline"></form>-->
+            <div class="row row-centered" >
+                <div class="col-xs col-centered">                         
+                     <strong>Fecha: </strong>  
+                 </div> 
+                                          
+                <div class="col-xs-3 col-centered" style="height:22px">                                       
+                    <div class="container">
+                        <div class="form-group">
+                            <div class='input-group date col-sm-2' id='dtpFecha' >
+                                <input type='text' class="form-control" id="fecha" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs col-centered">                         
+                     <strong>Grupo: </strong>
+                 </div>                                           
+                <div class="col-xs-2 col-centered">                                                        
+                    <select class="form-control" id="cboGrupoBus" placeholder=".col-xs-4">                                                          
+                    </select> 
+                </div> 
+            </div>
+            
+            <br />               
+                             <table class="table table-bordered table-striped table-hover table-condensed" id="example">                                                                                   
+                                 <thead>                            
+                                     <tr  >                                
+                                         <th rowspan="2" scope="col"> N° Vial</th>                                 
+                                         <th rowspan="2" scope="col"> Placa</th> 
+                                         <th rowspan="2" scope="col"> Hora Salida</th>                                 
+                                         <th rowspan="2" scope="col"> Ruta</th>
+                                         <th rowspan="2" scope="col"> Recorridos</th>
+                                         <th colspan="3" scope="col" style="text-align: center;"> C. Torniquete</th> 
+                                         <th rowspan="2" scope="col"> Prod. Bruto ($)</th> 
+                                         <th colspan="6" scope="col" style="text-align: center;"> Gastos del Dia ($)</th> 
+                                         <th rowspan="2" scope="col"> Prod. Neto ($) </th>                              
+                                     </tr>                               
+                                     <tr>                 
+                                         <th scope="col">Inicio</th> 
+                                         <th scope="col">Final</th>                                         
+                                         <th scope="col"> N° Pasajeros</th>
+                                         <th scope="col">A.C.P.M</th> 
+                                         <th scope="col">Sueldo</th> 
+                                         <th scope="col">Aseo</th> 
+                                         <th scope="col">Otros</th> 
+                                         <th scope="col">Turno</th> 
+                                         <th scope="col">Total Gastos</th> 
+                                     </tr>
+                                    
+                                 </thead> 
+
+                                 <tfoot>            
+                                     <tr>                
+                                         <th>Total</th>
+                                         <th></th> 
+                                         <th></th> 
+                                         <th></th>
+                                         <th id="Recorridos"></th>
+                                         <th></th> 
+                                         <th></th> 
+                                         <th id="numPas"></th>
+                                         <th class="snumero2" id="ProdBruto"></th>
+                                         <th class="snumero2" id="ACPM"></th> 
+                                         <th class="snumero2" id="Sueldo"></th> 
+                                         <th class="snumero2" id="Aseo"></th>
+                                         <th class="snumero2" id="Otros"></th>
+                                         <th class="snumero2" id="Turno"></th> 
+                                         <th class="snumero2" id="TotalG"></th> 
+                                         <th class="snumero2" id="ProdNeto"></th>                                                     
+                                     </tr>       
+                                 </tfoot>
+                                 <tbody class="text-left" id="tbodyPlanillaControl">
+                                 </tbody> 
+                             </table>                               
+                             
+                        
+            
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="container" id="wait" style="height: 10%; width:1124px;visibility: hidden;" >
+                 <div class="row row-centered"> 
+                     <div class="col-md-15 col-xs-14 col-centered "> 
+                         <button class="btn btn-lg btn-success"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Cargando Rotación de Buses...</button>
+                     </div>
+                 </div>                
+            </div>
+               
+        </div>
+
+        <div class="modal fade bs-example-modal-sm" id="ModalPlanillaRecaudo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" >
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel" style="text-align: center;"> <strong>Edición de Planilla De Recaudo</strong></h4>
+                        <div id="Div2" class="row row-centered">
+                            <div id="modalTVial" class="col-md col-centered"></div>                                     
+                            <div id="modalTSalida" class="col-md-3 col-centered"></div>                                     
+                            <div id="modalTRuta" class="col-md-2 col-centered"></div>                                     
+                            <div id="modalTRec" class="col-md-3 col-centered"></div>                                                                      
+                        </div>
+                    </div>
+
+                    <div class="modal-body"  id="ModalbodyPC">                       
+                         <div id="pc" class="container">   
+                             <div id="Div3" class="row row-centered">         
+                                 <div id="Div4" class="col-md-8 col-centered">
+                                     
+                                     <div class="panel panel-primary">  
+                                         <div class="panel-heading">    
+                                             <h3 class="panel-title">Cuenta Torniquete</h3> 
+                                         </div>  
+                                         <div class="panel-body">
+                                             <div class="input-group">  
+                                                 <span class="input-group-addon">Inicio </span>  
+                                                 <input id="mInicio" type="text" class="form-control snumero2 cTorniquete" placeholder="Inicio del torniquete" aria-label="Amount (to the nearest dollar)" disabled>
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon" >Final </span>  
+                                                 <input id="mFinal" type="text" class="form-control snumero2 cTorniquete" placeholder="Final del torniquete" aria-label="Amount (to the nearest dollar)">
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon">Numero de Pasajeros</span>  
+                                                 <input id="mNumPas" type="text" class="form-control snumero2" placeholder="" aria-label="Amount (to the nearest dollar)" disabled>
+                                             </div>
+                                         </div>
+                                     </div>
+
+                                     <div class="panel panel-primary">  
+                                         <div class="panel-heading">    
+                                             <h3 class="panel-title">Gastos Del Dia</h3> 
+                                         </div>  
+                                         <div class="panel-body">
+                                             <div class="input-group">  
+                                                 <span class="input-group-addon">A.C.P.M </span>  
+                                                 <input id="mACPM" data-a-sign="$ " type="text" class="form-control snumero gDias" placeholder="$" aria-label="Amount (to the nearest dollar)">  
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon">Sueldo</span>  
+                                                 <input id="mSueldo" data-a-sign="$ " type="text" class="form-control snumero gDias" placeholder="$" aria-label="Amount (to the nearest dollar)">  
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon">Aseo</span>  
+                                                 <input id="mAseo" data-a-sign="$ " type="text" class="form-control snumero gDias" placeholder="$" aria-label="Amount (to the nearest dollar)">  
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon">Otros</span>  
+                                                 <input id="mOtros" data-a-sign="$ " type="text" class="form-control snumero gDias" placeholder="$" aria-label="Amount (to the nearest dollar)">  
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon">Turno</span>  
+                                                 <input id="mTurno" data-a-sign="$ " type="text" class="form-control snumero gDias" placeholder="$" aria-label="Amount (to the nearest dollar)"> 
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon">Total Gastos</span>  
+                                                 <input id="mTgastos" data-a-sign="$ " type="text" class="form-control snumero gDias" placeholder="$" aria-label="Amount (to the nearest dollar)" disabled> 
+                                             </div>
+                                         </div>
+                                     </div>
+
+                                     <div class="panel panel-primary">  
+                                         <div class="panel-heading">    
+                                             <h3 class="panel-title">Total</h3> 
+                                         </div>  
+                                         <div class="panel-body">
+                                             <div class="input-group">  
+                                                 <span class="input-group-addon">Producto Bruto</span>  
+                                                 <input id="mPbruto" data-a-sign="$ " type="text" class="form-control snumero total" placeholder="$" aria-label="Amount (to the nearest dollar)">  
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon">Producto Neto</span>  
+                                                 <input id="mPneto" data-a-sign="$ " type="text" class="form-control snumero total" placeholder="$" aria-label="Amount (to the nearest dollar)" disabled>  
+                                             </div>
+                                         </div>
+                                     </div>
+
+                                 </div>         
+                             </div> 
+                         </div>   
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="btnGuardarPr" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
+        <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+
+    <script type="text/javascript" src="js/plugins/bootstrap-datetimepicker/moment-with-locales.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="jsPropios/varLocal.js"></script>
+    <script type="text/javascript" src="jsPropios/app.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script type="text/javascript" src="js/bya_Page.js"></script>
+    <script type="text/javascript" src="js/jquery_ext.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="js/plugins/DataTables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/plugins/DataTables/dataTables.fixedColumns.js"></script>
+    <script type="text/javascript" src="js/plugins/DataTables/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="js/plugins/autoNumeric.js"></script>
+
+    <script type="text/javascript" src="jsPropios/PlanillaRecaudo.js"></script>   
+
+</body>
+</html>

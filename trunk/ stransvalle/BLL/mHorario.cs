@@ -78,36 +78,36 @@ namespace BLL
                for (int i = 1; i <= ruta.NumeroRecorridos; i++) {
                    createListaHor(ref lHorDTO, ruta, Hor);
 
-                   if (nomRuta.ToUpper() == "RUTA 18T")
+                   if (nomRuta.ToUpper() != "RUTA 10B")
                    {
-                       extra = new TimeSpan(0, 0, 0);
+                       if (i % 2 == 0 && i != 1)
+                       {
+                           extra = new TimeSpan(0, 8, 0);
+                       }
+                       else
+                       {
+                           extra = new TimeSpan(0, 0, 0);
+                       }
                    }
                    else
                    {
-                       if (nomRuta.ToUpper() != "RUTA 10B")
+                       if (nomRuta.ToUpper() == "RUTA 8" || nomRuta.ToUpper() == "RUTA 12" || nomRuta.ToUpper() == "RUTA 10A")
                        {
                            if (i % 2 == 0 && i != 1)
                            {
-                               extra = new TimeSpan(0, 8, 0);
+                               extra = new TimeSpan(0, 0, 0);
                            }
                            else
                            {
-                               extra = new TimeSpan(0, 0, 0);
+                               extra = new TimeSpan(0, 8, 0);
                            }
                        }
                        else
                        {
-                           if (i % 2 == 0 && i != 1)
-                           {
-                               extra = new TimeSpan(0, 0, 0);
-                           }
-                           else
-                           {
-                               extra = new TimeSpan(0, 8, 0);
-                           }
+                           extra = new TimeSpan(0, 0, 0);
                        }
-                   }
-
+                   } 
+                   
                    Hor.hora = lHorDTO.ElementAt(0).hora + new TimeSpan(0, ruta.TiempoRecorrido.Value, 0) + extra;
                    llHorDTO.Add(lHorDTO);
                    lHorDTO = new List<horarioDTO>();                                 
