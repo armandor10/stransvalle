@@ -48,11 +48,13 @@
     <Compile Include="gastosDTO.cs" />
     <Compile Include="gruposbusesDto.cs" />
     <Compile Include="horarioDTO.cs" />
+    <Compile Include="personasDto.cs" />
     <Compile Include="planillacontrolDTO.cs" />
     <Compile Include="planillarecaudoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="objRes.cs" />
     <Compile Include="rutasDto.cs" />
+    <Compile Include="tiposidentificacionpersonaDto.cs" />
     <Compile Include="usuariosplataformaDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
