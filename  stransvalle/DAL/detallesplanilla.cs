@@ -14,13 +14,20 @@ namespace DAL
     
     public partial class detallesplanilla
     {
+        public detallesplanilla()
+        {
+            this.planillarecaudo = new HashSet<planillarecaudo>();
+        }
+    
         public int id { get; set; }
         public int idPlanillaControl { get; set; }
         public string PlacaBus { get; set; }
         public string Ruta { get; set; }
+        public Nullable<System.TimeSpan> HoraSalida { get; set; }
     
         public virtual buses buses { get; set; }
         public virtual planillacontrol planillacontrol { get; set; }
         public virtual rutas rutas { get; set; }
+        public virtual ICollection<planillarecaudo> planillarecaudo { get; set; }
     }
 }
