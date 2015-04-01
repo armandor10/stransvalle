@@ -107,6 +107,9 @@
     <Compile Include="documentospersona.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
+    <Compile Include="gastos.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
     <Compile Include="gruposbuses.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
@@ -117,6 +120,9 @@
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="planillacontrol.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="planillarecaudo.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
