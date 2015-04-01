@@ -388,5 +388,28 @@ var byaPage = {
             laños.push(e);
         }
         return laños;
+    },
+    _getDatosCampos: function (nomClass) {
+        var e = {};
+        $("." + nomClass).each(function (index) {
+            var id = "" + $(this).attr("id") + "";
+            var nomCampo = id.substring(3, id.length);
+            e[nomCampo] = $(this).val();
+        });
+        return e;
+    },
+    _setDatosCampos: function (nomClass, obj) {
+        var lPropiedades = Object.keys(obj);
+        $.each(lPropiedades, function (indexobj, item) {
+            $("." + nomClass).each(function (index) {
+                var id = "" + $(this).attr("id") + "";
+                var nomCampo = id.substring(3, id.length);
+                if (nomCampo == item) {
+                    if ($(this).attr("type") != "date") $(this).val(obj[item]);
+                    else $(this).val(byaPage.converJSONDate(obj[item]));
+                }
+
+            });
+        });
     }
 }

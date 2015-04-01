@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TransValle</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+      .Separar {
+        margin:5px  
+      }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">TransValle</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dvdUser"></a>
+                    <ul class="dropdown-menu">                        
+                        <li>
+                            <a id="btnCerrarSesion"><i class="fa fa-fw fa-power-off"></i> Cerrar sesion</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li id="dvdGestorBuses" style="display:none">
+                        <a href="gBuses.html"><i class="fa fa-fw fa-bus"></i> Gestor de buses</a>
+                    </li>
+                    <li id="dvdGestorRutas" style="display:none">
+                        <a href="Rutas.html"><i class="fa fa-fw fa-arrows-alt"></i> Gestor de rutas</a>
+                    </li>
+                    <li id="dvdGestorConductores" class="active" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-user"></i> Gestor de conductores</a>
+                    </li>
+                    <li id="dvdVisualizarRuta" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-eye"></i> Visualizar ruta</a>
+                    </li>
+                    <li id="dvdHistorialMovimiento" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-list"></i> Historial de movimientos</a>
+                    </li>
+                    <li id="dvdPlanillaControl" style="display:none">
+                        <a href="PlanillaControl.html"><i class="fa fa-fw fa-list-alt"></i> Planilla de control</a>
+                    </li>
+                    <li id="dvdInformeRecaudoProducido" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-list-alt"></i> Informe recaudo producido</a>
+                    </li>
+                    <li id="dvdInformeVentaTarjetas" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-list-ul"></i> Informe venta de tarjetas</a>
+                    </li>
+                    <li id="dvdInformeRecorridos" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> Informe de recorridos</a>
+                    </li>                   
+                    <li id="dvdVentaTarjetas" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-dollar"></i> Venta de tarjetas</a>
+                    </li>
+                    <li id="dvdCrearPlanillaRecaudo" style="display:none">
+                        <a href="#"><i class="fa fa-fw fa-file-archive-o"></i> Crear planilla recaudo</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper" style="height:850px">
+            <br /><br />
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Gestion de Conductores</h2>
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-inverse">
+                      <div class="container-fluid">
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="Div1">
+                          <ul class="nav navbar-nav">
+                            <li><a id="btnNuevo">Registrar</a></li>
+                            <li><a id="btnDetalles">Detalles</a></li>
+                            <li><a id="btnEditar">Editar</a></li>
+                            <li><a id="btnEliminar">Eliminar</a></li>
+                          </ul>
+                        </div><!-- /.navbar-collapse -->
+                      </div><!-- /.container-fluid -->
+                    </nav>
+                </div>
+            </div> 
+            <div class="row" style="margin:5px; width: 100%; height: 450px; overflow: scroll;">
+                <div class="col-lg-12">
+                    <table class="table table-hover table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Cedula</th>
+                                <th>Nombre</th>   
+                                <th>Telefono</th>                             
+                                <th>Direccion</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-left" id="tableConductores">
+                                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>   
+        </div>
+
+        <div class="modal fade bs-example-modal-sm" id="ModalDetalles" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Conductor</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>* Cedula: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar validar snumero" id="txtCedula" />
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>* Tipo de identificación: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <select id="cboTipoIdentificacion" class="form-control datos limpiar habilitar validar"></select>
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>* Nombre: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar validar" id="txtNombres" />
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>* Apellidos: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar validar" id="txtApellidos" />
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>* Fecha de nacimiento: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="date" class="form-control datos limpiar habilitar validar" id="txtFechaNacimiento" />
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>* Direccion: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar validar" id="txtDireccion" />
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>* Telefono: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar validar" id="txtTelefono" />
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>EPS: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar" id="txtEPS" />
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>Pension: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar" id="txtPension" />
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-3 text-right">
+                                <strong>Tipo sangre: </strong>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar" id="txtTipoSangre" />
+                            </div>                            
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Contrato de conducción</div>
+                            <div class="panel-body">
+                                <div class="row Separar">
+                                    <div class="col-lg-3 text-right">
+                                        <strong>* Numero: </strong>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control datos limpiar habilitar validar" id="txtNumeroContratoConduccion" />
+                                    </div>                            
+                                </div>
+                                <div class="row Separar">
+                                    <div class="col-lg-3 text-right">
+                                        <strong>* Expedición: </strong>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="date" class="form-control datos limpiar habilitar validar" id="txtFechaExpedicionContratoConduccion" />
+                                    </div>                            
+                                </div>
+                                <div class="row Separar">
+                                    <div class="col-lg-3 text-right">
+                                        <strong>* Vencimiento: </strong>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="date" class="form-control datos limpiar habilitar validar" id="txtFechaVencimientoContratoConduccion" />
+                                    </div>                            
+                                </div>
+                            </div>
+                            </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Licencia de conducción</div>
+                            <div class="panel-body">
+                                <div class="row Separar">
+                                    <div class="col-lg-3 text-right">
+                                        <strong>* Numero: </strong>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control datos limpiar habilitar validar" id="txtNumeroLicenciaConduccion" />
+                                    </div>                            
+                                </div>
+                                <div class="row Separar">
+                                    <div class="col-lg-3 text-right">
+                                        <strong>* Expedición: </strong>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="date" class="form-control datos limpiar habilitar validar" id="txtFechaExpedicionLicenciaConduccion" />
+                                    </div>                            
+                                </div>
+                                <div class="row Separar">
+                                    <div class="col-lg-3 text-right">
+                                        <strong>* Vencimiento: </strong>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="date" class="form-control datos limpiar habilitar validar" id="txtFechaVencimientoLicenciaConduccion" />
+                                    </div>                            
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnGuardarBus" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jsPropios/varLocal.js"></script>
+    <script type="text/javascript" src="jsPropios/app.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script type="text/javascript" src="js/bya_Page.js"></script>
+    <script type="text/javascript" src="js/jquery_ext.js"></script>
+    <script type="text/javascript" src="jsPropios/gConductores.js"></script>    
+</body>
+
+</html>
