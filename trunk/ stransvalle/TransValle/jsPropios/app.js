@@ -151,6 +151,32 @@ var horarioDTO = (function () {
         }
     }
 }());
+var PersonasDAO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsPersonas.asmx/");
+    return {
+        GetsConductores: function (fCorrecto) {
+            proxy._doAjax("GET", "GetsConductores", null, fCorrecto, null, true);
+        },
+        Insert: function (objPer, fCorrecto) {
+            var Parametro = {
+                Reg: JSON.stringify(objPer)
+            }
+            proxy._doAjax("GET", "Insert", Parametro, fCorrecto, null, true);
+        },
+        Update: function (objPer, fCorrecto) {
+            var Parametro = {
+                Reg: JSON.stringify(objPer)
+            }
+            proxy._doAjax("GET", "Update", Parametro, fCorrecto, null, true);
+        },
+        Delete: function (Cedula, fCorrecto) {
+            var Parametro = {
+                Cedula: "'" + Cedula + "'"
+            }
+            proxy._doAjax("GET", "Delete", Parametro, fCorrecto, null, true);
+        }
+    }
+}());
 var PlanillaRecaudoDTO = (function () {
     var proxy = new ServiceProxy("/Servicios/wsPlanillaRecaudo.asmx/");
     return {
