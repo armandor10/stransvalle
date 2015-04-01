@@ -76,6 +76,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gConductores.html" />
     <Content Include="css\bootstrap-rtl.css" />
     <Content Include="css\bootstrap-rtl.min.css" />
     <Content Include="css\bootstrap-table.css" />
@@ -100,6 +101,7 @@
     <Content Include="index.html" />
     <Content Include="jsPropios\app.js" />
     <Content Include="jsPropios\gBuses.js" />
+    <Content Include="jsPropios\gConductores.js" />
     <Content Include="jsPropios\Home.js" />
     <Content Include="jsPropios\index.js" />
     <Content Include="jsPropios\PlanillaControl.js" />
@@ -137,6 +139,7 @@
     <Content Include="Servicios\wsBuses.asmx" />
     <Content Include="Servicios\wsDatosBasicos.asmx" />
     <Content Include="Servicios\wsHorario.asmx" />
+    <Content Include="Servicios\wsPersonas.asmx" />
     <Content Include="Servicios\wsPlanillaControl.asmx" />
     <Content Include="Servicios\wsPlanillaRecaudo.asmx" />
     <Content Include="Servicios\wsRutas.asmx" />
@@ -155,6 +158,10 @@
     </Compile>
     <Compile Include="Servicios\wsHorario.asmx.cs">
       <DependentUpon>wsHorario.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Servicios\wsPersonas.asmx.cs">
+      <DependentUpon>wsPersonas.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Servicios\wsPlanillaControl.asmx.cs">
