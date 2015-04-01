@@ -42,6 +42,10 @@
         <AssociationConnector Association="transvalleModel.pk_Per_User" />
         <AssociationConnector Association="transvalleModel.pkuserrol" />
         <AssociationConnector Association="transvalleModel.pk_rutagrupo_ruta" />
+        <EntityTypeShape EntityType="transvalleModel.gastos" Width="1.5" PointX="9.9676148639841067" PointY="23.094720046545714" />
+        <EntityTypeShape EntityType="transvalleModel.planillarecaudo" Width="1.5" PointX="11.245844514689336" PointY="27.926098538528244" />
+        <AssociationConnector Association="transvalleModel.pk_planillarecaudo_idDetalles" />
+        <AssociationConnector Association="transvalleModel.pk_gastos_PlanillaRec" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

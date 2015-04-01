@@ -43,5 +43,7 @@ namespace DAL
         public DbSet<tiposidentificacionpersona> tiposidentificacionpersona { get; set; }
         public DbSet<tipostrabajador> tipostrabajador { get; set; }
         public DbSet<usuariosplataforma> usuariosplataforma { get; set; }
+        public DbSet<gastos> gastos { get; set; }
+        public DbSet<planillarecaudo> planillarecaudo { get; set; }
     }
 }
