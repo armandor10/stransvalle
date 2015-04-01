@@ -14,7 +14,11 @@ namespace DAL
     
     public partial class personas
     {
-        public int id { get; set; }
+        public personas()
+        {
+            this.documentospersona = new HashSet<documentospersona>();
+        }
+    
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string Cedula { get; set; }
@@ -25,8 +29,12 @@ namespace DAL
         public string Pension { get; set; }
         public string TipoSangre { get; set; }
         public Nullable<int> TipoPersona { get; set; }
-        public string Usuario { get; set; }
+        public string User { get; set; }
+        public string TipoIdentificacion { get; set; }
     
+        public virtual ICollection<documentospersona> documentospersona { get; set; }
+        public virtual tiposidentificacionpersona tiposidentificacionpersona { get; set; }
         public virtual tipostrabajador tipostrabajador { get; set; }
+        public virtual usuariosplataforma usuariosplataforma { get; set; }
     }
 }

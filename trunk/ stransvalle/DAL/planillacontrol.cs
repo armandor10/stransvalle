@@ -22,7 +22,9 @@ namespace DAL
         public int id { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public string Observaciones { get; set; }
+        public Nullable<int> Grupo { get; set; }
     
         public virtual ICollection<detallesplanilla> detallesplanilla { get; set; }
+        public virtual gruposbuses gruposbuses { get; set; }
     }
 }

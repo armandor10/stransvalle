@@ -14,10 +14,16 @@ namespace DAL
     
     public partial class usuariosplataforma
     {
+        public usuariosplataforma()
+        {
+            this.personas = new HashSet<personas>();
+        }
+    
         public Nullable<int> Roll { get; set; }
         public string Contraseña { get; set; }
         public string User { get; set; }
     
+        public virtual ICollection<personas> personas { get; set; }
         public virtual rolesusuariosplataforma rolesusuariosplataforma { get; set; }
     }
 }

@@ -12,15 +12,16 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class detallesplanilla
+    public partial class documentosbus
     {
         public int id { get; set; }
-        public int idPlanillaControl { get; set; }
-        public string PlacaBus { get; set; }
-        public string Ruta { get; set; }
+        public Nullable<int> documento { get; set; }
+        public string placa { get; set; }
+        public string Numero { get; set; }
+        public Nullable<System.DateTime> fechaExpedicion { get; set; }
+        public Nullable<System.DateTime> fechaExpiracion { get; set; }
     
         public virtual buses buses { get; set; }
-        public virtual planillacontrol planillacontrol { get; set; }
-        public virtual rutas rutas { get; set; }
+        public virtual documentos documentos { get; set; }
     }
 }

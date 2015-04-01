@@ -12,15 +12,16 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class detallesplanilla
+    public partial class tiposidentificacionpersona
     {
-        public int id { get; set; }
-        public int idPlanillaControl { get; set; }
-        public string PlacaBus { get; set; }
-        public string Ruta { get; set; }
+        public tiposidentificacionpersona()
+        {
+            this.personas = new HashSet<personas>();
+        }
     
-        public virtual buses buses { get; set; }
-        public virtual planillacontrol planillacontrol { get; set; }
-        public virtual rutas rutas { get; set; }
+        public string id { get; set; }
+        public string Nombre { get; set; }
+    
+        public virtual ICollection<personas> personas { get; set; }
     }
 }
