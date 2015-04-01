@@ -98,6 +98,15 @@
     <Compile Include="detallesplanilla.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
+    <Compile Include="documentos.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentosbus.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentospersona.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
     <Compile Include="gruposbuses.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
@@ -118,6 +127,9 @@
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="rutas.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tiposidentificacionpersona.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="tipostrabajador.cs">

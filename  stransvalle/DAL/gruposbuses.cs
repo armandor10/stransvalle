@@ -17,6 +17,7 @@ namespace DAL
         public gruposbuses()
         {
             this.buses = new HashSet<buses>();
+            this.planillacontrol = new HashSet<planillacontrol>();
             this.rutagrupo = new HashSet<rutagrupo>();
         }
     
@@ -24,6 +25,7 @@ namespace DAL
         public string Nombre { get; set; }
     
         public virtual ICollection<buses> buses { get; set; }
+        public virtual ICollection<planillacontrol> planillacontrol { get; set; }
         public virtual ICollection<rutagrupo> rutagrupo { get; set; }
     }
 }

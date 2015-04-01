@@ -29,6 +29,7 @@ namespace DAL
         public Nullable<int> Capacidad { get; set; }
         public Nullable<int> TiempoRecorrido { get; set; }
         public Nullable<int> idHorario { get; set; }
+        public Nullable<int> NumeroRecorridos { get; set; }
     
         public virtual ICollection<coordenadasrutas> coordenadasrutas { get; set; }
         public virtual ICollection<detallesplanilla> detallesplanilla { get; set; }
