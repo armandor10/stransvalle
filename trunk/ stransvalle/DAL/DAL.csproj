@@ -107,10 +107,16 @@
     <Compile Include="documentospersona.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
+    <Compile Include="entradassalidas.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
     <Compile Include="gastos.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="gruposbuses.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="historialmovimiento.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="horario.cs">
@@ -126,6 +132,9 @@
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="puntoscontrol.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
     <Compile Include="rolesusuariosplataforma.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
