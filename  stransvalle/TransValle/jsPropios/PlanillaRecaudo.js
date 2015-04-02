@@ -1,12 +1,12 @@
-﻿var PlanillaRecaudo = (function () {   
+﻿var PlanillaRecaudo = (function () {
     var sesion = false;
     var table;//=$('#example').DataTable({});
-    var hS, rec, idDp,idPr;
+    var hS, rec, idDp, idPr;
 
     var _addHandlers = function () {
         $("#cboGrupoBus").change(function () {
             CargarPlanillaRecaudo();
-        });                   
+        });
 
         $("#dtpFecha").on("dp.change", function (e) {
             //$('#datetimepicker7').data("DateTimePicker").minDate(e.date);
@@ -15,42 +15,40 @@
 
         $("#btnGuardarPr").click(function () {
             if ($("#mNumPas").val().length > 0 && $("#mPneto").val().length > 0 &&
-                $("#mACPM").val().length > 0   && $("#mSueldo").val().length>0  &&
-                $("#mAseo").val().length > 0   && $("#mTgastos").val().length>0)
-            {                
-               var pR ={
-                    id:                 idPr,
-                    Fecha:              $("#dtpFecha").data('DateTimePicker').date(),
-                    Recorridos:         rec,
-                    InicioTorniquete:   $("#mInicio").val(),
-                    FinTorniquete:      $("#mFinal").val(),
-                    NumPasajeros:       $("#mNumPas").val(),
-                    ProductoBruto:      $("#mPbruto").autoNumeric('get'),
-                    ProductoNeto:       $("#mPneto").autoNumeric('get'),
+                $("#mACPM").val().length > 0 && $("#mSueldo").val().length > 0 &&
+                $("#mAseo").val().length > 0 && $("#mTgastos").val().length > 0) {
+                var pR = {
+                    id: idPr,
+                    Fecha: $("#dtpFecha").data('DateTimePicker').date(),
+                    Recorridos: rec,
+                    InicioTorniquete: $("#mInicio").val(),
+                    FinTorniquete: $("#mFinal").val(),
+                    NumPasajeros: $("#mNumPas").val(),
+                    ProductoBruto: $("#mPbruto").autoNumeric('get'),
+                    ProductoNeto: $("#mPneto").autoNumeric('get'),
                     idDetallesPlanilla: idDp,
-                    gastos:{
+                    gastos: {
                         idplanillarecaudo: idPr,
-                        ACPM:              $("#mACPM").autoNumeric('get'),
-                        Sueldo:            $("#mSueldo").autoNumeric('get'),
-                        Aseo:              $("#mAseo").autoNumeric('get'),
-                        Otros:             _campNumVacio($("#mOtros").autoNumeric('get')),
-                        Turno:             _campNumVacio($("#mTurno").autoNumeric('get')),
-                        TotalGasto:        $("#mTgastos").autoNumeric('get')
+                        ACPM: $("#mACPM").autoNumeric('get'),
+                        Sueldo: $("#mSueldo").autoNumeric('get'),
+                        Aseo: $("#mAseo").autoNumeric('get'),
+                        Otros: _campNumVacio($("#mOtros").autoNumeric('get')),
+                        Turno: _campNumVacio($("#mTurno").autoNumeric('get')),
+                        TotalGasto: $("#mTgastos").autoNumeric('get')
                     },
-                    Vial :"",
+                    Vial: "",
                     Placa: "",
                     Ruta: "",
                     Time: hS
                 };
 
-               PlanillaRecaudoDTO.Update(pR, function (result) {
-                   $('#ModalPlanillaRecaudo').modal('toggle');
-                   CargarPlanillaRecaudo();
+                PlanillaRecaudoDTO.Update(pR, function (result) {
+                    $('#ModalPlanillaRecaudo').modal('toggle');
+                    CargarPlanillaRecaudo();
                 });
 
             }
-            else
-            {
+            else {
                 alert("Los campos Numero de Pasajeros, A.C.P.M, Sueldo, Aseo y Producto Neto son requeridos");
             }
         });
@@ -71,7 +69,7 @@
                 } else {
                     alert("El Torniquete final debe ser mayor al inicio!!!");
                 }
-                
+
             }
         });
 
@@ -84,20 +82,20 @@
             turno = _campNumVacio($("#mTurno").autoNumeric('get'));
 
             $('#mTgastos').autoNumeric('set', acpm + sueldo + aseo + otros + turno)
-           // $("#mTgastos").val(acpm + sueldo + aseo + otros + turno);
+            // $("#mTgastos").val(acpm + sueldo + aseo + otros + turno);
         });
 
         $(".total").blur(function () {
             $("#mPneto").val('');
-            if ($("#mTgastos").val().length > 0 && $("#mPbruto").val().length>0) {
+            if ($("#mTgastos").val().length > 0 && $("#mPbruto").val().length > 0) {
                 if (_campNumVacio($("#mTgastos").autoNumeric('get')) > _campNumVacio($("#mPbruto").autoNumeric('get'))) {
                     alert("Los gastos no deben ser mayor al producto");
                 } else {
                     $('#mPneto').autoNumeric('set', parseInt($("#mPbruto").autoNumeric('get')) - parseInt($("#mTgastos").autoNumeric('get')))
                     //$("#mPneto").val();
                 }
-                
-            } 
+
+            }
         });
 
         $("#btnCerrarSesion").click(function () {
@@ -114,7 +112,7 @@
     var _VerificarPermisos = function () {
         var user = varLocal.getUser();
         var rol = varLocal.getRol();
-        if ((user != null) && (rol != null) && (rol == 2)) {
+        if ((user != null) && (rol != null) && ((rol == 2) || (rol == 1))) {
             $("#dvdUser").html('<i class="fa fa-user"></i> ' + user + ' <b class="caret">');
             listaPermisos = Permisos.Get(rol);
             $.each(listaPermisos, function (index, item) {
@@ -143,7 +141,7 @@
             return 0;
         }
         else {
-           return parseInt(value);
+            return parseInt(value);
         }
     };
 
@@ -153,14 +151,14 @@
 
     var _sumTotal = function (num) {
         var total = 0;
-        $('#example tbody tr td:nth-child('+num+')').each(function () {
+        $('#example tbody tr td:nth-child(' + num + ')').each(function () {
             total = total + _campNumVacio($(this).text().replace(',', ''));
             //alert($(this).text());
         });
         return total;
     };
 
-    var CargarDatosBasicos = function () {        
+    var CargarDatosBasicos = function () {
         $(function () {
             $('#dtpFecha').datetimepicker({ format: 'DD/MM/YYYY', locale: 'es' });
             $('#dtpFecha').data("DateTimePicker").minDate(new Date(2014, 10, 1));
@@ -172,13 +170,13 @@
             $("#cboGrupoBus").byaCombo({
                 DataSource: DatosBasicos.lGruposBuses, placeHolder: 'Seleccione...', Display: "Nombre", Value: "id"
             });
-        });       
+        });
     };
 
     var CargarPlanillaRecaudo = function () {
-        
+
         table.destroy();
-        
+
         var fecha = $("#dtpFecha").data('DateTimePicker').date().toString();
 
         if ($("#cboGrupoBus").val().length > 0 && fecha.length > 0) {
