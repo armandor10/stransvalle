@@ -12,22 +12,16 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class detallesplanilla
+    public partial class historialmovimiento
     {
-        public detallesplanilla()
-        {
-            this.planillarecaudo = new HashSet<planillarecaudo>();
-        }
-    
-        public int id { get; set; }
-        public int idPlanillaControl { get; set; }
-        public string PlacaBus { get; set; }
-        public string Ruta { get; set; }
-        public Nullable<System.TimeSpan> HoraSalida { get; set; }
+        public string Placa { get; set; }
+        public string Latitud { get; set; }
+        public string Longitud { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public Nullable<int> Velocidad { get; set; }
+        public Nullable<int> Punto { get; set; }
     
         public virtual buses buses { get; set; }
-        public virtual planillacontrol planillacontrol { get; set; }
-        public virtual ICollection<planillarecaudo> planillarecaudo { get; set; }
-        public virtual rutas rutas { get; set; }
+        public virtual puntoscontrol puntoscontrol { get; set; }
     }
 }

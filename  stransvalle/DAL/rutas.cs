@@ -18,6 +18,7 @@ namespace DAL
         {
             this.coordenadasrutas = new HashSet<coordenadasrutas>();
             this.detallesplanilla = new HashSet<detallesplanilla>();
+            this.puntoscontrol = new HashSet<puntoscontrol>();
             this.rutagrupo = new HashSet<rutagrupo>();
         }
     
@@ -34,6 +35,7 @@ namespace DAL
         public virtual ICollection<coordenadasrutas> coordenadasrutas { get; set; }
         public virtual ICollection<detallesplanilla> detallesplanilla { get; set; }
         public virtual horario horario { get; set; }
+        public virtual ICollection<puntoscontrol> puntoscontrol { get; set; }
         public virtual ICollection<rutagrupo> rutagrupo { get; set; }
     }
 }
