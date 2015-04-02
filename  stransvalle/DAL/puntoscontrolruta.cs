@@ -12,19 +12,13 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class puntoscontrol
+    public partial class puntoscontrolruta
     {
-        public puntoscontrol()
-        {
-            this.historialmovimiento = new HashSet<historialmovimiento>();
-        }
-    
         public int id { get; set; }
-        public string Nombre { get; set; }
-        public string Latitud { get; set; }
-        public string Longitud { get; set; }
+        public string NomRuta { get; set; }
+        public int Punto { get; set; }
     
-        public virtual ICollection<historialmovimiento> historialmovimiento { get; set; }
-        public virtual puntoscontrolruta puntoscontrolruta { get; set; }
+        public virtual puntoscontrol puntoscontrol { get; set; }
+        public virtual rutas rutas { get; set; }
     }
 }
