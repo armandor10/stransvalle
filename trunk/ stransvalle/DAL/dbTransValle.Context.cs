@@ -42,6 +42,7 @@ namespace DAL
         public DbSet<planillacontrol> planillacontrol { get; set; }
         public DbSet<planillarecaudo> planillarecaudo { get; set; }
         public DbSet<puntoscontrol> puntoscontrol { get; set; }
+        public DbSet<puntoscontrolruta> puntoscontrolruta { get; set; }
         public DbSet<rolesusuariosplataforma> rolesusuariosplataforma { get; set; }
         public DbSet<rutagrupo> rutagrupo { get; set; }
         public DbSet<rutas> rutas { get; set; }

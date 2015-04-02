@@ -135,6 +135,9 @@
     <Compile Include="puntoscontrol.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
+    <Compile Include="puntoscontrolruta.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
     <Compile Include="rolesusuariosplataforma.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
