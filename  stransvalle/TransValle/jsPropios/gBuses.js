@@ -4,6 +4,7 @@
     var DatosBasicos;
     var OpcionEjecutar;
     var indexBusSeleccionado;
+    var table;
 
     var _addHandlers = function () {
         $("#btnDetallesBus").click(function () {
@@ -49,6 +50,7 @@
     };
     var _createElements = function () {
         CargarDatosBasicos();
+        createTable();
     };
     var _VerificarPermisos = function () {
         var user = varLocal.getUser();
@@ -65,12 +67,17 @@
     };
     var CargarBuses = function () {
         BusesDAO.Gets(function (result) {
+
+            table.destroy();
+
             lBuses = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
             $("#tableBuses").html("");
             $.each(lBuses, function (index, item) {
                 var Fecha = byaPage.converJSONDate(item.FechaMatricula);
                 $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th><th>" + item.NombreGrupo + "</th></tr>");
             });
+
+            createTable();
         });
     };
     var CargarDatosBasicos = function () {
@@ -212,6 +219,42 @@
         });
     };
     
+    var createTable = function () {
+        $(function () { // Crear DataTable
+            table = $('#tBuses').DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+                scrollY: "300px",
+                scrollX: true,
+                scrollCollapse: true,
+                paging: false
+            });
+            //new $.fn.dataTable.FixedColumns(table);
+        });
+    };
+
     return {
         init: function () {
             if (_VerificarPermisos()) {
