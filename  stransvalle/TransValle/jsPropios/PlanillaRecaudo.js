@@ -161,7 +161,7 @@
     var CargarDatosBasicos = function () {
         $(function () {
             $('#dtpFecha').datetimepicker({ format: 'DD/MM/YYYY', locale: 'es' });
-            $('#dtpFecha').data("DateTimePicker").minDate(new Date(2014, 10, 1));
+            $('#dtpFecha').data("DateTimePicker").minDate(new Date(2014, 1, 1));
             $('#dtpFecha').data("DateTimePicker").maxDate(new Date());
         });
 

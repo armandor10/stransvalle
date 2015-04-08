@@ -195,6 +195,35 @@ var PlanillaRecaudoDTO = (function () {
         }
     }
 }());
+var InformeRecorridoDAO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsInformeRecorrido.asmx/");
+    return {
+        GetInformeRecorrido: function (Fecha, Grupo, fCorrecto) {
+            var Parametro = {
+                fecha: JSON.stringify(Fecha),
+                grupo: "'" + Grupo + "'"
+            }
+            proxy._doAjax("GET", "getInformeRecorridos", Parametro, fCorrecto, null, true);
+        },
+        GetDetallesRecorridos: function (Fecha, Grupo, Placa, fCorrecto) {
+            var Parametro = {
+                fecha: JSON.stringify(Fecha),
+                grupo: "'" + Grupo + "'",
+                placa: "'" + Placa + "'"
+            }
+            proxy._doAjax("GET", "getDetallesRecorridos", Parametro, fCorrecto, null, true);
+        },
+        GetPuntosControl: function (Fecha, Placa,hIni,hFin, fCorrecto) {
+            var Parametro = {
+                fecha: JSON.stringify(Fecha),
+                placa: "'" + Placa + "'",
+                horaIni: JSON.stringify(hIni),
+                horaFin: JSON.stringify(hFin)
+            }
+            proxy._doAjax("GET", "getPuntosControl", Parametro, fCorrecto, null, true);
+        }
+    }
+}())
 
 
 

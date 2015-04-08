@@ -15,6 +15,8 @@ namespace Entidades
       public Nullable<System.TimeSpan> HoraSalida { get; set; }
 
       public string Vial { get; set; }
+      public string Conductor { get; set; }
+      public int Recorridos { get; set; }
 
     }
 }

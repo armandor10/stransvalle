@@ -74,6 +74,7 @@
     <Compile Include="mHorario.cs" />
     <Compile Include="mPersonas.cs" />
     <Compile Include="mPlanillaControl.cs" />
+    <Compile Include="mRecorridos.cs" />
     <Compile Include="mRutas.cs" />
     <Compile Include="mUsers.cs" />
     <Compile Include="mPlanillaRecaudo.cs" />

@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,10 +31,13 @@
 
     <style>
       html, body,#map-canvas {
-        width:100%;
+        width:99.5%;
         height: 650px;
         margin: 0px;
-        padding: 0px
+        padding: 0px;
+        max-width: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
       }
         /* centered columns styles */
       .row-centered {
@@ -380,7 +384,6 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
     <script type="text/javascript" src="js/bya_Page.js"></script>
     <script type="text/javascript" src="js/jquery_ext.js"></script>
-    <script type="text/javascript" src="js/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="js/plugins/DataTables/jquery.dataTables.js"></script>
     <script type="text/javascript" src="js/plugins/DataTables/dataTables.fixedColumns.js"></script>
     <script type="text/javascript" src="js/plugins/DataTables/dataTables.bootstrap.js"></script>
