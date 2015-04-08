@@ -73,6 +73,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tHorario.cs" />
     <Compile Include="tPlanillaRecaudo.cs" />
+    <Compile Include="tInformeRec.cs" />
+    <Compile Include="tRecorridos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

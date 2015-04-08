@@ -26,6 +26,7 @@ namespace BLL
 
        public List<planillarecaudoDTO> get(DateTime fecha, int grupo) {
            fecha = fecha.Date;//new DateTime(fecha.Year,fecha.Month,fecha.d)
+           DateTime fechaFin = new DateTime(fecha.Year, fecha.Month, fecha.Day, 23, 59, 59);
            List<planillarecaudoDTO> lPlaRecDto;
            planillarecaudo pR;
            planillarecaudo pRaux;
@@ -51,8 +52,10 @@ namespace BLL
                        {                                                
                            pR = new planillarecaudo();
                            gastos = new gastos();
-                           pR.idDetallesPlanilla = dP.id;                           
-                           pR.Recorridos = 0;// Calcular el numero de Recorridos. Corregir 
+                           pR.idDetallesPlanilla = dP.id;
+                           pR.Recorridos = ctx.entradassalidas.Where(t => t.Fecha > fecha &&                      
+                               t.Fecha < fechaFin &&                      
+                               t.Placa == dP.PlacaBus && t.Estado == "E").Count();// Calcular el numero de Recorridos. Corregir 
                            pR.Fecha = fecha;
                            ctx.planillarecaudo.Add(pR);                           
                            ctx.SaveChanges();
