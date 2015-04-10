@@ -224,6 +224,24 @@ var InformeRecorridoDAO = (function () {
         }
     }
 }())
+var HistorialMovimientoDAO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsHistorialMovimiento.asmx/");
+    return {        
+        GetDetallesRecorridos: function (Fecha, vial, fCorrecto) {
+            var Parametro = {
+                fecha: JSON.stringify(Fecha),
+                Vial: "'" + vial + "'"
+            }
+            proxy._doAjax("GET", "getDetallesRecorridos", Parametro, fCorrecto, null, true);
+        },
+        Get: function (eS, fCorrecto) {
+            var Parametro = {
+                eSDto: JSON.stringify(eS)
+            }
+            proxy._doAjax("GET", "get", Parametro, fCorrecto, null, true);
+        }
+    }
+}())
 
 
 

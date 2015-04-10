@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="mBuses.cs" />
     <Compile Include="mDatosBasicos.cs" />
+    <Compile Include="mHistorialMovimiento.cs" />
     <Compile Include="mHorario.cs" />
     <Compile Include="mPersonas.cs" />
     <Compile Include="mPlanillaControl.cs" />
