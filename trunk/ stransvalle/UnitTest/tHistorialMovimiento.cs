@@ -1,0 +1,37 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Entidades;
+using BLL;
+
+namespace UnitTest
+{
+    [TestClass]
+    public class tHistorialMovimiento
+    {
+        [TestMethod]
+        public void get()
+        {
+            entradassalidasDTO eSDto = new entradassalidasDTO();
+            eSDto.Fecha = new DateTime(2014,8,5,10,39,6);
+            eSDto.FechaFin = new DateTime(2014, 8, 5, 12, 25, 29);
+            eSDto.Placa = "TLU 107";
+
+            mHistorialMovimiento lg = new mHistorialMovimiento();
+            List<historialmovimientoDTO> lHmDto = lg.get(eSDto);
+
+            Assert.IsNotNull(lHmDto);
+        }
+
+        [TestMethod]
+        public void getDetallesRecorridos() 
+        {
+            mHistorialMovimiento lg = new mHistorialMovimiento();
+            List<entradassalidasDTO> lEsDto = lg.getDetallesRecorridos((new DateTime(2014, 8, 5)), "10038");
+            Assert.IsNotNull(lEsDto);
+        }
+    }
+}

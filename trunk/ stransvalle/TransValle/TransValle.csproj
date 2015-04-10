@@ -93,17 +93,20 @@
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="gBuses.html" />
+    <Content Include="HistorialMovimiento.html" />
     <Content Include="Home.html" />
     <Content Include="images\bg.png" />
     <Content Include="images\gradient.png" />
     <Content Include="images\pass-icon.png" />
     <Content Include="images\user-icon.png" />
+    <Content Include="images\velocimetro3.png" />
     <Content Include="index.html" />
     <Content Include="InformeRecaudo.html" />
     <Content Include="InformeRecorrido.html" />
     <Content Include="jsPropios\app.js" />
     <Content Include="jsPropios\gBuses.js" />
     <Content Include="jsPropios\gConductores.js" />
+    <Content Include="jsPropios\HistorialMovimiento.js" />
     <Content Include="jsPropios\Home.js" />
     <Content Include="jsPropios\index.js" />
     <Content Include="jsPropios\InformeRecorrido.js" />
@@ -141,6 +144,7 @@
     <Content Include="Rutas.html" />
     <Content Include="Servicios\wsBuses.asmx" />
     <Content Include="Servicios\wsDatosBasicos.asmx" />
+    <Content Include="Servicios\wsHistorialMovimiento.asmx" />
     <Content Include="Servicios\wsHorario.asmx" />
     <Content Include="Servicios\wsInformeRecorrido.asmx" />
     <Content Include="Servicios\wsPersonas.asmx" />
@@ -158,6 +162,10 @@
     </Compile>
     <Compile Include="Servicios\wsDatosBasicos.asmx.cs">
       <DependentUpon>wsDatosBasicos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Servicios\wsHistorialMovimiento.asmx.cs">
+      <DependentUpon>wsHistorialMovimiento.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Servicios\wsHorario.asmx.cs">
