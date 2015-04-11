@@ -12,5 +12,6 @@ namespace Entidades
         public List<clasesservicioDto> lClasesServicio;
         public List<gruposbusesDto> lGruposBuses;
         public List<tiposidentificacionpersonaDto> lTiposIdentificacion;
+        public List<puntoscontrolDTO> lPctrlDto;
     }
 }

@@ -98,6 +98,40 @@ namespace BLL
                 }                            
             }
         }
+
+        public List<historialmovimientoDTO> getCoordTodayBuses(string ruta) {
+            List<historialmovimientoDTO> lHmDto;
+            historialmovimientoDTO hMDto;
+
+            DateTime fecha = DateTime.Now.Date;
+
+            using(ctx=new tvEntities()){
+                List<detallesplanilla> lDp = ctx.detallesplanilla.Where(t=>t.Ruta==ruta&&t.planillacontrol.Fecha==fecha).ToList();
+                if (lDp.Count > 0)
+                {
+                    lHmDto = new List<historialmovimientoDTO>();
+                    historialmovimiento hM;
+                    foreach (detallesplanilla dP in lDp)
+                    {
+                        hM = ctx.historialmovimiento
+                            .OrderByDescending(t => t.Fecha)
+                            .Where(t => t.Placa == dP.PlacaBus && t.Fecha > fecha).FirstOrDefault();
+                        if (hM != null)
+                        {
+                            hMDto=new historialmovimientoDTO();
+                            Mapper.Map(hM, hMDto);
+                            hMDto.Vial = dP.buses.Vial;
+                            lHmDto.Add(hMDto);
+                        }
+                    }
+                    return lHmDto;
+                }
+                else 
+                {
+                    return null;
+                }
+            }
+        }
    
     }
 }

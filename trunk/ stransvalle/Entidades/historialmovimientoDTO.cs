@@ -16,5 +16,6 @@ namespace Entidades
         public Nullable<int> Punto { get; set; }
 
         public string Ruta { get; set; }
+        public string Vial { get; set; }
     }
 }
