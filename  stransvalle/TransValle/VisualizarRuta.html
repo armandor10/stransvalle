@@ -49,33 +49,28 @@
       #panel {
             position: absolute;
             top: 50px;
-            left: 10%;
+            width:350px;
+            left: 50%;
             margin-left: -180px;
             z-index: 5;
             background-color: #fff;
             padding: 5px;
             border: 1px solid #999;
-            background-color: rgba(0,0,0,.3);
+            background-color: rgba(0,0,0,.6);
           }
         .panel {
             position: absolute;
             top: 100px;
-            left: 29.6%;
+            width:200px;
+            left: 98%;
             margin-left: -180px;
             z-index: 5;
             background-color: #fff;
             padding: 5px;
             border: 1px solid #999;
-            background-color: rgba(0,0,0,.3);                    
+            background-color: rgba(0,0,0,.6);                               
         }
     </style>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -116,10 +111,10 @@
                     <li id="dvdGestorConductores" style="display:none">
                         <a href="gConductores.html"><i class="fa fa-fw fa-user"></i> Gestor de conductores</a>
                     </li>
-                    <li id="dvdVisualizarRuta" style="display:none">
+                    <li id="dvdVisualizarRuta" style="display:none" class="active">
                         <a href="VisualizarRuta.html"><i class="fa fa-fw fa-eye"></i> Visualizar ruta</a>
                     </li>
-                    <li id="dvdHistorialMovimiento" style="display:none" class="active">
+                    <li id="dvdHistorialMovimiento" style="display:none" >
                         <a href="HistorialMovimiento.html"><i class="fa fa-fw fa-list"></i> Historial de movimientos</a>
                     </li>
                     <li id="dvdPlanillaControl" style="display:none">
@@ -141,46 +136,28 @@
 
         <div id="page-wrapper" style="height: 640px;">
             <div id="panel">
-                <div class="row row-centered" >
-                <div class="col-md col-centered">                         
-                     <strong>Fecha: </strong>  
-                 </div> 
-                                          
-                <div class="col-xs-2 col-centered" style="height:22px">                                       
-                    <div class="container">
-                        <div class="form-group">
-                            <div class='input-group date col-sm-2' id='dtpFecha' >
-                                <input type='text' class="form-control" id="fecha" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md col-centered">                         
-                     <strong>Vial: </strong>  
-                 </div> 
-                <div class="col-xs-2 col-centered" style="height:22px">     
-                    <div class="input-group">      
-                        <input type="text" class="form-control snumero" id="Vial">      
-                        <span class="input-group-btn">        
-                            <button class="btn btn-success" type="button" id="Buscar">Buscar</button>      
-                        </span>    
-                    </div><!-- /input-group -->                 
-                </div><!-- /.col-lg-6 -->
-                <div class="col-xs col-centered">                         
-                     <strong>Recorridos: </strong>
-                 </div>                                           
-                <div class="col-xs-2 col-centered">                                                        
-                    <select class="form-control" id="cboRecorridos" placeholder=".col-xs-2">                                                          
-                    </select> 
-                </div> 
-            </div>                   
+                <div class="row row-centered" >                
+                    <div class="col-xs col-centered" style="color:white;">                                          
+                        <strong>Ruta: </strong>                 
+                    </div>                                                          
+                    <div class="col-xs-6 col-centered">                                                                            
+                        <select class="form-control" id="cboRuta" placeholder=".col-xs-6">                                                                             
+                        </select>                 
+                    </div> 
+                    <div class="col-xs col-centered">                
+                    </div>              
+                </div>                   
             </div>
-             <div class="panel" id="ruta">
-                 <strong>Ruta</strong> 
+             <div class="panel">
+                 <div class="row row-centered" style="color:white;">
+                     <div class="col-xs col-centered"><strong>Buses</strong></div>
+                 </div>
+                 <div class="row row-centered" style="color:white;">
+                     <div class="col-md-4 col-centered"><strong>Vial</strong></div>
+                     <div class="col-md-6 col-centered"><strong>Velocidad</strong></div>
+                 </div>
+                 <div class="row row-centered" id="lBuses">
+                 </div>
              </div>
             <div id="map-canvas"></div>
         </div>
@@ -199,10 +176,11 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>   
     <script type="text/javascript" src="jsPropios/varLocal.js"></script>
-    <script src="jsPropios/app.js"></script>
+    <script type="text/javascript" src="jsPropios/app.js"></script>
     <script type="text/javascript" src="js/bya_Page.js"></script>
     <script type="text/javascript" src="js/jquery_ext.js"></script>
-    <script type="text/javascript" src="jsPropios/HistorialMovimiento.js"></script>
+    <script type="text/javascript" src="jsPropios/VisualizarRuta.js"></script>
+
 </body>
 
 </html>

@@ -239,6 +239,12 @@ var HistorialMovimientoDAO = (function () {
                 eSDto: JSON.stringify(eS)
             }
             proxy._doAjax("GET", "get", Parametro, fCorrecto, null, true);
+        },
+        GetCoordTodayBuses: function (ruta, fCorrecto) {
+            var Parametro = {
+                Ruta: "'" + ruta + "'"
+            }
+            proxy._doAjax("GET", "getCoordTodayBuses", Parametro, fCorrecto, null, true);
         }
     }
 }())

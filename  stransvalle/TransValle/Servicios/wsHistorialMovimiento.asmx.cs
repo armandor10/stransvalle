@@ -33,5 +33,11 @@ namespace TransValle.Servicios
         {
             return (new mHistorialMovimiento()).get(eSDto);
         }
+
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public List<historialmovimientoDTO> getCoordTodayBuses(string Ruta) {
+            return (new mHistorialMovimiento()).getCoordTodayBuses(Ruta);                                
+        }
     }
 }

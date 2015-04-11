@@ -18,6 +18,7 @@ namespace BLL
             Mapper.CreateMap<clasesservicio,clasesservicioDto>();
             Mapper.CreateMap<gruposbuses, gruposbusesDto>();
             Mapper.CreateMap<tiposidentificacionpersona, tiposidentificacionpersonaDto>();
+            Mapper.CreateMap<puntoscontrol,puntoscontrolDTO>();
         }
         public DatosBasicosDto GetDatosBasicos()
         {
@@ -26,6 +27,7 @@ namespace BLL
             objDatosBasicos.lClasesServicio = GetClasesServicio();
             objDatosBasicos.lGruposBuses = GetGruposBuses();
             objDatosBasicos.lTiposIdentificacion = GetTiposIdentificacion();
+            objDatosBasicos.lPctrlDto = GetPuntosCtrl();
             return objDatosBasicos;
         }
         public List<clasesservicioDto> GetClasesServicio()
@@ -66,6 +68,16 @@ namespace BLL
                 List<gruposbuses> mObj = ctx.gruposbuses.ToList();
                 Mapper.Map(mObj, lRes);
                 return lRes;
+            }
+        }
+        public List<puntoscontrolDTO> GetPuntosCtrl() 
+        {
+            using(ctx=new tvEntities())
+            {
+                List<puntoscontrolDTO> lPctrlDto = new List<puntoscontrolDTO>();
+                List<puntoscontrol> lPctrl = ctx.puntoscontrol.ToList();
+                Mapper.Map(lPctrl,lPctrlDto);
+                return lPctrlDto;
             }
         }
     }

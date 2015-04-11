@@ -33,5 +33,12 @@ namespace UnitTest
             List<entradassalidasDTO> lEsDto = lg.getDetallesRecorridos((new DateTime(2014, 8, 5)), "10038");
             Assert.IsNotNull(lEsDto);
         }
+
+        [TestMethod]
+        public void getCoordTodayBuses() {
+            mHistorialMovimiento lg = new mHistorialMovimiento();
+            List<historialmovimientoDTO> lHmDto = lg.getCoordTodayBuses("Ruta 8");
+            Assert.IsNotNull(lHmDto);
+        }
     }
 }
