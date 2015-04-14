@@ -16,6 +16,7 @@ namespace DAL
     {
         public personas()
         {
+            this.asignarbus = new HashSet<asignarbus>();
             this.documentospersona = new HashSet<documentospersona>();
         }
     
@@ -32,6 +33,7 @@ namespace DAL
         public string User { get; set; }
         public string TipoIdentificacion { get; set; }
     
+        public virtual ICollection<asignarbus> asignarbus { get; set; }
         public virtual ICollection<documentospersona> documentospersona { get; set; }
         public virtual tiposidentificacionpersona tiposidentificacionpersona { get; set; }
         public virtual tipostrabajador tipostrabajador { get; set; }

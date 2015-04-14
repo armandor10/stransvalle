@@ -16,8 +16,10 @@ namespace DAL
     {
         public buses()
         {
+            this.asignarbus = new HashSet<asignarbus>();
             this.historialmovimiento = new HashSet<historialmovimiento>();
             this.documentosbus = new HashSet<documentosbus>();
+            this.entradassalidas = new HashSet<entradassalidas>();
             this.detallesplanilla = new HashSet<detallesplanilla>();
         }
     
@@ -35,9 +37,11 @@ namespace DAL
         public string Password { get; set; }
         public Nullable<int> Grupo { get; set; }
     
+        public virtual ICollection<asignarbus> asignarbus { get; set; }
         public virtual ICollection<historialmovimiento> historialmovimiento { get; set; }
         public virtual gruposbuses gruposbuses { get; set; }
         public virtual ICollection<documentosbus> documentosbus { get; set; }
+        public virtual ICollection<entradassalidas> entradassalidas { get; set; }
         public virtual ICollection<detallesplanilla> detallesplanilla { get; set; }
         public virtual clasesbuses clasesbuses { get; set; }
         public virtual clasesservicio clasesservicio { get; set; }
