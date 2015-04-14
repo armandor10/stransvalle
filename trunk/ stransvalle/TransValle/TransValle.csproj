@@ -147,6 +147,7 @@
     <Content Include="Rutas.html" />
     <Content Include="Servicios\wsBuses.asmx" />
     <Content Include="Servicios\wsDatosBasicos.asmx" />
+    <Content Include="Servicios\wsEntradasSalidas.asmx" />
     <Content Include="Servicios\wsHistorialMovimiento.asmx" />
     <Content Include="Servicios\wsHorario.asmx" />
     <Content Include="Servicios\wsInformeRecorrido.asmx" />
@@ -166,6 +167,10 @@
     </Compile>
     <Compile Include="Servicios\wsDatosBasicos.asmx.cs">
       <DependentUpon>wsDatosBasicos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Servicios\wsEntradasSalidas.asmx.cs">
+      <DependentUpon>wsEntradasSalidas.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Servicios\wsHistorialMovimiento.asmx.cs">
@@ -238,6 +243,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="packages.config" />
     <Content Include="images\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\carlos.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
