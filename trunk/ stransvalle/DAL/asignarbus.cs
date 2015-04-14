@@ -12,12 +12,15 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class entradassalidas
+    public partial class asignarbus
     {
+        public int id { get; set; }
         public string Placa { get; set; }
-        public System.DateTime Fecha { get; set; }
+        public string Cedula { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
         public string Estado { get; set; }
     
         public virtual buses buses { get; set; }
+        public virtual personas personas { get; set; }
     }
 }

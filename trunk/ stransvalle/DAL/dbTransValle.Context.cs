@@ -25,6 +25,7 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<asignarbus> asignarbus { get; set; }
         public DbSet<buses> buses { get; set; }
         public DbSet<clasesbuses> clasesbuses { get; set; }
         public DbSet<clasesservicio> clasesservicio { get; set; }

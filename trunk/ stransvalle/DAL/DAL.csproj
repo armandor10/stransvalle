@@ -68,6 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asignarbus.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
     <Compile Include="buses.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>

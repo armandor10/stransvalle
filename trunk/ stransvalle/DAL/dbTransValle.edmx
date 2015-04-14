@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="transvalleModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="transvalleModelStoreContainer">
+          <EntitySet Name="asignarbus" EntityType="transvalleModel.Store.asignarbus" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="buses" EntityType="transvalleModel.Store.buses" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="clasesbuses" EntityType="transvalleModel.Store.clasesbuses" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="clasesservicio" EntityType="transvalleModel.Store.clasesservicio" store:Type="Tables" Schema="transvalle" />
@@ -58,6 +59,14 @@
             <End Role="tipostrabajador" EntitySet="tipostrabajador" />
             <End Role="personas" EntitySet="personas" />
           </AssociationSet>
+          <AssociationSet Name="pk_asignarbus_bus" Association="transvalleModel.Store.pk_asignarbus_bus">
+            <End Role="buses" EntitySet="buses" />
+            <End Role="asignarbus" EntitySet="asignarbus" />
+          </AssociationSet>
+          <AssociationSet Name="pk_asignarbus_cedula" Association="transvalleModel.Store.pk_asignarbus_cedula">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="asignarbus" EntitySet="asignarbus" />
+          </AssociationSet>
           <AssociationSet Name="pk_bus_grupos" Association="transvalleModel.Store.pk_bus_grupos">
             <End Role="gruposbuses" EntitySet="gruposbuses" />
             <End Role="buses" EntitySet="buses" />
@@ -81,6 +90,10 @@
           <AssociationSet Name="pk_documentosBus_doc" Association="transvalleModel.Store.pk_documentosBus_doc">
             <End Role="documentos" EntitySet="documentos" />
             <End Role="documentosbus" EntitySet="documentosbus" />
+          </AssociationSet>
+          <AssociationSet Name="pk_entradassalidas_placa" Association="transvalleModel.Store.pk_entradassalidas_placa">
+            <End Role="buses" EntitySet="buses" />
+            <End Role="entradassalidas" EntitySet="entradassalidas" />
           </AssociationSet>
           <AssociationSet Name="pk_gastos_PlanillaRec" Association="transvalleModel.Store.pk_gastos_PlanillaRec">
             <End Role="planillarecaudo" EntitySet="planillarecaudo" />
@@ -131,6 +144,16 @@
             <End Role="usuariosplataforma" EntitySet="usuariosplataforma" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="asignarbus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="varchar" MaxLength="10" />
+          <Property Name="Cedula" Type="varchar" MaxLength="45" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Estado" Type="varchar" MaxLength="2" />
+        </EntityType>
         <EntityType Name="buses">
           <Key>
             <PropertyRef Name="Placa" />
@@ -219,7 +242,7 @@
           </Key>
           <Property Name="Placa" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
-          <Property Name="Estado" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Estado" Type="varchar" Nullable="false" MaxLength="2" />
         </EntityType>
         <EntityType Name="gastos">
           <Key>
@@ -451,6 +474,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="pk_asignarbus_bus">
+          <End Role="buses" Type="transvalleModel.Store.buses" Multiplicity="0..1" />
+          <End Role="asignarbus" Type="transvalleModel.Store.asignarbus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buses">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="asignarbus">
+              <PropertyRef Name="Placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_asignarbus_cedula">
+          <End Role="personas" Type="transvalleModel.Store.personas" Multiplicity="0..1" />
+          <End Role="asignarbus" Type="transvalleModel.Store.asignarbus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="asignarbus">
+              <PropertyRef Name="Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="pk_bus_grupos">
           <End Role="gruposbuses" Type="transvalleModel.Store.gruposbuses" Multiplicity="0..1" />
           <End Role="buses" Type="transvalleModel.Store.buses" Multiplicity="*" />
@@ -520,6 +567,18 @@
             </Principal>
             <Dependent Role="documentosbus">
               <PropertyRef Name="documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_entradassalidas_placa">
+          <End Role="buses" Type="transvalleModel.Store.buses" Multiplicity="1" />
+          <End Role="entradassalidas" Type="transvalleModel.Store.entradassalidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buses">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="entradassalidas">
+              <PropertyRef Name="Placa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -672,6 +731,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="transvalleModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="tvEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="asignarbus" EntityType="transvalleModel.asignarbus" />
           <EntitySet Name="buses" EntityType="transvalleModel.buses" />
           <EntitySet Name="clasesbuses" EntityType="transvalleModel.clasesbuses" />
           <EntitySet Name="clasesservicio" EntityType="transvalleModel.clasesservicio" />
@@ -696,6 +756,14 @@
           <EntitySet Name="tiposidentificacionpersona" EntityType="transvalleModel.tiposidentificacionpersona" />
           <EntitySet Name="tipostrabajador" EntityType="transvalleModel.tipostrabajador" />
           <EntitySet Name="usuariosplataforma" EntityType="transvalleModel.usuariosplataforma" />
+          <AssociationSet Name="pk_asignarbus_bus" Association="transvalleModel.pk_asignarbus_bus">
+            <End Role="buses" EntitySet="buses" />
+            <End Role="asignarbus" EntitySet="asignarbus" />
+          </AssociationSet>
+          <AssociationSet Name="pk_asignarbus_cedula" Association="transvalleModel.pk_asignarbus_cedula">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="asignarbus" EntitySet="asignarbus" />
+          </AssociationSet>
           <AssociationSet Name="fk_historial_buses" Association="transvalleModel.fk_historial_buses">
             <End Role="buses" EntitySet="buses" />
             <End Role="historialmovimiento" EntitySet="historialmovimiento" />
@@ -707,6 +775,10 @@
           <AssociationSet Name="pk_documentosBus_bus" Association="transvalleModel.pk_documentosBus_bus">
             <End Role="buses" EntitySet="buses" />
             <End Role="documentosbus" EntitySet="documentosbus" />
+          </AssociationSet>
+          <AssociationSet Name="pk_entradassalidas_placa" Association="transvalleModel.pk_entradassalidas_placa">
+            <End Role="buses" EntitySet="buses" />
+            <End Role="entradassalidas" EntitySet="entradassalidas" />
           </AssociationSet>
           <AssociationSet Name="pk_placa_Bus" Association="transvalleModel.pk_placa_Bus">
             <End Role="buses" EntitySet="buses" />
@@ -797,6 +869,18 @@
             <End Role="rutagrupo" EntitySet="rutagrupo" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="asignarbus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Placa" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cedula" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha" />
+          <Property Type="String" Name="Estado" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="buses" Relationship="transvalleModel.pk_asignarbus_bus" FromRole="asignarbus" ToRole="buses" />
+          <NavigationProperty Name="personas" Relationship="transvalleModel.pk_asignarbus_cedula" FromRole="asignarbus" ToRole="personas" />
+        </EntityType>
         <EntityType Name="buses">
           <Key>
             <PropertyRef Name="Placa" />
@@ -814,9 +898,11 @@
           <Property Type="String" Name="Observaciones" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Password" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Grupo" />
+          <NavigationProperty Name="asignarbus" Relationship="transvalleModel.pk_asignarbus_bus" FromRole="buses" ToRole="asignarbus" />
           <NavigationProperty Name="historialmovimiento" Relationship="transvalleModel.fk_historial_buses" FromRole="buses" ToRole="historialmovimiento" />
           <NavigationProperty Name="gruposbuses" Relationship="transvalleModel.pk_bus_grupos" FromRole="buses" ToRole="gruposbuses" />
           <NavigationProperty Name="documentosbus" Relationship="transvalleModel.pk_documentosBus_bus" FromRole="buses" ToRole="documentosbus" />
+          <NavigationProperty Name="entradassalidas" Relationship="transvalleModel.pk_entradassalidas_placa" FromRole="buses" ToRole="entradassalidas" />
           <NavigationProperty Name="detallesplanilla" Relationship="transvalleModel.pk_placa_Bus" FromRole="buses" ToRole="detallesplanilla" />
           <NavigationProperty Name="clasesbuses" Relationship="transvalleModel.pkbusclasebus" FromRole="buses" ToRole="clasesbuses" />
           <NavigationProperty Name="clasesservicio" Relationship="transvalleModel.pkbusclaseservicio" FromRole="buses" ToRole="clasesservicio" />
@@ -904,7 +990,8 @@
           </Key>
           <Property Type="String" Name="Placa" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="Fecha" Nullable="false" />
-          <Property Type="String" Name="Estado" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="buses" Relationship="transvalleModel.pk_entradassalidas_placa" FromRole="entradassalidas" ToRole="buses" />
         </EntityType>
         <EntityType Name="gastos">
           <Key>
@@ -967,6 +1054,7 @@
           <Property Type="Int32" Name="TipoPersona" />
           <Property Type="String" Name="User" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="TipoIdentificacion" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="asignarbus" Relationship="transvalleModel.pk_asignarbus_cedula" FromRole="personas" ToRole="asignarbus" />
           <NavigationProperty Name="documentospersona" Relationship="transvalleModel.pk_docper_cedula" FromRole="personas" ToRole="documentospersona" />
           <NavigationProperty Name="tiposidentificacionpersona" Relationship="transvalleModel.pe_Per_TipIdeF" FromRole="personas" ToRole="tiposidentificacionpersona" />
           <NavigationProperty Name="tipostrabajador" Relationship="transvalleModel.pe_Per_Tipo" FromRole="personas" ToRole="tipostrabajador" />
@@ -1083,6 +1171,30 @@
           <NavigationProperty Name="personas" Relationship="transvalleModel.pk_Per_User" FromRole="usuariosplataforma" ToRole="personas" />
           <NavigationProperty Name="rolesusuariosplataforma" Relationship="transvalleModel.pkuserrol" FromRole="usuariosplataforma" ToRole="rolesusuariosplataforma" />
         </EntityType>
+        <Association Name="pk_asignarbus_bus">
+          <End Type="transvalleModel.buses" Role="buses" Multiplicity="0..1" />
+          <End Type="transvalleModel.asignarbus" Role="asignarbus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buses">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="asignarbus">
+              <PropertyRef Name="Placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_asignarbus_cedula">
+          <End Type="transvalleModel.personas" Role="personas" Multiplicity="0..1" />
+          <End Type="transvalleModel.asignarbus" Role="asignarbus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="asignarbus">
+              <PropertyRef Name="Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_historial_buses">
           <End Type="transvalleModel.buses" Role="buses" Multiplicity="1" />
           <End Type="transvalleModel.historialmovimiento" Role="historialmovimiento" Multiplicity="*" />
@@ -1116,6 +1228,18 @@
             </Principal>
             <Dependent Role="documentosbus">
               <PropertyRef Name="placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_entradassalidas_placa">
+          <End Type="transvalleModel.buses" Role="buses" Multiplicity="1" />
+          <End Type="transvalleModel.entradassalidas" Role="entradassalidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buses">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="entradassalidas">
+              <PropertyRef Name="Placa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1389,6 +1513,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="transvalleModelStoreContainer" CdmEntityContainer="tvEntities">
+          <EntitySetMapping Name="asignarbus">
+            <EntityTypeMapping TypeName="transvalleModel.asignarbus">
+              <MappingFragment StoreEntitySet="asignarbus">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="buses">
             <EntityTypeMapping TypeName="transvalleModel.buses">
               <MappingFragment StoreEntitySet="buses">
