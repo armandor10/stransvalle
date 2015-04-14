@@ -63,6 +63,18 @@ namespace BLL
                 return lrRutas;
             }
         }
+        public rutasDto Get(string Vial) { 
+            using(ctx=new tvEntities()){
+                DateTime fecha = DateTime.Now.Date;
+                rutasDto rutaDto = new rutasDto();
+
+                detallesplanilla dP = ctx.detallesplanilla.Where(t => t.buses.Vial == Vial && t.planillacontrol.Fecha==fecha).FirstOrDefault();
+                rutas ruta = ctx.rutas.Where(t => t.NomRuta == dP.Ruta).FirstOrDefault();
+               
+                Mapper.Map(ruta,rutaDto);
+                return rutaDto;
+            }
+        }
         public objRes Delete(string NomRuta)
         {
             using (ctx = new tvEntities())
