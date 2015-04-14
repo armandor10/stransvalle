@@ -12,6 +12,9 @@ namespace Entidades
         public System.DateTime Fecha { get; set; }
         public string Estado { get; set; }
 
+        public string HoraEvento { get; set; }
+        public string FechaEvento {get;set;}
+
         public string HoraIni { get; set; }
         public string HoraFin { get; set; }
         public System.DateTime FechaFin { get; set; }

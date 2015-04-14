@@ -29,6 +29,9 @@ namespace BLL
                     {
                         entradassalidasDTO Es = new entradassalidasDTO();
                         Mapper.Map(lES[i], Es);
+
+                        Es.HoraEvento = Es.Fecha.Hour + ":" + Es.Fecha.Minute + ":" + Es.Fecha.Second;
+                        Es.FechaEvento = Es.Fecha.Day + "/" + Es.Fecha.Month + "/" + Es.Fecha.Year;
                         lrES.Add(Es);
                     }
                 }
