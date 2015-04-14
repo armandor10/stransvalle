@@ -149,5 +149,20 @@ namespace BLL
                 }
             }
         }
+        public char SingIn(string vial, string password)
+        { 
+            using(ctx=new tvEntities())
+            {
+                bool entrar = ctx.buses.Where(t=> t.Vial==vial).Any(t=> t.Password==password);
+                if (entrar)
+                {
+                    return 'S';
+                }
+                else 
+                {
+                    return 'N';
+                }
+            }
+        }
     }
 }

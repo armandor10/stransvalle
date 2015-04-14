@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Entidades;
 using DAL;
 using AutoMapper;
+using System.Globalization;
 
 namespace BLL
 {
@@ -14,9 +15,61 @@ namespace BLL
 
         public mHistorialMovimiento(){
             Mapper.CreateMap<historialmovimiento,historialmovimientoDTO>();
+            Mapper.CreateMap<historialmovimientoDTO,historialmovimiento>();
         }
 
         tvEntities ctx;
+
+        public objRes insert(historialmovimientoDTO hMDto) {
+            using (ctx = new tvEntities())
+            {
+                objRes Respuesta = new objRes();
+                decimal latitud,longitud,latPunto,lonPunto,dec;
+
+                try
+                {
+                    historialmovimiento hM = new historialmovimiento();
+
+                    hMDto.Placa = ctx.buses.Where(t => t.Vial == hMDto.Vial).FirstOrDefault().Placa;
+
+                    List<puntoscontrol> lpC = ctx.puntoscontrol.ToList();
+                    foreach (var pCtr in lpC)
+                    {
+                        latitud = Convert.ToDecimal(hMDto.Latitud, CultureInfo.InvariantCulture);
+                        longitud = Convert.ToDecimal(hMDto.Longitud, CultureInfo.InvariantCulture);
+
+                        latPunto = Convert.ToDecimal(pCtr.Latitud, CultureInfo.InvariantCulture);
+                        lonPunto = Convert.ToDecimal(pCtr.Longitud, CultureInfo.InvariantCulture);
+
+                        dec = (decimal)0.001;
+
+                        if ((latitud <= latPunto + dec) && 
+                            (latitud >= latPunto- dec))
+                        {
+                            if (longitud <= lonPunto  + dec && 
+                                longitud >= lonPunto- dec)
+                            {
+                                hMDto.Punto = pCtr.id;
+                                break;
+                            }        
+                        }
+                    }
+                    
+                    Mapper.Map(hMDto,hM);
+                    ctx.historialmovimiento.Add(hM);
+                    ctx.SaveChanges();
+                    Respuesta.Mensaje = "Guardado con Exito";
+                    Respuesta.Error = false;
+                    return Respuesta;
+                }
+                catch (Exception e)
+                {
+                    Respuesta.Error = true;
+                    Respuesta.Mensaje = e.Message;
+                    return Respuesta;
+                }
+            }
+        }
 
         public List<entradassalidasDTO> getDetallesRecorridos(DateTime fecha, string Vial)
         {
