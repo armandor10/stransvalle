@@ -76,6 +76,7 @@
     <Compile Include="tInformeRec.cs" />
     <Compile Include="tRecorridos.cs" />
     <Compile Include="tHistorialMovimiento.cs" />
+    <Compile Include="tBuses.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

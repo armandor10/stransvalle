@@ -13,6 +13,20 @@ namespace UnitTest
     public class tHistorialMovimiento
     {
         [TestMethod]
+        public void insert() 
+        {
+            historialmovimientoDTO hMDto = new historialmovimientoDTO();
+            hMDto.Latitud = "10.4485648";
+            hMDto.Longitud = "-73.2487037";
+            hMDto.Vial = "10038";
+            hMDto.Velocidad = 12;
+
+            mHistorialMovimiento lg = new mHistorialMovimiento();
+            objRes res = lg.insert(hMDto);
+            Assert.IsNotNull(res);
+        }
+
+        [TestMethod]
         public void get()
         {
             entradassalidasDTO eSDto = new entradassalidasDTO();
