@@ -22,6 +22,12 @@ namespace TransValle.Servicios
 
         [WebMethod]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public objRes insert(historialmovimientoDTO hMDto) {
+            return (new mHistorialMovimiento()).insert(hMDto);
+        }
+
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public List<entradassalidasDTO> getDetallesRecorridos(DateTime fecha, string Vial) 
         {
             return (new mHistorialMovimiento()).getDetallesRecorridos(fecha, Vial);
