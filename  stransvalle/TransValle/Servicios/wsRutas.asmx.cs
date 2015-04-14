@@ -35,6 +35,11 @@ namespace TransValle.Servicios
         }
         [WebMethod]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public rutasDto Get(string Vial) {
+            return (new mRutas()).Get(Vial);
+        }
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public objRes Delete(string NomRuta)
         {
             mRutas o = new mRutas();

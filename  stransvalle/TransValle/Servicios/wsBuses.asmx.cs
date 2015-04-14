@@ -62,5 +62,11 @@ namespace TransValle.Servicios
             mBuses o = new mBuses();
             return o.InsertGrupo(NombreGrupo);
         }
+
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public char SingIn(string Vial,string Password) {
+            return (new mBuses()).SingIn(Vial, Password);
+        }
     }
 }
