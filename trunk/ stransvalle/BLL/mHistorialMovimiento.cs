@@ -30,8 +30,8 @@ namespace BLL
                 {
                     historialmovimiento hM = new historialmovimiento();
 
-                    hMDto.Placa = ctx.buses.Where(t => t.Vial == hMDto.Vial).FirstOrDefault().Placa;
-
+                    hMDto.Placa = ctx.buses.Where(t => t.Vial == hMDto.Vial).FirstOrDefault().Placa;                  
+                    
                     List<puntoscontrol> lpC = ctx.puntoscontrol.ToList();
                     foreach (var pCtr in lpC)
                     {
@@ -53,6 +53,16 @@ namespace BLL
                                 break;
                             }        
                         }
+                    }
+
+                    historialmovimiento hmAux = ctx.historialmovimiento.
+                       OrderByDescending(t => t.Fecha).
+                       Where(t => t.buses.Vial == hMDto.Vial && t.Fecha > hMDto.Fecha.Date && t.Punto != null).
+                       FirstOrDefault();
+
+                    if (hmAux.Punto == hMDto.Punto)
+                    {
+                        hMDto.Punto = null;
                     }
                     
                     Mapper.Map(hMDto,hM);
