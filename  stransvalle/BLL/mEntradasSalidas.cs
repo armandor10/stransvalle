@@ -30,7 +30,7 @@ namespace BLL
                         entradassalidasDTO Es = new entradassalidasDTO();
                         Mapper.Map(lES[i], Es);
 
-                        Es.HoraEvento = Es.Fecha.Hour + ":" + Es.Fecha.Minute + ":" + Es.Fecha.Second;
+                        Es.HoraEvento = Es.Fecha.TimeOfDay.ToString();
                         Es.FechaEvento = Es.Fecha.Day + "/" + Es.Fecha.Month + "/" + Es.Fecha.Year;
                         lrES.Add(Es);
                     }
@@ -41,6 +41,10 @@ namespace BLL
                     {
                         entradassalidasDTO Es = new entradassalidasDTO();
                         Mapper.Map(item, Es);
+
+                        Es.HoraEvento = Es.Fecha.TimeOfDay.ToString();
+                        Es.FechaEvento = Es.Fecha.Day + "/" + Es.Fecha.Month + "/" + Es.Fecha.Year;
+
                         lrES.Add(Es);
                     }
                 }
@@ -74,7 +78,7 @@ namespace BLL
                         {
                             DateTime FechaActual = DateTime.Now;
                             TimeSpan Diferencia = FechaActual - ESOld.Fecha;
-                            if (Diferencia.Minutes < 10)
+                            if (Diferencia.TotalMinutes < 10)
                             {
                                 Respuesta.Error = true;
                                 Respuesta.Mensaje = "Este bus ya tiene un evento registrado en menos de 10 minutos, por favor verifique o espere!!!";
