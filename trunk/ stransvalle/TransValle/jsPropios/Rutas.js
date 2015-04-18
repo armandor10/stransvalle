@@ -62,7 +62,8 @@
         var haightAshbury = new google.maps.LatLng(10.466606, -73.252523);
         var mapOptions = {
             zoom: 14,
-            center: haightAshbury
+            center: haightAshbury,
+            disableDefaultUI: true
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
