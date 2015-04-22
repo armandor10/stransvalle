@@ -7,6 +7,7 @@
     var markers = new Array();
     var poly2;
     var markers2 = new Array();
+    var markers3;
     var map;
     var lRutas;
     var recorridos;
@@ -104,6 +105,30 @@
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
+
+        puntosCtr();
+    };
+    var puntosCtr = function () {
+        //Puntos de control
+        $(function () {
+            DatosBasicosDAO.Get(function (result) {
+                DatosBasicos = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+                markers3 = new Array();
+                $.each(DatosBasicos.lPctrlDto, function (index, item) {
+                    addReloj((new google.maps.LatLng(item.Latitud, item.Longitud)), item.Nombre);
+                });
+            });
+        });
+    };
+
+    var addReloj = function (location, title) {
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            title: title,
+            icon: 'images/chronometer.png'
+        });
+        markers3.push(marker);
     };
 
     var CargarDatosBasicos = function () {
