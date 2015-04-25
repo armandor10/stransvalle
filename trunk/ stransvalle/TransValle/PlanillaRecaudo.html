@@ -115,7 +115,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">TransValle</a>
+                <a class="navbar-brand" href="Home.html">TransValle</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">                
@@ -138,27 +138,24 @@
                         <a href="Rutas.html"><i class="fa fa-fw fa-arrows-alt"></i> Gestor de rutas</a>
                     </li>
                     <li id="dvdGestorConductores" style="display:none">
-                        <a href="#"><i class="fa fa-fw fa-user"></i> Gestor de conductores</a>
+                        <a href="gConductores.html"><i class="fa fa-fw fa-user"></i> Gestor de conductores</a>
                     </li>
                     <li id="dvdVisualizarRuta" style="display:none">
-                        <a href="#"><i class="fa fa-fw fa-eye"></i> Visualizar ruta</a>
+                        <a href="VisualizarRuta.html"><i class="fa fa-fw fa-eye"></i> Visualizar ruta</a>
                     </li>
                     <li id="dvdHistorialMovimiento" style="display:none">
-                        <a href="#"><i class="fa fa-fw fa-list"></i> Historial de movimientos</a>
+                        <a href="HistorialMovimiento.html"><i class="fa fa-fw fa-list"></i> Historial de movimientos</a>
                     </li>
                     <li id="dvdPlanillaControl" style="display:none">
                         <a href="PlanillaControl.html"><i class="fa fa-fw fa-list-alt"></i> Planilla de control</a>
                     </li>
                     <li id="dvdInformeRecaudoProducido" style="display:none">
-                        <a href="#"><i class="fa fa-fw fa-list-alt"></i> Informe recaudo producido</a>
-                    </li>
-                    <li id="dvdInformeVentaTarjetas" style="display:none">
-                        <a href="#"><i class="fa fa-fw fa-list-ul"></i> Informe venta de tarjetas</a>
+                        <a href="InformeRecaudo.html"><i class="fa fa-fw fa-list-alt"></i> Informe recaudo producido</a>
                     </li>
                     <li id="dvdInformeRecorridos" style="display:none">
-                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> Informe de recorridos</a>
+                        <a href="InformeRecorrido.html"><i class="fa fa-fw fa-file-text-o"></i> Informe de recorridos</a>
                     </li>
-                    <li id="dvdGestionPlanillaRecaudo" style="display:none" class="active">
+                    <li id="dvdGestionPlanillaRecaudo" style="display:none">
                         <a href="PlanillaRecaudo.html"><i class="fa fa-fw fa-file-archive-o"></i> Crear planilla recaudo</a>
                     </li>
                 </ul>
@@ -270,12 +267,12 @@
                
         </div>
 
-        <div class="modal fade bs-example-modal-sm" id="ModalPlanillaRecaudo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade bs-example-modal-lg" id="ModalPlanillaRecaudo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" >
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel" style="text-align: center;"> <strong>Edición de Planilla De Recaudo</strong></h4>
+                        <h4 class="modal-title" id="myModalLabel" style="text-align: center;"> <strong>Edición de Planilla de Recaudo</strong></h4>
                         <div id="Div2" class="row row-centered">
                             <div id="modalTVial" class="col-md col-centered"></div>                                     
                             <div id="modalTSalida" class="col-md-3 col-centered"></div>                                     
@@ -284,34 +281,14 @@
                         </div>
                     </div>
 
-                    <div class="modal-body"  id="ModalbodyPC">                       
-                         <div id="pc" class="container">   
-                             <div id="Div3" class="row row-centered">         
-                                 <div id="Div4" class="col-md-8 col-centered">
-                                     
-                                     <div class="panel panel-primary">  
-                                         <div class="panel-heading">    
-                                             <h3 class="panel-title">Cuenta Torniquete</h3> 
-                                         </div>  
-                                         <div class="panel-body">
-                                             <div class="input-group">  
-                                                 <span class="input-group-addon">Inicio </span>  
-                                                 <input id="mInicio" type="text" class="form-control snumero2 cTorniquete" placeholder="Inicio del torniquete" aria-label="Amount (to the nearest dollar)" disabled>
-                                             </div>
-                                             <div class="input-group" style="margin-top:10px;">  
-                                                 <span class="input-group-addon" >Final </span>  
-                                                 <input id="mFinal" type="text" class="form-control snumero2 cTorniquete" placeholder="Final del torniquete" aria-label="Amount (to the nearest dollar)">
-                                             </div>
-                                             <div class="input-group" style="margin-top:10px;">  
-                                                 <span class="input-group-addon">Numero de Pasajeros</span>  
-                                                 <input id="mNumPas" type="text" class="form-control snumero2" placeholder="" aria-label="Amount (to the nearest dollar)" disabled>
-                                             </div>
-                                         </div>
-                                     </div>
+                    <div class="modal-body"  id="ModalbodyPC" >                       
+                         <div id="pc" class="container" style="width:98%">   
+                             <div id="Div3" class="row">
 
+                                 <div id="Div1" class="col-md-6">
                                      <div class="panel panel-primary">  
                                          <div class="panel-heading">    
-                                             <h3 class="panel-title">Gastos Del Dia</h3> 
+                                             <h3 class="panel-title">Gastos del Dia</h3> 
                                          </div>  
                                          <div class="panel-body">
                                              <div class="input-group">  
@@ -340,7 +317,28 @@
                                              </div>
                                          </div>
                                      </div>
+                                 </div>         
 
+                                 <div id="Div4" class="col-md-6">                                 
+                                     <div class="panel panel-primary">  
+                                         <div class="panel-heading">    
+                                             <h3 class="panel-title">Cuenta Torniquete</h3> 
+                                         </div>  
+                                         <div class="panel-body">
+                                             <div class="input-group">  
+                                                 <span class="input-group-addon">Inicio </span>  
+                                                 <input id="mInicio" type="text" class="form-control snumero2 cTorniquete" placeholder="Inicio del torniquete" aria-label="Amount (to the nearest dollar)" disabled>
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon" >Final </span>  
+                                                 <input id="mFinal" type="text" class="form-control snumero2 cTorniquete" placeholder="Final del torniquete" aria-label="Amount (to the nearest dollar)">
+                                             </div>
+                                             <div class="input-group" style="margin-top:10px;">  
+                                                 <span class="input-group-addon">Numero de Pasajeros</span>  
+                                                 <input id="mNumPas" type="text" class="form-control snumero2" placeholder="" aria-label="Amount (to the nearest dollar)" disabled>
+                                             </div>
+                                         </div>
+                                     </div>
                                      <div class="panel panel-primary">  
                                          <div class="panel-heading">    
                                              <h3 class="panel-title">Total</h3> 
@@ -356,7 +354,6 @@
                                              </div>
                                          </div>
                                      </div>
-
                                  </div>         
                              </div> 
                          </div>   
