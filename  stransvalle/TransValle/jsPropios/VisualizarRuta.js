@@ -71,8 +71,7 @@
                 });
             });
         });
-    };
-    
+    };    
     var addReloj = function (location, title) {
         var marker = new google.maps.Marker({
             position: location,
@@ -122,7 +121,6 @@
         //map.panTo(marker.getPosition());
         //alert("cambio");
     };
-
     var VerBusesRuta = function (nombreRuta) {
         HistorialMovimientoDAO.GetCoordTodayBuses(nombreRuta, function (result) {
             var ban;
