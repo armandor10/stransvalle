@@ -144,6 +144,7 @@
     <Content Include="js\prefixfree.min.js" />
     <Content Include="PlanillaControl.html" />
     <Content Include="PlanillaRecaudo.html" />
+    <Content Include="PlantillasImpresion\ImpLiq.html" />
     <Content Include="Rutas.html" />
     <Content Include="Servicios\wsBuses.asmx" />
     <Content Include="Servicios\wsDatosBasicos.asmx" />

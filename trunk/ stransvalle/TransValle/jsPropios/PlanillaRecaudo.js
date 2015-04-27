@@ -327,7 +327,7 @@
             });
             new $.fn.dataTable.FixedColumns(table);
         });
-    };
+    };    
 
     return {
         init: function () {
