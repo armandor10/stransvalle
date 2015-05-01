@@ -27,13 +27,20 @@
     <link href="css/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
 
     <style>
-      html, body,#map-canvas {
+      html, body {
         width:100%;
         height: 580px;
         margin: 0px;
         padding: 0px;
         top:40px;
       }
+        #map-canvas {
+            width:100%;
+            height:100%;
+            margin: 0px;
+            padding: 0px;
+            top:40px;
+        }
       .row-centered {
               text-align:center;
 
@@ -60,7 +67,7 @@
         .panel {
             position: absolute;
             top: 100px;
-            left: 29.6%;
+            left: 108%;
             margin-left: -180px;
             z-index: 5;
             background-color: #fff;
@@ -139,14 +146,14 @@
             <!-- /.navbar-collapse -->            
         </nav>
 
-        <div id="page-wrapper" style="height: 640px;">
-            <div id="panel">
+        <div id="page-wrapper" style="height: 700px;">
+            <div class="container" style="margin-left:5%" id="panel">
                 <div class="row row-centered" >
                 <div class="col-md col-centered">                         
                      <strong>Fecha: </strong>  
                  </div> 
                                           
-                <div class="col-xs-2 col-centered" style="height:22px">                                       
+                <div class="col-xs-3 col-centered" style="height:22px;margin-right:-5%">                                       
                     <div class="container">
                         <div class="form-group">
                             <div class='input-group date col-sm-2' id='dtpFecha' >
@@ -162,7 +169,7 @@
                 <div class="col-md col-centered">                         
                      <strong>Vial: </strong>  
                  </div> 
-                <div class="col-xs-2 col-centered" style="height:22px">     
+                <div class="col-md-3 col-centered" style="height:22px">     
                     <div class="input-group">      
                         <input type="text" class="form-control snumero" id="Vial">      
                         <span class="input-group-btn">        
@@ -182,7 +189,7 @@
              <div class="panel" id="ruta">
                  <strong>Ruta</strong> 
              </div>
-            <div id="map-canvas"></div>
+            <div class="container" id="map-canvas"></div>
         </div>
     </div>
     <!-- /#wrapper -->
