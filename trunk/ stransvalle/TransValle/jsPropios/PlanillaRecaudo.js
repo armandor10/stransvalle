@@ -2,6 +2,7 @@
     var sesion = false;
     var table;//=$('#example').DataTable({});
     var hS, rec, idDp, idPr;
+    var lPlaRec;
 
     var _addHandlers = function () {
         $("#cboGrupoBus").change(function () {
@@ -11,6 +12,10 @@
         $("#dtpFecha").on("dp.change", function (e) {
             //$('#datetimepicker7').data("DateTimePicker").minDate(e.date);
             CargarPlanillaRecaudo();
+        });
+
+        $("#CreatePDF").click(function () {            
+            imprimirPlanillaRecaudo();
         });
 
         $("#btnGuardarPr").click(function () {
@@ -158,6 +163,14 @@
         return total;
     };
 
+    var _numFilas = function (num) {
+        var i = 0;
+        $('#example tbody tr td:nth-child(' + num + ')').each(function () {
+            i++;
+        });
+        return i;
+    };
+
     var CargarDatosBasicos = function () {
         $(function () {
             $('#dtpFecha').datetimepicker({ format: 'DD/MM/YYYY', locale: 'es' });
@@ -181,7 +194,7 @@
 
         if ($("#cboGrupoBus").val().length > 0 && fecha.length > 0) {
             PlanillaRecaudoDTO.Get($("#dtpFecha").data('DateTimePicker').date(), $("#cboGrupoBus").val(), function (result) {
-                var lPlaRec = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+                lPlaRec = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
 
                 //table.destroy();
                 //$("#tbodyPlanillaControl").empty();
@@ -221,7 +234,7 @@
                     $("#Otros").empty().append("$ " + _FormatMoney(_sumTotal(13)));
                     $("#Turno").empty().append("$ " + _FormatMoney(_sumTotal(14)));
                     $("#TotalG").empty().append("$ " + _FormatMoney(_sumTotal(15)));
-                    $("#ProdNeto").empty().append("$ " + _FormatMoney(_sumTotal(15)));
+                    $("#ProdNeto").empty().append("$ " + _FormatMoney(_sumTotal(16)));
 
                     createTable();
 
@@ -290,6 +303,76 @@
             });
         } else { createTable(); }
 
+    };
+
+    var imprimirPlanillaRecaudo = function () {
+        if (lPlaRec != null) {
+            var tbImp = "";
+
+            $.each(lPlaRec, function (index, item) {
+                tbImp = tbImp + "<tr id='" + item.id + "' style='white-space: nowrap;'>" +
+                            "<td id='idDp" + item.idDetallesPlanilla + "'>" + _CampoNull(item.Vial) + "</td>" +
+                            "<td>" + _CampoNull(item.Placa) + "</td>" +
+                            "<td>" + _CampoNull(item.Time) + "</td>" +
+                            "<td>" + _CampoNull(item.Ruta) + "</td>" +
+                            "<td>" + _CampoNull(item.Recorridos) + "</td>" +
+                            "<td>" + _CampoNull(item.InicioTorniquete) + "</td>" +
+                            "<td>" + _CampoNull(item.FinTorniquete) + "</td>" +
+                            "<td>" + _CampoNull(item.NumPasajeros) + "</td>" +
+                            "<td class='snumero2' style='text-align:right;'>" + _FormatMoney(_campNumVacio(_CampoNull(item.ProductoBruto))) + "</td>" +
+                            "<td class='snumero2' style='text-align:right;'>" + _FormatMoney(_campNumVacio(_CampoNull(item.gastos.ACPM))) + "</td>" +
+                            "<td class='snumero2' style='text-align:right;'>" + _FormatMoney(_campNumVacio(_CampoNull(item.gastos.Sueldo))) + "</td>" +
+                            "<td class='snumero2' style='text-align:right;'>" + _FormatMoney(_campNumVacio(_CampoNull(item.gastos.Aseo))) + "</td>" +
+                            "<td class='snumero2' style='text-align:right;'>" + _FormatMoney(_campNumVacio(_CampoNull(item.gastos.Otros))) + "</td>" +
+                            "<td class='snumero2' style='text-align:right;'>" + _FormatMoney(_campNumVacio(_CampoNull(item.gastos.Turno))) + "</td>" +
+                            "<td class='snumero2' style='text-align:right;'>" + _FormatMoney(_campNumVacio(_CampoNull(item.gastos.TotalGasto))) + "</td>" +
+                            "<td class='snumero2' style='text-align:right;'>" + _FormatMoney(_campNumVacio(_CampoNull(item.ProductoNeto))) + "</td>" +
+                            "</tr>";
+            });
+
+            $.get("/PlantillasImpresion/PrintPlanillaRecaudo.html", function (data) {
+                var Empresa;
+                EmpresaDAO.Get(function (result) {
+                    Empresa = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+                    var TextRight = "<p style='text-align:right;margin-right: 5px;'>";
+                    var TextRight2 = '</p>';
+                    //alert(JSON.stringify(Empresa));
+                    data = data.replace("{NOM_EMPRESA}", '<h2><strong> ' + Empresa.RAZON_SOCIAL + ' </strong></h2>');
+                    data = data.replace("{NIT_EMPRESA}", Empresa.NIT + '-' + Empresa.DIG_VER);
+                    data = data.replace("{T_RECORRIDOS}", "<p style='text-align:left;margin-left: 5px;'>" + _sumTotal(5) + "</p>");
+                    data = data.replace("{T_PASAJEROS}", "<p style='text-align:left;margin-left: 5px;'>" + _sumTotal(8) + "</p>");
+                    data = data.replace("{T_PROD_BRUTO}", "<p style='text-align:right;margin-right: 5px;'>" + _FormatMoney(_sumTotal(9)) + '</p>');
+                    data = data.replace("{T_ACPM}", TextRight + _FormatMoney(_sumTotal(10)) + TextRight2);
+                    data = data.replace("{T_SUELDO}", TextRight + _FormatMoney(_sumTotal(11)) + TextRight2);
+                    data = data.replace("{T_ASEO}", TextRight + _FormatMoney(_sumTotal(12)) + TextRight2);
+                    data = data.replace("{T_OTROS}", TextRight + _FormatMoney(_sumTotal(13)) + TextRight2);
+                    data = data.replace("{T_TURNO}", TextRight + _FormatMoney(_sumTotal(14)) + TextRight2);
+                    data = data.replace("{T_GASTOS}", TextRight + _FormatMoney(_sumTotal(15)) + TextRight2);
+                    data = data.replace("{T_PROD_NETO}", TextRight + _FormatMoney(_sumTotal(16)) + TextRight2);
+                    data = data.replace("{GERENTE}", Empresa.REP_LEGAL);
+
+                    var pBruto, pNeto, filas;
+                    pBruto = _sumTotal(9);
+                    pNeto = _sumTotal(16);
+                    filas = _numFilas(9);
+
+                    data = data.replace("{PROM_BRUTO}", _FormatMoney(pBruto / filas));
+                    data = data.replace("{PROM_NETO}", _FormatMoney(pNeto / filas));
+
+                    data = data.replace("{SEC_TBL_IMP}", tbImp);
+
+                    // Esta es la parte que te abre la ventana de imprecion...
+                    var win;
+                    win = window.open();
+                    win.document.write(data);
+                    win.print();
+                    win.close();
+                });
+            });
+
+        } else {
+            alert("No se hallaron datos en la tabla de la planilla de recaudo!!!");
+        }
     };
 
     var createTable = function () {

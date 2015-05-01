@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="mBuses.cs" />
     <Compile Include="mDatosBasicos.cs" />
+    <Compile Include="mEmpresa.cs" />
     <Compile Include="mEntradasSalidas.cs" />
     <Compile Include="mHistorialMovimiento.cs" />
     <Compile Include="mHorario.cs" />
