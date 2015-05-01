@@ -248,6 +248,14 @@ var HistorialMovimientoDAO = (function () {
         }
     }
 }())
+var EmpresaDAO = (function () {
+    var proxy = new ServiceProxy("/Servicios/wsEmpresa.asmx/");
+    return {
+        Get: function ( fCorrecto) {
+            proxy._doAjax("GET", "get", null, fCorrecto, null, true);
+        }
+    }
+}());
 
 
 

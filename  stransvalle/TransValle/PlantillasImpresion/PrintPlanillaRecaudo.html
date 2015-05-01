@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title></title>
+    <style>
+        body {
+            font-family:Arial;
+            font-size:10pt;
+        }
+        th {
+             text-align: left;
+        }
+        .tbconborde {
+            border-collapse: collapse;
+        }
+        .tbconborde td {
+                border: 1px solid black;
+                padding: 2mm;
+         }
+
+         .tbconborde th {
+                background-color: #f8f3f3;
+                border: 1px solid black;
+         }  
+         
+         @page { size: landscape; }     
+
+    </style>
+    </head>
+    <body>
+        <div style="text-align:justify">
+            <table class="tbconborde" style="width:100%;font-size:90%;">
+                <tbody>
+                    <tr>
+                        <td style="text-align:center;border:none">{NOM_EMPRESA}  <!--DEPARTAMENTO DEL CESAR--></td>
+                    </tr>
+                    <tr> 
+                        <td style="text-align:center;border:none;"> Nit: {NIT_EMPRESA} <!--987385380579348--><br /></td> 
+                    </tr>
+                    <tr> 
+                        <td style="text-align:center;border:none;">PLANILLA DE RECAUDO DIARIO DE LOS VEHÍCULOS</td> 
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+
+            <table class="tbconborde" style="width:100%;font-size:70%;" id="example">                                                                                   
+                                 <thead>                            
+                                     <tr  >                                
+                                         <th rowspan="2" scope="col" style="text-align: center;"> N° Vial</th>                                 
+                                         <th rowspan="2" scope="col" style="text-align: center;"> Placa</th> 
+                                         <th rowspan="2" scope="col" style="text-align: center;"> Hora Salida</th>                                 
+                                         <th rowspan="2" scope="col" style="text-align: center;"> Ruta</th>
+                                         <th rowspan="2" scope="col" style="text-align: center;"> Recorridos</th>
+                                         <th colspan="3" scope="col" style="text-align: center;"> C. Torniquete</th> 
+                                         <th rowspan="2" scope="col" style="text-align: center;"> Prod. Bruto ($)</th> 
+                                         <th colspan="6" scope="col" style="text-align: center;"> Gastos del Dia ($)</th> 
+                                         <th rowspan="2" scope="col" style="text-align: center;"> Prod. Neto ($) </th>                              
+                                     </tr>                               
+                                     <tr>                 
+                                         <th scope="col" style="text-align: center;">Inicio</th> 
+                                         <th scope="col" style="text-align: center;">Final</th>                                         
+                                         <th scope="col" style="text-align: center;"> N° Pasajeros</th>
+                                         <th scope="col" style="text-align: center;">A.C.P.M</th> 
+                                         <th scope="col" style="text-align: center;">Sueldo</th> 
+                                         <th scope="col" style="text-align: center;">Aseo</th> 
+                                         <th scope="col" style="text-align: center;">Otros</th> 
+                                         <th scope="col" style="text-align: center;">Turno</th> 
+                                         <th scope="col" style="text-align: center;">Total Gastos</th> 
+                                     </tr>
+                                    
+                                 </thead> 
+
+                                 <tfoot>            
+                                     <tr>                
+                                         <th><p style="margin-left: 5px;">Total</p></th>
+                                         <th></th> 
+                                         <th></th> 
+                                         <th></th>
+                                         <th id="Recorridos">{T_RECORRIDOS}</th>
+                                         <th></th> 
+                                         <th></th> 
+                                         <th id="numPas">{T_PASAJEROS}</th>
+                                         <th class="snumero2" style="text-align:right;margin-right: 5px;" id="ProdBruto">{T_PROD_BRUTO}</th>
+                                         <th class="snumero2" style="text-align:right;margin-right: 5px;" id="ACPM">{T_ACPM}</th> 
+                                         <th class="snumero2" style="text-align:right;margin-right: 5px;" id="Sueldo">{T_SUELDO}</th> 
+                                         <th class="snumero2" style="text-align:right;margin-right: 5px;" id="Aseo">{T_ASEO}</th>
+                                         <th class="snumero2" style="text-align:right;margin-right: 5px;" id="Otros">{T_OTROS}</th>
+                                         <th class="snumero2" style="text-align:right;margin-right: 5px;" id="Turno">{T_TURNO}</th> 
+                                         <th class="snumero2" style="text-align:right;margin-right: 5px;" id="TotalG">{T_GASTOS}</th> 
+                                         <th class="snumero2" style="text-align:right;margin-right: 5px;" id="ProdNeto">{T_PROD_NETO}</th>                                                     
+                                     </tr>       
+                                 </tfoot>
+                                 <tbody class="text-left" id="tbodyPlanillaControl">
+                                      {SEC_TBL_IMP}
+                                 </tbody> 
+            </table> 
+            <br />
+            <table class="tbconborde" style="width:100%;font-size:70%;">
+                <tbody>
+                    <tr>
+                        <td style="text-align:center;border:none;padding:2px">REVISÓ {GERENTE}________</td>
+                        <td style="text-align:center;border:none;padding:2px">PROM. BRUTO X VEH= {PROM_BRUTO}</td>
+                        <td style="text-align:center;border:none;padding:2px">PROM. NETO X VEH= {PROM_NETO}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>
