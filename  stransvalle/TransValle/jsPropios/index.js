@@ -22,7 +22,11 @@
             else {
                 varLocal.setUser(res.User);
                 varLocal.setRol(res.Roll);
-                window.location.href = "Home.html";
+
+                var rol = res.Roll;
+                if (rol == 2) { window.location.href = "PlanillaRecaudo.html"; }
+                else if (rol == 1) { window.location.href = "InformeRecaudo.html"; }
+                else if (rol == 3) { window.location.href = "VisualizarRuta.html"; }
             }
         });
     };
