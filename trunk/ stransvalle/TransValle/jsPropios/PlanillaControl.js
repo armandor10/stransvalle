@@ -159,6 +159,7 @@ var PlanillaControl = (function () {
                 if (ldetallesPlanilla != null) {
 
                     dias = [];
+                    $("#Hora").empty().append("<th> Hora</th>");
                     $.each(ldetallesPlanilla, function (index, item) {
                         $.each(item, function (ind, ite) {
                             if (parseInt(ind) == 0) {
@@ -167,6 +168,7 @@ var PlanillaControl = (function () {
                             }
                         });
 
+                        $("#Hora").append("<th></th>");
                         dias.push({
                             id: (parseInt(index) + 1)
                         });
