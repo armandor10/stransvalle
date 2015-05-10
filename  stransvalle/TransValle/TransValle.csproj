@@ -146,6 +146,8 @@
     <Content Include="PlanillaControl.html" />
     <Content Include="PlanillaRecaudo.html" />
     <Content Include="PlantillasImpresion\ImpLiq.html" />
+    <Content Include="PlantillasImpresion\PrintPlanillaControl.html" />
+    <Content Include="PlantillasImpresion\PrintPlanillaRotaciones.html" />
     <Content Include="PlantillasImpresion\PrintPlanillaRecaudo.html" />
     <Content Include="Rutas.html" />
     <Content Include="Servicios\wsBuses.asmx" />
