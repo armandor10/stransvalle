@@ -15,7 +15,8 @@ var PlanillaControl = (function () {
     var sesion = false;
     var ldetallesPlanilla;
     var Buses = [], idBuses = [];
-    var dias=[];
+    var dias = [];
+    var lHorario, llHorarioDTO;
 
     var mes = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     var weekday = new Array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado");   
@@ -57,7 +58,12 @@ var PlanillaControl = (function () {
             }
            
         });
-       
+        $("#CreatePDF").click(function () {
+            ImprimirRotacionBuses();
+        });
+        $("#CreatePDF2").click(function () {
+            ImprimirPlanillaCtr();
+        });
         $("#btnCerrarSesion").click(function () {
             varLocal.removeUser();
             varLocal.removeRol();
@@ -196,7 +202,7 @@ var PlanillaControl = (function () {
                     });
 
                     horarioDTO.GetsHorario(ruta, function (result) {
-                        var lHorario = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+                        lHorario = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
                         $.each(lHorario, function (index, item) {
                             //alert(index+" "item)
                             $("#H" + index).append("<th>" + item.time + "</th>");
@@ -259,6 +265,153 @@ var PlanillaControl = (function () {
         }
 
         
+    };
+
+    var ImprimirRotacionBuses = function () {
+        var rutas = "", days = "", hora = "";
+        var ban = true;
+        var tbody = "";
+        
+        if (ldetallesPlanilla != null) {            
+            $.each(ldetallesPlanilla, function (index, item) {
+                $.each(item, function (ind, ite) {
+                    if (parseInt(ind) == 0) {
+                        ruta = ite.Ruta;
+                        rutas = rutas + "<th>" + ite.Ruta.toUpperCase() + "</th>";
+                    }
+                });
+
+                hora= hora+ "<th></th>";               
+            });
+
+            $.each(ldetallesPlanilla, function (index, item) {
+
+                d = new Date((new Date()).getFullYear(), $("#cboMeses").val() - 1, (parseInt(index) + 1)); // fecha en el año actual
+                days = days + "<th>" + weekday[d.getDay()] + ", " + (parseInt(index) + 1) + "</th>"; /// Agredo los Dias del Mes
+
+                if (ban) {
+                    $.each(item, function (ind, ite) {
+                        tbody = tbody + "<tr id='" + ind + "' class='tr-class-1'> <th>{" + ind + "}</th>" +
+                            "<td id='" + ite.id + "'>" + ite.Vial + "</td>" + "{r" + ind + "} </tr>";
+                    });
+                    ban = false;
+                }
+                else {
+                    
+                    $.each(item, function (ind, ite) {
+                        if (dias.length != (parseInt(index) + 1)) {
+                            tbody = tbody.replace("{r" + ind + "}", "<td>" + ite.Vial + "</td>" + "{r" + ind + "}");
+                        } else {
+                            tbody = tbody.replace("{r" + ind + "}", "<td>" + ite.Vial + "</td>");
+                        }
+                        //$("#" + ind).append("<td id='" + ite.id + "'>" + ite.Vial + "</td>");
+                    });
+                }
+            });
+
+            $.each(lHorario, function (index, item) {
+                tbody = tbody.replace("{" + index + "}", item.time );
+                //$("#H" + index).append("<th>" + item.time + "</th>");
+            });
+
+            $.get("/PlantillasImpresion/PrintPlanillaRotaciones.html", function (data) {
+                var Empresa;
+                EmpresaDAO.Get(function (result) {
+                    Empresa = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+                    //alert(JSON.stringify(Empresa));
+                    data = data.replace("{NOM_EMPRESA}", '<h2><strong> ' + Empresa.RAZON_SOCIAL + ' </strong></h2>');
+                    data = data.replace("{NIT_EMPRESA}", Empresa.NIT + '-' + Empresa.DIG_VER);
+                    data = data.replace("{GRUPO}", $("#cboGrupoBus").val());
+                    data = data.replace("{MES}", mes[parseInt($("#cboMeses").val()) - 1]);
+                    
+
+                    data = data.replace("{DIAS}", days);
+                    data = data.replace("{RUTAS}", rutas);
+                    data = data.replace("{SEC_TBL_IMP}", tbody);
+
+                    // Esta es la parte que te abre la ventana de imprecion...
+                    var win;
+                    win = window.open();
+                    win.document.write(data);
+                    win.print();
+                    win.close();
+                });
+            });
+            
+        } else {
+            alert("No hay datos en la tabla de rotaciones");
+        }
+    };
+
+    var ImprimirPlanillaCtr = function () {
+        var d = $("#cbodiaPlanCtrDesp").val();
+
+        if (d.length > 0) {
+            var da = new Date((new Date()).getFullYear(), $("#cboMeses").val() - 1, (parseInt(d)));
+            var r = $("#Ruta").find('th').eq(d).text();
+
+            var fecha = "<strong>" + weekday[da.getDay()] + ", " + da.getDate() + " de " + mes[da.getMonth()] + " del " + da.getFullYear() + "</strong>";
+            var grupo = "<strong>Grupo N° " + $("#cboGrupoBus").val() + "</strong>";
+            var ruta = "<strong>" + $("#Ruta").find('th').eq(d).text() + " </strong>";
+
+            var i = 1;
+            var turno = "", vehiculo = "", desp1 = "", desp2 = "", tbody = "";
+            $('#freeze-table tbody tr td:nth-child(' + (parseInt(d) + 1) + ')').each(function () {
+                turno = turno + "<th style='text-align: center;'>" + i + "</th>";
+                vehiculo = vehiculo + "<th style='text-align: center;'>" + $(this).text() + "</th>";
+                desp1 = desp1 + "<th style='text-align: center;'></th>";
+                desp2 = desp2 + "<th style='text-align: center;'></th>";
+                i++;
+            });
+
+            if (llHorarioDTO != null) {                
+                $.each(llHorarioDTO, function (index, item) {
+                    tbody = tbody + "<tr style='margin:3px'><td style='margin:3px'>H. Salida</td>{rpC" + index + "}</tr>";
+                    tbody = tbody + "<tr style='margin:3px'><td style='margin:3px'>H. Salida</td>{hs1" + index + "}</tr>";
+                    tbody = tbody + "<tr style='margin:3px'><td style='margin:3px'><strong>" + (parseInt(index) + 1) + " REC</strong></td>{hs2" + index + "}</tr>";
+
+                    var rpc = "", hs1 = "", hs2 = "";
+                    $.each(item, function (ind, ite) {
+                        rpc = rpc + "<td style='margin:3px'>" + ite.time + "</td>";
+                        hs1 = hs1 + "<td style='margin:3px'></td>";
+                        hs2 = hs2 + "<td style='margin:3px'></td>";
+                    });
+
+                    tbody = tbody.replace("{rpC" + index + "}", rpc);
+                    tbody = tbody.replace("{hs1" + index + "}", hs1);
+                    tbody = tbody.replace("{hs2" + index + "}", hs2);
+                });
+            }
+
+            $.get("/PlantillasImpresion/PrintPlanillaControl.html", function (data) {
+                var Empresa;
+                EmpresaDAO.Get(function (result) {
+                    Empresa = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+                    //alert(JSON.stringify(Empresa));
+                    data = data.replace("{NOM_EMPRESA}", '<h2><strong> ' + Empresa.RAZON_SOCIAL + ' </strong></h2>');
+                    data = data.replace("{NIT_EMPRESA}", Empresa.NIT + '-' + Empresa.DIG_VER);
+
+                    data = data.replace("{GRUPO}", grupo);
+                    data = data.replace("{FECHA}", fecha);
+                    data = data.replace("{RUTA}", ruta);
+
+                    data = data.replace("{TURNO}", turno);
+                    data = data.replace("{VEHICULO}", vehiculo);
+                    data = data.replace("{DESP1}", desp1);
+                    data = data.replace("{DESP2}", desp2);
+
+                    data = data.replace("{HORARIO}", tbody);
+
+                    // Esta es la parte que te abre la ventana de imprecion...
+                    var win;
+                    win = window.open();
+                    win.document.write(data);
+                    win.print();
+                    win.close();
+                });
+            });
+        }        
+
     };
 
     var RegistrarPControl = function () {
