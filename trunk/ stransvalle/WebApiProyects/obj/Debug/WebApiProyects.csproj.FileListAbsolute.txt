@@ -141,3 +141,4 @@ D:\Dev\TransValle\WebApiProyects\bin\DAL.dll
 D:\Dev\TransValle\WebApiProyects\bin\AutoMapper.dll
 D:\Dev\TransValle\WebApiProyects\bin\DAL.pdb
 D:\Dev\TransValle\WebApiProyects\bin\AutoMapper.xml
+D:\Dev\TransValle-2\WebApiProyects\obj\Debug\WebApiProyects.csprojResolveAssemblyReference.cache

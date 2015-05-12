@@ -86,3 +86,4 @@ D:\Dev\TransValle\BLL\bin\Debug\EntityFramework.SqlServer.xml
 D:\Dev\TransValle\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 D:\Dev\TransValle\BLL\obj\Debug\BLL.dll
 D:\Dev\TransValle\BLL\obj\Debug\BLL.pdb
+D:\Dev\TransValle-2\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache

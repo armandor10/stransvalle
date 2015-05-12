@@ -42,6 +42,8 @@
     <Compile Include="busesDto.cs" />
     <Compile Include="clasesbusesDto.cs" />
     <Compile Include="clasesservicioDto.cs" />
+    <Compile Include="Geometria\pl_punto.cs" />
+    <Compile Include="Geometria\pl_recta.cs" />
     <Compile Include="empresaDTO.cs" />
     <Compile Include="historialmovimientoDTO.cs" />
     <Compile Include="puntoscontrolDTO.cs" />

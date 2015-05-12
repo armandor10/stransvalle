@@ -23,3 +23,4 @@ D:\Dev\TransValle\TransValle\bin\EntityFramework.SqlServer.xml
 D:\Dev\TransValle\TransValle\bin\MySql.Data.dll
 D:\Dev\TransValle\TransValle\bin\mysql.data.entity.EF6.dll
 D:\Dev\TransValle\TransValle\bin\MySql.Data.Entity.EF5.dll
+D:\Dev\TransValle-2\TransValle\obj\Debug\TransValle.csprojResolveAssemblyReference.cache
