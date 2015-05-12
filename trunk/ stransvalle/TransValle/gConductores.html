@@ -23,10 +23,28 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- DataTables -->
+    <link href="css/plugins/DataTables/dataTables.bootstrap.css" rel="stylesheet" />
+
     <style>
-      .Separar {
-        margin:5px  
+        html, body,#map-canvas {
+        width:100%;
+        height: 650px;
+        margin: 0px;
+        padding: 0px;
+        max-width: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
       }
+      .Separar {
+        margin:7px  
+      }
+      a {cursor:pointer;}  
+      @media screen and (min-width: 768px) {
+            .custom-class {
+                width: 94%; /* either % (e.g. 60%) or px (400px) */
+            }
+        }
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -128,42 +146,51 @@
                     </nav>
                 </div>
             </div> 
-            <div class="row" style="margin:5px; width: 100%; height: 450px; overflow: scroll;">
-                <div class="col-lg-12">
-                    <table class="table table-hover table table-striped">
+           
+            <div style="text-align:right">
+                <img src="images/icono_PDF.gif" />
+                <a id="CreatePDF">Imprimir</a>
+            </div> 
+                    <table class="table table-hover table table-striped" id="tConductores">
                         <thead>
                             <tr>
                                 <th>Cedula</th>
                                 <th>Nombre</th>   
                                 <th>Telefono</th>                             
-                                <th>Direccion</th>
+                                <th>Dirección</th>
+                                <th>Vencimiento del Contrato</th>
+                                <th>Vencimiento Lic. Conducción </th>
                             </tr>
                         </thead>
                         <tbody class="text-left" id="tableConductores">
                                           
                         </tbody>
-                    </table>
-                </div>
-            </div>   
+                    </table>                 
         </div>
 
-        <div class="modal fade bs-example-modal-sm" id="ModalDetalles" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade bs-example-modal-lg" id="ModalDetalles" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog custom-class">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="myModalLabel">Conductor</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="row Separar">
-                            <div class="col-lg-3 text-right">
-                                <strong>* Cedula: </strong>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control datos limpiar habilitar validar snumero" id="txtCedula" />
-                            </div>                            
-                        </div>
-                        <div class="row Separar">
+                        <div id="pc" class="container" style="width:100%">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                            <div class="panel-heading">Datos Básicos</div>
+                            <div class="panel-body">
+                                 <div class="row Separar"> 
+                                     <div class="col-lg-3 text-right">                               
+                                         <strong>* Cedula: </strong>  
+                                     </div>                            
+                                     <div class="col-lg-6">                               
+                                         <input type="text" class="form-control datos limpiar habilitar validar snumero" id="txtCedula" />                          
+                                     </div>                                                  
+                                 </div>
+                                 <div class="row Separar">
                             <div class="col-lg-3 text-right">
                                 <strong>* Tipo de identificación: </strong>
                             </div>
@@ -235,7 +262,12 @@
                                 <input type="text" class="form-control datos limpiar habilitar" id="txtTipoSangre" />
                             </div>                            
                         </div>
-                        <div class="panel panel-default">
+
+                            </div>
+                            </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
                             <div class="panel-heading">Contrato de conducción</div>
                             <div class="panel-body">
                                 <div class="row Separar">
@@ -264,7 +296,7 @@
                                 </div>
                             </div>
                             </div>
-                        <div class="panel panel-default">
+                                    <div class="panel panel-default">
                             <div class="panel-heading">Licencia de conducción</div>
                             <div class="panel-body">
                                 <div class="row Separar">
@@ -293,7 +325,10 @@
                                 </div>
                             </div>
                             </div>
-                        </div>
+                                </div>
+                            </div>
+                        </div>                                             
+                    </div>  
                     <div class="modal-footer">
                         <button type="button" id="btnGuardarBus" class="btn btn-success">Guardar</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
@@ -314,6 +349,11 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
     <script type="text/javascript" src="js/bya_Page.js"></script>
     <script type="text/javascript" src="js/jquery_ext.js"></script>
+
+    <script type="text/javascript" src="js/plugins/DataTables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/plugins/DataTables/dataTables.fixedColumns.js"></script>
+    <script type="text/javascript" src="js/plugins/DataTables/dataTables.bootstrap.js"></script>
+
     <script type="text/javascript" src="jsPropios/gConductores.js"></script>    
 </body>
 

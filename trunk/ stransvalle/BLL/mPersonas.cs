@@ -33,6 +33,7 @@ namespace BLL
                     .ForMember(dest => dest.FechaVencimientoLicenciaConduccion, opt => opt.MapFrom(src => src.documentospersona.Where(t => t.documento == 7).FirstOrDefault().fechaExpiracion));
 
                 Mapper.Map(l, lr);
+                lr = lr.OrderBy(t=> t.FechaVencimientoLicenciaConduccion).ToList();
                 return lr;
             }
         }

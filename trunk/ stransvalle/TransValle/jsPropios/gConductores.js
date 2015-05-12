@@ -1,11 +1,16 @@
 ﻿var gConductores = (function () {
     var sesion = false;
-    var lConductores;
+    var lConductores = null;
     var DatosBasicos;
     var OpcionEjecutar;
     var indexSeleccionado;
+    var table;
+    var mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
     var _addHandlers = function () {
+        $("#CreatePDF").click(function () {
+            ImprimirListaConductores();
+        });
         $("#btnDetalles").click(function () {
             $('#ModalDetalles').modal('show');
             VerDetalles();
@@ -101,14 +106,30 @@
         return true;
     };
     var _dibujarTablaSeleccionado = function (indexactual) {
+        table.destroy();
+
         $("#tableConductores").html("");
         $.each(lConductores, function (index, item) {
-            if (indexactual == index) $("#tableConductores").append("<tr class='info' id='" + index + "' onclick='gConductores.SeleccionarTabla(id)'><th>" + item.Cedula + "</th><th>" + item.Nombres + " " + item.Apellidos + "</th><th>" + item.Telefono + "</th><th>" + item.Direccion + "</th></tr>");
-            else $("#tableConductores").append("<tr class='" + _colorFilaConductor() + "' id='" + index + "' onclick='gConductores.SeleccionarTabla(id)'><th>" + item.Cedula + "</th><th>" + item.Nombres + " " + item.Apellidos + "</th><th>" + item.Telefono + "</th><th>" + item.Direccion + "</th></tr>");
+            if (indexactual == index) $("#tableConductores").append("<tr class='info' id='" + index +
+                "' onclick='gConductores.SeleccionarTabla(id)'><td>" + item.Cedula + "</td><td>" + item.Nombres +
+                " " + item.Apellidos + "</td><td>" + item.Telefono + "</td><td>" + item.Direccion + "</td><td>" +
+                    _formatJSONDate(item.FechaVencimientoContratoConduccion) + "</td><td>" +
+                    _formatJSONDate(item.FechaVencimientoLicenciaConduccion) + "</td></tr>");
+            else $("#tableConductores").append("<tr id='" + index + "' onclick='gConductores.SeleccionarTabla(id)'><td>" + item.Cedula +
+                "</td><td>" + item.Nombres + " " + item.Apellidos + "</td><td>" + item.Telefono + "</td><td>" + item.Direccion  + "<td>" +
+                    _formatJSONDate(item.FechaVencimientoContratoConduccion) + "</td><td>" +
+                    _formatJSONDate(item.FechaVencimientoLicenciaConduccion) + "</td></tr>");
         });
+
+        createTable();
     };
     var _colorFilaConductor = function (conduc) {
         return "danger";
+    };
+    var _formatJSONDate = function (jsonDate) {
+        //var da = new Date(parseInt(jsonDate.substr(6)));
+        //return da.toLocaleDateString();
+       return byaPage.converJSONDate(jsonDate)
     };
     var VerDetalles = function () {
         byaPage._setDatosCampos("datos", lConductores[indexSeleccionado]);
@@ -144,12 +165,84 @@
         $("#btnGuardar").byaSetHabilitar(true);
     };
     var CargarConductores = function () {
+        //table.destroy();
+
         PersonasDAO.GetsConductores(function (result) {
             lConductores = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
             $("#tableConductores").html("");
             $.each(lConductores, function (index, item) {
-                $("#tableConductores").append("<tr class='" + _colorFilaConductor() + "' id='" + index + "' onclick='gConductores.SeleccionarTabla(id)'><th>" + item.Cedula + "</th><th>" + item.Nombres + " " + item.Apellidos + "</th><th>" + item.Telefono + "</th><th>" + item.Direccion + "</th></tr>");
+                $("#tableConductores").append("<tr id='" + index + "' onclick='gConductores.SeleccionarTabla(id)'><td>" + item.Cedula + "</td><td>" +
+                    item.Nombres + " " + item.Apellidos + "</td><td>" + item.Telefono + "</td><td>" + item.Direccion + "</td><td>" +
+                    _formatJSONDate(item.FechaVencimientoContratoConduccion) + "</td><td>" +
+                    _formatJSONDate(item.FechaVencimientoLicenciaConduccion) + "</td></tr>");
             });
+
+            createTable();
+        });
+    };
+    var ImprimirListaConductores = function () {
+        if (lConductores != null) {
+            $.get("/PlantillasImpresion/PrintListaConductores.html", function (data) {
+                var Empresa, tbody = "";
+                EmpresaDAO.Get(function (result) {
+                    Empresa = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+                    //alert(JSON.stringify(Empresa));
+                    data = data.replace("{NOM_EMPRESA}", '<h2><strong> ' + Empresa.RAZON_SOCIAL + ' </strong></h2>');
+                    data = data.replace("{NIT_EMPRESA}", Empresa.NIT + '-' + Empresa.DIG_VER);
+
+                    $.each(lConductores, function (index, item) {
+                        tbody = tbody + "<tr id='" + index + "'><td>" + item.Cedula + "</td><td>" +
+                            item.Nombres + " " + item.Apellidos + "</td><td>" + item.Telefono + "</td><td>" + item.Direccion + "</td><td>" +
+                            _formatJSONDate(item.FechaVencimientoContratoConduccion) + "</td><td>" +
+                            _formatJSONDate(item.FechaVencimientoLicenciaConduccion) + "</td></tr>";
+                    });
+
+                    data = data.replace("{CONDUCTORES}", tbody);
+
+                    // Esta es la parte que te abre la ventana de imprecion...
+                    var win;
+                    win = window.open();
+                    win.document.write(data);
+                    win.print();
+                    win.close();
+                });
+            });
+        }   
+    };
+    var createTable = function () {
+        $(function () { // Crear DataTable
+            table = $('#tConductores').DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+                scrollY: "290px",
+                scrollX: true,
+                scrollCollapse: true,
+                paging: true,
+                "order": [[5, "asc"]]
+            });
+            //new $.fn.dataTable.FixedColumns(table);
         });
     };
 
