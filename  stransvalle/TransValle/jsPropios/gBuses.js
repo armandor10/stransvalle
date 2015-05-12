@@ -74,7 +74,9 @@
             $("#tableBuses").html("");
             $.each(lBuses, function (index, item) {
                 var Fecha = byaPage.converJSONDate(item.FechaMatricula);
-                $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th><th>" + item.NombreGrupo + "</th></tr>");
+                $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><td>" + item.Placa +
+                    "</td><td>" + item.Vial + "</td><td>" + item.Marca + "</td><td>" + Fecha + "</td><td>" + item.NombreClaseServicio +
+                    "</td><td>" + item.NombreClaseBus + "</td><td>" + item.NombreGrupo + "</td></tr>");
             });
 
             createTable();
@@ -162,12 +164,21 @@
         }
     };
     var _dibujarTablaBusesSeleccionado = function (indexactual) {
+        table.destroy();
+
         $("#tableBuses").html("");
         $.each(lBuses, function (index, item) {
             var Fecha = byaPage.converJSONDate(item.FechaMatricula);
-            if (indexactual == index) $("#tableBuses").append("<tr class='info' id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th><th>" + item.NombreGrupo + "</th></tr>");
-            else $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><th>" + item.Placa + "</th><th>" + item.Vial + "</th><th>" + item.Marca + "</th><th>" + Fecha + "</th><th>" + item.NombreClaseServicio + "</th><th>" + item.NombreClaseBus + "</th><th>" + item.NombreGrupo + "</th></tr>");
+            if (indexactual == index) $("#tableBuses").append("<tr class='info' id='" + index +
+                "' onclick='gBuses.SeleccionarBusTabla(id)'><td>" + item.Placa + "</td><td>" + item.Vial +
+                "</td><td>" + item.Marca + "</td><td>" + Fecha + "</td><td>" + item.NombreClaseServicio +
+                "</td><td>" + item.NombreClaseBus + "</td><td>" + item.NombreGrupo + "</td></tr>");
+            else $("#tableBuses").append("<tr id='" + index + "' onclick='gBuses.SeleccionarBusTabla(id)'><td>" + item.Placa +
+                "</td><td>" + item.Vial + "</td><td>" + item.Marca + "</td><td>" + Fecha + "</td><td>" + item.NombreClaseServicio +
+                "</td><td>" + item.NombreClaseBus + "</td><td>" + item.NombreGrupo + "</td></tr>");
         });
+
+        createTable();
     };
     var VerDetallesBusSeleccionado = function () {
         $("#txtPlacabus").val(lBuses[indexBusSeleccionado].Placa);
@@ -249,7 +260,7 @@
                 scrollY: "300px",
                 scrollX: true,
                 scrollCollapse: true,
-                paging: false
+                paging: true
             });
             //new $.fn.dataTable.FixedColumns(table);
         });
