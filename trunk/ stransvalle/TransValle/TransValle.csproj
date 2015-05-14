@@ -76,6 +76,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\plugins\DataTables\jquery.dataTables.css" />
     <Content Include="gConductores.html" />
     <Content Include="css\bootstrap-rtl.css" />
     <Content Include="css\bootstrap-rtl.min.css" />
@@ -146,6 +147,7 @@
     <Content Include="PlanillaControl.html" />
     <Content Include="PlanillaRecaudo.html" />
     <Content Include="PlantillasImpresion\ImpLiq.html" />
+    <Content Include="PlantillasImpresion\PrintListaBuses.html" />
     <Content Include="PlantillasImpresion\PrintListaConductores.html" />
     <Content Include="PlantillasImpresion\PrintPlanillaControl.html" />
     <Content Include="PlantillasImpresion\PrintPlanillaRotaciones.html" />
