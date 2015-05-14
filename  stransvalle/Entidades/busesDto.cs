@@ -29,5 +29,26 @@ namespace Entidades
         public int DiaMatricula { get; set; }
         public int MesMatricula { get; set; }
         public int AñoMatricula { get; set; }
+
+        public string NumeroSOAT { get; set; }
+        public DateTime FechaExpedicionSOAT { get; set; }
+        public DateTime FechaVencimientoSOAT { get; set; }
+
+        public string NumeroTecMec { get; set; }
+        public DateTime FechaExpedicionTecMec { get; set; }
+        public DateTime FechaVencimientoTecMec { get; set; }
+
+        public string NumeroTarOpe { get; set; }
+        public DateTime FechaExpedicionTarOpe { get; set; }
+        public DateTime FechaVencimientoTarOpe { get; set; }
+
+        public string NumeroPolCont { get; set; }
+        public DateTime FechaExpedicionPolCont { get; set; }
+        public DateTime FechaVencimientoPolCont { get; set; }
+
+        public string NumeroPolExtCont { get; set; }
+        public DateTime FechaExpedicionPolExtCont { get; set; }
+        public DateTime FechaVencimientoPolExtCont { get; set; }
+
     }
 }
