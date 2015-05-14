@@ -34,9 +34,19 @@
             var confirmacion = confirm("Desea eliminar este registro?");
             if (confirm) Eliminar();
         });
+        $('#tConductores tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
     };
     var _createElements = function () {
         CargarDatosBasicos();
+        createTable();
     };
     var GuardarNuevo = function () {
         if (_esValidoDatos()) {
@@ -165,9 +175,12 @@
         $("#btnGuardar").byaSetHabilitar(true);
     };
     var CargarConductores = function () {
-        //table.destroy();
+
+        $('#wait').toggle();       
 
         PersonasDAO.GetsConductores(function (result) {
+            table.destroy();
+
             lConductores = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
             $("#tableConductores").html("");
             $.each(lConductores, function (index, item) {
@@ -176,8 +189,9 @@
                     _formatJSONDate(item.FechaVencimientoContratoConduccion) + "</td><td>" +
                     _formatJSONDate(item.FechaVencimientoLicenciaConduccion) + "</td></tr>");
             });
-
+            
             createTable();
+            $('#wait').toggle();
         });
     };
     var ImprimirListaConductores = function () {
@@ -236,7 +250,7 @@
                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                     }
                 },
-                scrollY: "290px",
+                scrollY: "270px",
                 scrollX: true,
                 scrollCollapse: true,
                 paging: true,
@@ -252,12 +266,13 @@
                 _createElements();
                 _addHandlers();
 
+                $('#wait').toggle();
                 CargarConductores();
             } else window.location.href = "index.html";
         },
         SeleccionarTabla: function (index) {
             indexSeleccionado = index;
-            _dibujarTablaSeleccionado(index);
+            //_dibujarTablaSeleccionado(index);
         }
     };
 }());

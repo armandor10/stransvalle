@@ -65,8 +65,16 @@ namespace TransValle.Servicios
 
         [WebMethod]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
-        public char SingIn(string Vial,string Password) {
+        public char SingIn(string Vial,string Password) 
+        {
             return (new mBuses()).SingIn(Vial, Password);
+        }
+
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public objRes InsertOrUpdateDocumentos(List<documentosbusDTO> lDocBusDto) 
+        {
+            return (new mBuses()).InsertOrUpdateDocumentos(lDocBusDto);
         }
     }
 }
