@@ -23,11 +23,12 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- DataTables -->
+    <!-- DataTables -->    
+    <link href="css/plugins/DataTables/jquery.dataTables.css" rel="stylesheet" />
     <link href="css/plugins/DataTables/dataTables.bootstrap.css" rel="stylesheet" />
 
     <style>
-      html, body,#map-canvas {
+        html, body,#map-canvas {
         width:100%;
         height: 650px;
         margin: 0px;
@@ -36,6 +37,44 @@
         overflow-x: hidden;
         overflow-y: hidden;
       }
+        th {
+             text-align: left;
+             white-space: nowrap;
+        }
+        td {
+             white-space: nowrap;
+        }
+        a {cursor:pointer;} 
+        .Separar {margin:0px;}
+        .padi {padding-right:6px;}
+        .row-centered {              
+            text-align:center;      
+        }      
+        .col-centered {             
+            display:inline-block;                  
+            float:none;                      
+            /* reset the text-align */                          
+            text-align:left;                              
+            /* inline-block space fix */    
+            margin-right:-4px;
+        }
+        .glyphicon-refresh-animate {    
+            -animation: spin .7s infinite linear;    
+            -webkit-animation: spin2 .7s infinite linear;
+        }
+        @-webkit-keyframes spin2 {
+            from { -webkit-transform: rotate(0deg);}
+            to { -webkit-transform: rotate(360deg);}
+        }
+        @keyframes spin {
+            from { transform: scale(1) rotate(0deg);}
+            to { transform: scale(1) rotate(360deg);}
+        }
+        @media screen and (min-width: 768px) {
+            .custom-class {
+                width: 99%; /* either % (e.g. 60%) or px (400px) */
+            }
+        }
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -113,7 +152,7 @@
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper" style="height:650px">
+        <div id="page-wrapper" style="height:890px">
             <br /><br />
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -131,7 +170,9 @@
                             <li><a id="btnDetallesBus">Detalles</a></li>
                             <li><a id="btnEditarBus">Editar</a></li>
                             <li><a id="btnEliminarBus">Eliminar</a></li>
+                            <li><a id="btnDocumentos">Documentos</a></li>
                             <li><a id="btnNuevoGrupo">Nuevo Grupo</a></li>
+                            <li><a id="btnImprimir">Imprimir Buses</a></li>
                           </ul>
                         </div><!-- /.navbar-collapse -->
                       </div><!-- /.container-fluid -->
@@ -139,22 +180,40 @@
                 </div>
             </div> 
            
-                    <table class="table table-hover table table-striped" id="tBuses">
+            <div id="ta">
+                <table class="table table-hover table table-striped" id="tBuses">
                         <thead>
                             <tr>
-                                <th>Placa</th>
-                                <th>Vial</th>
-                                <th>Marca</th>                                
-                                <th>Matricula</th>
-                                <th>Clase de servicio</th>
-                                <th>Clase de bus</th>
-                                <th>Grupo</th>
+                                <th rowspan="2">Placa</th>
+                                <th rowspan="2">Vial</th>
+                                <th rowspan="2">Marca</th>                                
+                                <th rowspan="2">Matricula</th>
+                                <th rowspan="2">Clase de servicio</th>
+                                <th rowspan="2">Clase de bus</th>
+                                <th rowspan="2">Grupo</th>
+                                <th colspan="5" style="text-align:center"> Vencimiento de Documentos</th>
+                            </tr>
+                            <tr>
+                                <th>SOAT</th>
+                                <th>Técnico Mecánica </th>
+                                <th>Tarjeta de Operación </th>
+                                <th>Póliza Contractual</th>
+                                <th>Póliza Extracontractual</th>
                             </tr>
                         </thead>
                         <tbody class="text-left" id="tableBuses">
                                           
                         </tbody>
                     </table>
+            </div>
+                    
+            <div class="container" id="wait" style="height: 10%; width:1124px;" >
+                 <div class="row row-centered"> 
+                     <div class="col-md-15 col-xs-14 col-centered "> 
+                         <button class="btn btn-lg btn-success"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Cargando Buses...</button>
+                     </div>
+                 </div>                
+            </div>
                  
         </div>
 
@@ -269,7 +328,7 @@
                                 <strong>Password: </strong>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" id="txtPassword" /><br />
+                                <input type="password" class="form-control" id="txtPassword" /><br />
                             </div>                            
                         </div>
                     </div>
@@ -304,6 +363,186 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade bs-example-modal-lg" id="ModalDocumentos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog custom-class">
+                <div class="modal-content">
+                    <div class="modal-header" >
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="H2" style="text-align: center;"> <strong>Documentos</strong></h4>
+                        <div class="row row-centered">
+                            <div id="modalTPlaca" class="col-md-2 col-centered"></div>  
+                            <div id="modalTVial" class="col-md col-centered"></div>                                                                                                                             
+                        </div>
+                    </div>
+
+                    <div class="modal-body"  id="ModalbodyPC" >                       
+                         <div id="pc" class="container" style="width:100%">   
+                             <div id="Div3" class="row">
+                                 <div id="Div4" class="col-md-4">
+                                     <div class="panel panel-default">                           
+                                         <div class="panel-heading">SOAT</div>
+                                         <div class="panel-body">
+                                             <div class="row Separar">
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Numero: </strong>                                    
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="text" class="form-control datos limpiar habilitar validar gDocumentos" id="txtNumeroSOAT" />
+                                                 </div>                                                          
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Expedición: </strong>
+                                                 </div>                                  
+                                                 <div class="col-lg-7">                                       
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchExpSOAT" />
+                                                 </div>                                                            
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Vencimiento: </strong>
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchVenSOAT" />
+                                                 </div>                                                          
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="panel panel-default">                           
+                                         <div class="panel-heading">Técnico Mecánica</div>
+                                         <div class="panel-body">
+                                             <div class="row Separar">
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Numero: </strong>                                    
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="text" class="form-control datos limpiar habilitar validar gDocumentos" id="txtNumeroTecMec" />
+                                                 </div>                                                          
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Expedición: </strong>
+                                                 </div>                                  
+                                                 <div class="col-lg-7">                                       
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchExpTecMec" />
+                                                 </div>                                                            
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Vencimiento: </strong>
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchVenTecMec" />
+                                                 </div>                                                          
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>         
+
+                                 <div id="Div5" class="col-md-4">
+                                     <div class="panel panel-default">                           
+                                         <div class="panel-heading">Tarjeta de Operación</div>
+                                         <div class="panel-body">
+                                             <div class="row Separar">
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Numero: </strong>                                    
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="text" class="form-control datos limpiar habilitar validar gDocumentos" id="txtNumeroTarOp" />
+                                                 </div>                                                          
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Expedición: </strong>
+                                                 </div>                                  
+                                                 <div class="col-lg-7">                                       
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchExpTarOp" />
+                                                 </div>                                                            
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Vencimiento: </strong>
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchVenTarOp" />
+                                                 </div>                                                          
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="panel panel-default">                           
+                                         <div class="panel-heading">Póliza Contractual</div>
+                                         <div class="panel-body">
+                                             <div class="row Separar">
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Numero: </strong>                                    
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="text" class="form-control datos limpiar habilitar validar gDocumentos" id="txtNumeroPolCon" />
+                                                 </div>                                                          
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Expedición: </strong>
+                                                 </div>                                  
+                                                 <div class="col-lg-7">                                       
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchExpPolCon" />
+                                                 </div>                                                            
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Vencimiento: </strong>
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchVenPolCon" />
+                                                 </div>                                                          
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                                 <div class="col-md-4">
+                                     <div class="panel panel-default">                           
+                                         <div class="panel-heading">Póliza Extracontractual</div>
+                                         <div class="panel-body">
+                                             <div class="row Separar">
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Numero: </strong>                                    
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="text" class="form-control datos limpiar habilitar validar gDocumentos" id="txtNumeroPoExCon" />
+                                                 </div>                                                          
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Expedición: </strong>
+                                                 </div>                                  
+                                                 <div class="col-lg-7">                                       
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchExpPoExCon" />
+                                                 </div>                                                            
+                                             </div>                               
+                                             <div class="row Separar">                                   
+                                                 <div class="col-lg-4 text-right">
+                                                     <strong>*Vencimiento: </strong>
+                                                 </div>
+                                                 <div class="col-lg-7">
+                                                     <input type="date" class="form-control datos limpiar habilitar validar gDocumentos" id="txtFchVenPoExCon" />
+                                                 </div>                                                          
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>         
+                             </div> 
+                         </div>   
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="btnGuardarDoc" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- /#wrapper -->
 

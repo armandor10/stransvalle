@@ -75,6 +75,12 @@ var BusesDAO = (function () {
                 Placa: "'" + Placa + "'"
             }
             proxy._doAjax("GET", "Delete", Parametro, fCorrecto, null, true);
+        },
+        InsertOrUpdateDocumentos: function (lDocBus, fCorrecto) {
+            var Parametro = {
+                lDocBusDto: JSON.stringify(lDocBus)
+            }
+            proxy._doAjax("GET", "InsertOrUpdateDocumentos", Parametro, fCorrecto, null, true);
         }
     }
 }());

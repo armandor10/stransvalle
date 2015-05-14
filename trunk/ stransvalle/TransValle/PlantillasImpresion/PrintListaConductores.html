@@ -48,13 +48,16 @@
             <table class="tbconborde" style="width:100%;font-size:60%;">                                                                                                  
                 <thead> 
                     <tr>
-                        <th>Cedula</th>
-                        <th>Nombre</th>   
-                        <th>Telefono</th>                             
-                        <th>Dirección</th>
-                        <th>Vencimiento del Contrato</th>
-                        <th>Vencimiento Lic. Conducción </th>
-                    </tr>
+                                <th rowspan="2">Cedula</th>
+                                <th rowspan="2">Nombre</th>   
+                                <th rowspan="2">Telefono</th>                             
+                                <th rowspan="2">Dirección</th>
+                                <th colspan="2" style="text-align:center">Vencimiento de Documentos</th>                                
+                            </tr>
+                            <tr>
+                                <th>Contrato </th>
+                                <th>Licencia de Conducción </th>
+                            </tr>
                 </thead>
                 <tbody class="text-left" id="tbodyPlanCtrDesp" > 
                     {CONDUCTORES} 
