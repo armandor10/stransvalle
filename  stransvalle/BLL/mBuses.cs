@@ -12,15 +12,39 @@ namespace BLL
     public class mBuses
     {
         tvEntities ctx;
+
+        // id de los documentos en la base de datos
+        private int docSOAT = 1; 
+        private int docTecMec = 2;
+        private int docTarOpe = 3;
+        private int docPolCont = 4;
+        private int docPolExtCont = 5;
+
         public mBuses()
         {
             Mapper.CreateMap<buses, busesDto>()
                 .ForMember(dest => dest.NombreClaseBus, opt => opt.MapFrom(src => src.clasesbuses.Nombre))
                 .ForMember(dest => dest.NombreClaseServicio, opt => opt.MapFrom(src => src.clasesservicio.Nombre))
-                .ForMember(dest => dest.NombreGrupo, opt => opt.MapFrom(src => src.gruposbuses.Nombre));
+                .ForMember(dest => dest.NombreGrupo, opt => opt.MapFrom(src => src.gruposbuses.Nombre))
+                .ForMember(dest => dest.NumeroSOAT, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docSOAT).FirstOrDefault().Numero))
+                .ForMember(dest => dest.FechaExpedicionSOAT, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docSOAT).FirstOrDefault().fechaExpedicion))
+                .ForMember(dest => dest.FechaVencimientoSOAT, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docSOAT).FirstOrDefault().fechaExpiracion))
+                .ForMember(dest => dest.NumeroTecMec, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docTecMec).FirstOrDefault().Numero))
+                .ForMember(dest => dest.FechaExpedicionTecMec, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docTecMec).FirstOrDefault().fechaExpedicion))
+                .ForMember(dest => dest.FechaVencimientoTecMec, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docTecMec).FirstOrDefault().fechaExpiracion))
+                .ForMember(dest => dest.NumeroTarOpe, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docTarOpe).FirstOrDefault().Numero))
+                .ForMember(dest => dest.FechaExpedicionTarOpe, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docTarOpe).FirstOrDefault().fechaExpedicion))
+                .ForMember(dest => dest.FechaVencimientoTarOpe, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docTarOpe).FirstOrDefault().fechaExpiracion))
+                .ForMember(dest => dest.NumeroPolCont, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docPolCont).FirstOrDefault().Numero))
+                .ForMember(dest => dest.FechaExpedicionPolCont, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docPolCont).FirstOrDefault().fechaExpedicion))
+                .ForMember(dest => dest.FechaVencimientoPolCont, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docPolCont).FirstOrDefault().fechaExpiracion))
+                .ForMember(dest => dest.NumeroPolExtCont, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docPolExtCont).FirstOrDefault().Numero))
+                .ForMember(dest => dest.FechaExpedicionPolExtCont, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docPolExtCont).FirstOrDefault().fechaExpedicion))
+                .ForMember(dest => dest.FechaVencimientoPolExtCont, opt => opt.MapFrom(src => src.documentosbus.Where(t => t.documento == docPolExtCont).FirstOrDefault().fechaExpiracion));
             Mapper.CreateMap<busesDto, buses>();
             Mapper.CreateMap<gruposbuses, gruposbusesDto>();
             Mapper.CreateMap<gruposbusesDto, gruposbuses>();
+            Mapper.CreateMap<documentosbusDTO, documentosbus>();
         }
         public List<busesDto> Gets()
         {
@@ -29,6 +53,7 @@ namespace BLL
                 List<busesDto> lrBuses = new List<busesDto>();
                 List<buses> lBuses = ctx.buses.ToList();
                 Mapper.Map(lBuses, lrBuses);
+                lrBuses = lrBuses.OrderBy(t => t.FechaVencimientoSOAT).ToList();
                 return lrBuses;
             }
         }
@@ -161,6 +186,45 @@ namespace BLL
                 else 
                 {
                     return 'N';
+                }
+            }
+        }
+        public objRes InsertOrUpdateDocumentos(List<documentosbusDTO> lDocBusDto) {
+            documentosbus DocBus;
+            using (ctx = new tvEntities())
+            {
+                objRes Respuesta = new objRes();
+                try
+                {
+                    foreach (var DocBusDto in lDocBusDto)
+                    {
+                        DocBus = ctx.documentosbus.Where(t => t.placa == DocBusDto.placa && t.documento == DocBusDto.documento).FirstOrDefault();
+                        if (DocBus == null)
+                        {
+                            DocBus = new documentosbus();
+                            Mapper.Map(DocBusDto, DocBus);
+                            ctx.documentosbus.Add(DocBus);
+                            ctx.SaveChanges();
+                        }
+                        else 
+                        {
+                            DocBus.Numero = DocBusDto.Numero;
+                            DocBus.fechaExpedicion = DocBusDto.fechaExpedicion;
+                            DocBus.fechaExpiracion = DocBusDto.fechaExpiracion;
+                            ctx.SaveChanges();
+                        }
+                    }
+
+                    Respuesta.Error = false;
+                    Respuesta.Mensaje = "Operacion realizada satisfactoriamente!!!";
+                    return Respuesta;
+
+                }
+                catch (Exception e)
+                {
+                    Respuesta.Error = true;
+                    Respuesta.Mensaje = e.Message;
+                    return Respuesta;
                 }
             }
         }
