@@ -81,6 +81,7 @@
     <Compile Include="mPlanillaControl.cs" />
     <Compile Include="mRecorridos.cs" />
     <Compile Include="mRutas.cs" />
+    <Compile Include="mSalioRuta.cs" />
     <Compile Include="mUsers.cs" />
     <Compile Include="mPlanillaRecaudo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
