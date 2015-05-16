@@ -15,6 +15,7 @@
           <EntitySet Name="documentos" EntityType="transvalleModel.Store.documentos" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="documentosbus" EntityType="transvalleModel.Store.documentosbus" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="documentospersona" EntityType="transvalleModel.Store.documentospersona" store:Type="Tables" Schema="transvalle" />
+          <EntitySet Name="empresa" EntityType="transvalleModel.Store.empresa" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="entradassalidas" EntityType="transvalleModel.Store.entradassalidas" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="gastos" EntityType="transvalleModel.Store.gastos" store:Type="Tables" Schema="transvalle" />
           <EntitySet Name="gruposbuses" EntityType="transvalleModel.Store.gruposbuses" store:Type="Tables" Schema="transvalle" />
@@ -51,7 +52,7 @@
             <End Role="rutas" EntitySet="rutas" />
             <End Role="puntoscontrolruta" EntitySet="puntoscontrolruta" />
           </AssociationSet>
-          <AssociationSet Name="pe_Per_TipIdeF" Association="transvalleModel.Store.pe_Per_TipIdeF">
+          <AssociationSet Name="pe_Per_TipIdeF_idx" Association="transvalleModel.Store.pe_Per_TipIdeF_idx">
             <End Role="tiposidentificacionpersona" EntitySet="tiposidentificacionpersona" />
             <End Role="personas" EntitySet="personas" />
           </AssociationSet>
@@ -234,6 +235,21 @@
           <Property Name="Numero" Type="varchar" MaxLength="45" />
           <Property Name="fechaExpedicion" Type="datetime" />
           <Property Name="fechaExpiracion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CLASE_REGIMEN" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="NIT" Type="varchar" MaxLength="10" />
+          <Property Name="DIG_VER" Type="char" MaxLength="1" />
+          <Property Name="RAZON_SOCIAL" Type="varchar" MaxLength="100" />
+          <Property Name="REP_LEGAL" Type="varchar" MaxLength="40" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="30" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
+          <Property Name="TELEFONO1" Type="varchar" MaxLength="10" />
+          <Property Name="ESTADO" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="entradassalidas">
           <Key>
@@ -450,7 +466,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="pe_Per_TipIdeF">
+        <Association Name="pe_Per_TipIdeF_idx">
           <End Role="tiposidentificacionpersona" Type="transvalleModel.Store.tiposidentificacionpersona" Multiplicity="0..1" />
           <End Role="personas" Type="transvalleModel.Store.personas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -740,6 +756,7 @@
           <EntitySet Name="documentos" EntityType="transvalleModel.documentos" />
           <EntitySet Name="documentosbus" EntityType="transvalleModel.documentosbus" />
           <EntitySet Name="documentospersona" EntityType="transvalleModel.documentospersona" />
+          <EntitySet Name="empresa" EntityType="transvalleModel.empresa" />
           <EntitySet Name="entradassalidas" EntityType="transvalleModel.entradassalidas" />
           <EntitySet Name="gastos" EntityType="transvalleModel.gastos" />
           <EntitySet Name="gruposbuses" EntityType="transvalleModel.gruposbuses" />
@@ -840,7 +857,7 @@
             <End Role="horario" EntitySet="horario" />
             <End Role="rutas" EntitySet="rutas" />
           </AssociationSet>
-          <AssociationSet Name="pe_Per_TipIdeF" Association="transvalleModel.pe_Per_TipIdeF">
+          <AssociationSet Name="pe_Per_TipIdeF_idx" Association="transvalleModel.pe_Per_TipIdeF_idx">
             <End Role="tiposidentificacionpersona" EntitySet="tiposidentificacionpersona" />
             <End Role="personas" EntitySet="personas" />
           </AssociationSet>
@@ -983,6 +1000,21 @@
           <NavigationProperty Name="documentos" Relationship="transvalleModel.pk_docper_doc" FromRole="documentospersona" ToRole="documentos" />
           <NavigationProperty Name="personas" Relationship="transvalleModel.pk_docper_cedula" FromRole="documentospersona" ToRole="personas" />
         </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Type="Int32" Name="ID_EMPRESA" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CLASE_REGIMEN" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NIT" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DIG_VER" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RAZON_SOCIAL" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="REP_LEGAL" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DIRECCION" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TELEFONO" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TELEFONO1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ESTADO" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="entradassalidas">
           <Key>
             <PropertyRef Name="Placa" />
@@ -1056,7 +1088,7 @@
           <Property Type="String" Name="TipoIdentificacion" MaxLength="3" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="asignarbus" Relationship="transvalleModel.pk_asignarbus_cedula" FromRole="personas" ToRole="asignarbus" />
           <NavigationProperty Name="documentospersona" Relationship="transvalleModel.pk_docper_cedula" FromRole="personas" ToRole="documentospersona" />
-          <NavigationProperty Name="tiposidentificacionpersona" Relationship="transvalleModel.pe_Per_TipIdeF" FromRole="personas" ToRole="tiposidentificacionpersona" />
+          <NavigationProperty Name="tiposidentificacionpersona" Relationship="transvalleModel.pe_Per_TipIdeF_idx" FromRole="personas" ToRole="tiposidentificacionpersona" />
           <NavigationProperty Name="tipostrabajador" Relationship="transvalleModel.pe_Per_Tipo" FromRole="personas" ToRole="tipostrabajador" />
           <NavigationProperty Name="usuariosplataforma" Relationship="transvalleModel.pk_Per_User" FromRole="personas" ToRole="usuariosplataforma" />
         </EntityType>
@@ -1151,7 +1183,7 @@
           </Key>
           <Property Type="String" Name="id" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Nombre" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="personas" Relationship="transvalleModel.pe_Per_TipIdeF" FromRole="tiposidentificacionpersona" ToRole="personas" />
+          <NavigationProperty Name="personas" Relationship="transvalleModel.pe_Per_TipIdeF_idx" FromRole="tiposidentificacionpersona" ToRole="personas" />
         </EntityType>
         <EntityType Name="tipostrabajador">
           <Key>
@@ -1423,7 +1455,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="pe_Per_TipIdeF">
+        <Association Name="pe_Per_TipIdeF_idx">
           <End Type="transvalleModel.tiposidentificacionpersona" Role="tiposidentificacionpersona" Multiplicity="0..1" />
           <End Type="transvalleModel.personas" Role="personas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1609,6 +1641,22 @@
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="documento" ColumnName="documento" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresa">
+            <EntityTypeMapping TypeName="transvalleModel.empresa">
+              <MappingFragment StoreEntitySet="empresa">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="TELEFONO1" ColumnName="TELEFONO1" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="REP_LEGAL" ColumnName="REP_LEGAL" />
+                <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+                <ScalarProperty Name="DIG_VER" ColumnName="DIG_VER" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="CLASE_REGIMEN" ColumnName="CLASE_REGIMEN" />
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

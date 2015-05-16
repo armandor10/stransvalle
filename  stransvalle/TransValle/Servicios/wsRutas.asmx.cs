@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using BLL;
 using Entidades;
+using Entidades.Geometria;
 using System.Web.Script.Services;
 
 namespace TransValle.Servicios
@@ -51,6 +52,21 @@ namespace TransValle.Servicios
         {
             mRutas o = new mRutas();
             return o.AsigPuntosRuta(Reg);
+        }
+
+
+        // Esto esta aqui de prueba
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public bool Prueba(double x, double y)
+        {
+            mSalioRuta o = new mSalioRuta();
+
+            pl_punto p = new pl_punto();
+            p.x = x;
+            p.y = y;
+
+            return o.VerificarPuntoEnRuta(p);
         }
     }
 }

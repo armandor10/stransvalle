@@ -34,6 +34,7 @@ namespace DAL
         public DbSet<documentos> documentos { get; set; }
         public DbSet<documentosbus> documentosbus { get; set; }
         public DbSet<documentospersona> documentospersona { get; set; }
+        public DbSet<empresa> empresa { get; set; }
         public DbSet<entradassalidas> entradassalidas { get; set; }
         public DbSet<gastos> gastos { get; set; }
         public DbSet<gruposbuses> gruposbuses { get; set; }

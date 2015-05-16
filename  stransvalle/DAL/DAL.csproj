@@ -110,6 +110,9 @@
     <Compile Include="documentospersona.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
+    <Compile Include="empresa.cs">
+      <DependentUpon>dbTransValle.tt</DependentUpon>
+    </Compile>
     <Compile Include="entradassalidas.cs">
       <DependentUpon>dbTransValle.tt</DependentUpon>
     </Compile>
