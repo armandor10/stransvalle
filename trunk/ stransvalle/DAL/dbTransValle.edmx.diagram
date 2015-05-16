@@ -4,32 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1fe7026bf2804e068105a498ae50e94e" Name="Diagrama1" ZoomLevel="55">
-        <EntityTypeShape EntityType="transvalleModel.asignarbus" Width="1.5" PointX="0.50950665236893422" PointY="24.117568310404927" />
-        <EntityTypeShape EntityType="transvalleModel.buses" Width="1.5" PointX="1.2754180362799288" PointY="12.780964827528672" />
-        <EntityTypeShape EntityType="transvalleModel.clasesbuses" Width="1.5" PointX="1.1033081156682727" PointY="16.704023726612341" />
-        <EntityTypeShape EntityType="transvalleModel.clasesservicio" Width="1.5" PointX="2.7454983027398114" PointY="29.990155457514412" />
-        <EntityTypeShape EntityType="transvalleModel.coordenadasrutas" Width="1.5" PointX="6.2271096642255372" PointY="29.622239067043289" />
-        <EntityTypeShape EntityType="transvalleModel.detallesplanilla" Width="1.5" PointX="3.1071615382596667" PointY="1.7572641976910011" />
-        <EntityTypeShape EntityType="transvalleModel.documentos" Width="1.5" PointX="0.51682985970602835" PointY="15.540240458930024" />
-        <EntityTypeShape EntityType="transvalleModel.documentosbus" Width="1.5" PointX="1.9845347953888286" PointY="1.212384328810677" />
-        <EntityTypeShape EntityType="transvalleModel.documentospersona" Width="1.5" PointX="9.2545994470150212" PointY="10.123955224698388" />
-        <EntityTypeShape EntityType="transvalleModel.entradassalidas" Width="1.5" PointX="7.09386708917742" PointY="10.298283864882906" />
-        <EntityTypeShape EntityType="transvalleModel.gastos" Width="1.5" PointX="9.46255356514014" PointY="9.4503970637220878" />
-        <EntityTypeShape EntityType="transvalleModel.gruposbuses" Width="1.5" PointX="4.2413048261037583" PointY="19.917080560660494" />
-        <EntityTypeShape EntityType="transvalleModel.historialmovimiento" Width="1.5" PointX="10.977077101812268" PointY="20.577295014903552" />
-        <EntityTypeShape EntityType="transvalleModel.horario" Width="1.5" PointX="6.4510062460093787" PointY="23.057682062991748" />
-        <EntityTypeShape EntityType="transvalleModel.personas" Width="1.5" PointX="11.670976761575311" PointY="11.023839121229871" />
-        <EntityTypeShape EntityType="transvalleModel.planillacontrol" Width="1.5" PointX="8.4821423666934219" PointY="18.045748540221595" />
-        <EntityTypeShape EntityType="transvalleModel.planillarecaudo" Width="1.5" PointX="7.7178448847112451" PointY="18.151438363898283" />
-        <EntityTypeShape EntityType="transvalleModel.puntoscontrol" Width="1.5" PointX="11.849802128900681" PointY="15.066522843701078" />
-        <EntityTypeShape EntityType="transvalleModel.puntoscontrolruta" Width="1.5" PointX="5.1390128196864442" PointY="5.8189376619732647" />
-        <EntityTypeShape EntityType="transvalleModel.rolesusuariosplataforma" Width="1.5" PointX="8.9371342998636578" PointY="31.847825616527267" />
-        <EntityTypeShape EntityType="transvalleModel.rutagrupo" Width="1.5" PointX="0.12878232641554546" PointY="8.400193888880402" />
-        <EntityTypeShape EntityType="transvalleModel.rutas" Width="1.5" PointX="3.209527134527232" PointY="15.48670805221736" />
-        <EntityTypeShape EntityType="transvalleModel.tiposidentificacionpersona" Width="1.5" PointX="10.95846422526914" PointY="31.252568810830159" />
-        <EntityTypeShape EntityType="transvalleModel.tipostrabajador" Width="1.5" PointX="3.1489301431686294" PointY="2.4964245420398306" />
-        <EntityTypeShape EntityType="transvalleModel.usuariosplataforma" Width="1.5" PointX="10.085603495168314" PointY="4.0925193448050505" />
+      <Diagram DiagramId="1fe7026bf2804e068105a498ae50e94e" Name="Diagrama1" ZoomLevel="11">
+        <EntityTypeShape EntityType="transvalleModel.asignarbus" Width="1.5" PointX="8.9308167867971662" PointY="2.3314429234394072" />
+        <EntityTypeShape EntityType="transvalleModel.buses" Width="1.5" PointX="6.672330706693387" PointY="17.531118311700933" />
+        <EntityTypeShape EntityType="transvalleModel.clasesbuses" Width="1.5" PointX="5.8091903132429294" PointY="12.494146472073229" />
+        <EntityTypeShape EntityType="transvalleModel.clasesservicio" Width="1.5" PointX="5.3914871930105086" PointY="24.514783632249937" />
+        <EntityTypeShape EntityType="transvalleModel.coordenadasrutas" Width="1.5" PointX="5.0878262860178136" PointY="8.8301241438976135" />
+        <EntityTypeShape EntityType="transvalleModel.detallesplanilla" Width="1.5" PointX="3.2533650748680181" PointY="12.736251822084306" />
+        <EntityTypeShape EntityType="transvalleModel.documentos" Width="1.5" PointX="0.63591967180181286" PointY="22.438966523129011" />
+        <EntityTypeShape EntityType="transvalleModel.documentosbus" Width="1.5" PointX="3.7586523274698536" PointY="2.700470836227979" />
+        <EntityTypeShape EntityType="transvalleModel.documentospersona" Width="1.5" PointX="8.9978256993916936" PointY="15.613811187266284" />
+        <EntityTypeShape EntityType="transvalleModel.empresa" Width="1.5" PointX="9.832456060607198" PointY="12.547063371421332" />
+        <EntityTypeShape EntityType="transvalleModel.entradassalidas" Width="1.5" PointX="2.5248831131145746" PointY="18.613193729246593" />
+        <EntityTypeShape EntityType="transvalleModel.gastos" Width="1.5" PointX="4.0559811368845313" PointY="25.58924315571284" />
+        <EntityTypeShape EntityType="transvalleModel.gruposbuses" Width="1.5" PointX="1.6902841840359777" PointY="18.154396005978061" />
+        <EntityTypeShape EntityType="transvalleModel.historialmovimiento" Width="1.5" PointX="9.616790686555575" PointY="28.047498596854275" />
+        <EntityTypeShape EntityType="transvalleModel.horario" Width="1.5" PointX="5.0970098232370846" PointY="2.5511181664425497" />
+        <EntityTypeShape EntityType="transvalleModel.personas" Width="1.5" PointX="5.2480980256796332" PointY="26.252018732136126" />
+        <EntityTypeShape EntityType="transvalleModel.planillacontrol" Width="1.5" PointX="2.275254490913476" PointY="27.712958959728926" />
+        <EntityTypeShape EntityType="transvalleModel.planillarecaudo" Width="1.5" PointX="1.6829992484687821" PointY="21.07618967680083" />
+        <EntityTypeShape EntityType="transvalleModel.puntoscontrol" Width="1.5" PointX="11.760587219037388" PointY="8.750530321500511" />
+        <EntityTypeShape EntityType="transvalleModel.puntoscontrolruta" Width="1.5" PointX="11.574886467109847" PointY="18.08702022679477" />
+        <EntityTypeShape EntityType="transvalleModel.rolesusuariosplataforma" Width="1.5" PointX="2.3508891138950778" PointY="28.708400799291397" />
+        <EntityTypeShape EntityType="transvalleModel.rutagrupo" Width="1.5" PointX="8.0656880494513032" PointY="1.8097050049387407" />
+        <EntityTypeShape EntityType="transvalleModel.rutas" Width="1.5" PointX="9.2305262578793457" PointY="11.865928223294173" />
+        <EntityTypeShape EntityType="transvalleModel.tiposidentificacionpersona" Width="1.5" PointX="10.736189759679228" PointY="19.228681617988592" />
+        <EntityTypeShape EntityType="transvalleModel.tipostrabajador" Width="1.5" PointX="9.5289538845089048" PointY="19.208936774734845" />
+        <EntityTypeShape EntityType="transvalleModel.usuariosplataforma" Width="1.5" PointX="10.119695271421083" PointY="30.27872273245767" />
         <AssociationConnector Association="transvalleModel.pk_asignarbus_bus" />
         <AssociationConnector Association="transvalleModel.pk_asignarbus_cedula" />
         <AssociationConnector Association="transvalleModel.fk_historial_buses" />
@@ -51,7 +52,7 @@
         <AssociationConnector Association="transvalleModel.pk_rutagrupo_grupo" />
         <AssociationConnector Association="transvalleModel.fk_historial_puntos" />
         <AssociationConnector Association="transvalleModel.fk_horario" />
-        <AssociationConnector Association="transvalleModel.pe_Per_TipIdeF" />
+        <AssociationConnector Association="transvalleModel.pe_Per_TipIdeF_idx" />
         <AssociationConnector Association="transvalleModel.pe_Per_Tipo" />
         <AssociationConnector Association="transvalleModel.pk_Per_User" />
         <AssociationConnector Association="transvalleModel.fk_rp_puntos" />
