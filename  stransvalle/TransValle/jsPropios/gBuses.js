@@ -346,7 +346,7 @@
                     data = data.replace("{NOM_EMPRESA}", '<h2><strong> ' + Empresa.RAZON_SOCIAL + ' </strong></h2>');
                     data = data.replace("{NIT_EMPRESA}", Empresa.NIT + '-' + Empresa.DIG_VER);
 
-                    alert(data);
+                    //alert(data);
                     $.each(lBuses, function (index, item) {
                         var Fecha = byaPage.converJSONDate(item.FechaMatricula);
                         tbody = tbody + "<tr><td>" + item.Placa +
@@ -358,7 +358,7 @@
                             "</td><td>" + _formatJSONDate(item.FechaVencimientoPolCont) +
                             "</td><td>" + _formatJSONDate(item.FechaVencimientoPolExtCont) + "</td></tr>";
                     });
-                    alert(data);
+                    //alert(data);
 
                     data = data.replace("{BUSES}", tbody);
 
