@@ -19,6 +19,14 @@
             window.location.href = "index.html";
         });
 
+        $('#example').on('click', 'tbody tr', function (event) {
+            $(this).addClass('info').siblings().removeClass('info');
+        });
+
+        $('#tDetalles').on('click', 'tbody tr', function (event) {
+            $(this).addClass('info').siblings().removeClass('info');
+        });
+
     };
 
     var _VerificarPermisos = function () {
