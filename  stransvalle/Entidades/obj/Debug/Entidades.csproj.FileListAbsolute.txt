@@ -17,3 +17,8 @@ D:\Dev\TransValle-2\Entidades\bin\Debug\Entidades.dll
 D:\Dev\TransValle-2\Entidades\bin\Debug\Entidades.pdb
 D:\Dev\TransValle-2\Entidades\obj\Debug\Entidades.dll
 D:\Dev\TransValle-2\Entidades\obj\Debug\Entidades.pdb
+D:\Dev\CopiasViejas\TransValle-2\Entidades\bin\Debug\Entidades.dll
+D:\Dev\CopiasViejas\TransValle-2\Entidades\bin\Debug\Entidades.pdb
+D:\Dev\CopiasViejas\TransValle-2\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
+D:\Dev\CopiasViejas\TransValle-2\Entidades\obj\Debug\Entidades.dll
+D:\Dev\CopiasViejas\TransValle-2\Entidades\obj\Debug\Entidades.pdb
