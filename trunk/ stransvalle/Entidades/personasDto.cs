@@ -20,6 +20,7 @@ namespace Entidades
         public Nullable<int> TipoPersona { get; set; }
         public string User { get; set; }
         public string TipoIdentificacion { get; set; }
+        public string Vial { get; set; }
 
         public string NumeroContratoConduccion { get; set; }
         public DateTime FechaExpedicionContratoConduccion { get; set; }
