@@ -50,5 +50,13 @@ namespace TransValle.Servicios
             mPersonas objPersonas = new mPersonas();
             return objPersonas.Delete(Cedula);
         }
+
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public objRes InsertOrUpdateAsignarBus(personasDto persDto) 
+        {
+            mPersonas objPersonas = new mPersonas();
+            return objPersonas.InsertOrUpdateAsignarBus(persDto);        
+        }
     }
 }

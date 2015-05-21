@@ -30,7 +30,8 @@ namespace BLL
                     .ForMember(dest => dest.FechaVencimientoContratoConduccion, opt => opt.MapFrom(src => src.documentospersona.Where(t => t.documento == 6).FirstOrDefault().fechaExpiracion))
                     .ForMember(dest => dest.NumeroLicenciaConduccion, opt => opt.MapFrom(src => src.documentospersona.Where(t => t.documento == 7).FirstOrDefault().Numero))
                     .ForMember(dest => dest.FechaExpedicionLicenciaConduccion, opt => opt.MapFrom(src => src.documentospersona.Where(t => t.documento == 7).FirstOrDefault().fechaExpedicion))
-                    .ForMember(dest => dest.FechaVencimientoLicenciaConduccion, opt => opt.MapFrom(src => src.documentospersona.Where(t => t.documento == 7).FirstOrDefault().fechaExpiracion));
+                    .ForMember(dest => dest.FechaVencimientoLicenciaConduccion, opt => opt.MapFrom(src => src.documentospersona.Where(t => t.documento == 7).FirstOrDefault().fechaExpiracion))
+                    .ForMember(dest => dest.Vial, opt => opt.MapFrom(src => src.asignarbus.Where(t=>t.Estado=="A").FirstOrDefault().buses.Vial));
 
                 Mapper.Map(l, lr);
                 lr = lr.OrderBy(t=> t.FechaVencimientoLicenciaConduccion).ToList();
@@ -166,6 +167,42 @@ namespace BLL
                     return Res;
                 }
             }
+        }
+        public objRes InsertOrUpdateAsignarBus(personasDto persDto) {
+            using (ctx = new tvEntities())
+            {
+                objRes Respuesta = new objRes();
+                try
+                {
+                    asignarbus aB = ctx.asignarbus.Where(t => t.Cedula == persDto.Cedula).FirstOrDefault();
+
+                    if (aB != null)
+                    {
+                        aB.Estado = "N";
+                        ctx.SaveChanges();
+                    }
+
+                    aB = new asignarbus();
+                    aB.Cedula = persDto.Cedula;
+                    aB.Estado = "A";
+                    aB.Fecha = DateTime.Now;
+                    aB.Placa = ctx.buses.Where(t => t.Vial == persDto.Vial).FirstOrDefault().Placa;
+
+                    ctx.asignarbus.Add(aB); 
+
+                    ctx.SaveChanges();                        
+                    Respuesta.Error = false;                        
+                    Respuesta.Mensaje = "Operacion realizada satisfactoriamente!!!";                        
+                    return Respuesta;
+                    
+                }
+                catch (Exception e)
+                {
+                    Respuesta.Error = true;
+                    Respuesta.Mensaje = e.Message;
+                    return Respuesta;
+                }
+            } 
         }
     }
 }

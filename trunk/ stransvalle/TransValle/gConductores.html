@@ -37,6 +37,9 @@
         overflow-x: hidden;
         overflow-y: hidden;
       }
+        td {
+            white-space: nowrap;
+        }
       .Separar {
         margin:7px  
       }
@@ -44,6 +47,9 @@
       @media screen and (min-width: 768px) {
             .custom-class {
                 width: 94%; /* either % (e.g. 60%) or px (400px) */
+            }
+            .custom-class-2 {
+                width: 50%; /* either % (e.g. 60%) or px (400px) */
             }
         }
       .row-centered {              
@@ -164,6 +170,7 @@
                             <li><a id="btnDetalles">Detalles</a></li>
                             <li><a id="btnEditar">Editar</a></li>
                             <li><a id="btnEliminar">Eliminar</a></li>
+                            <li><a id="AsignarBus">Asignar Bus</a></li>
                           </ul>
                         </div><!-- /.navbar-collapse -->
                       </div><!-- /.container-fluid -->
@@ -178,7 +185,7 @@
                     <table class="table table-hover table table-striped" id="tConductores">
                         <thead>
                             <tr>
-                                <th rowspan="2">Cedula</th>
+                                <th rowspan="2">Numero documento</th>
                                 <th rowspan="2">Nombre</th>   
                                 <th rowspan="2">Telefono</th>                             
                                 <th rowspan="2">Dirección</th>
@@ -218,15 +225,15 @@
                             <div class="panel-heading">Datos Básicos</div>
                             <div class="panel-body">
                                  <div class="row Separar"> 
-                                     <div class="col-lg-3 text-right">                               
-                                         <strong>* Cedula: </strong>  
+                                     <div class="col-lg-5 text-right">                               
+                                         <strong>* Numero Documento: </strong>  
                                      </div>                            
                                      <div class="col-lg-6">                               
                                          <input type="text" class="form-control datos limpiar habilitar validar snumero" id="txtCedula" />                          
                                      </div>                                                  
                                  </div>
                                  <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>* Tipo de identificación: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -234,7 +241,7 @@
                             </div>                            
                         </div>
                         <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>* Nombre: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -242,7 +249,7 @@
                             </div>                            
                         </div>
                         <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>* Apellidos: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -250,7 +257,7 @@
                             </div>                            
                         </div>
                         <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>* Fecha de nacimiento: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -258,7 +265,7 @@
                             </div>                            
                         </div>
                         <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>* Direccion: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -266,7 +273,7 @@
                             </div>                            
                         </div>
                         <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>* Telefono: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -274,7 +281,7 @@
                             </div>                            
                         </div>
                         <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>EPS: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -282,7 +289,7 @@
                             </div>                            
                         </div>
                         <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>Pension: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -290,7 +297,7 @@
                             </div>                            
                         </div>
                         <div class="row Separar">
-                            <div class="col-lg-3 text-right">
+                            <div class="col-lg-5 text-right">
                                 <strong>Tipo sangre: </strong>
                             </div>
                             <div class="col-lg-6">
@@ -371,11 +378,54 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade bs-example-modal-sm" id="ModalAsignarBus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">  
+            <div class="modal-dialog custom-class-2">    
+                <div class="modal-content">      
+                    <div class="modal-header">        
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
+                        <h4 class="modal-title">Asignar Bus</h4>    
+                    </div>      
+                    <div class="modal-body">        
+                        <div class="row Separar">                                    
+                            <div class="col-lg-4 text-right">                                        
+                                <strong>* Numero Documento: </strong>                                    
+                            </div>                                    
+                            <div class="col-lg-6">                                        
+                                <input type="text" class="form-control datos limpiar habilitar validar" id="txtNumDoc" disabled />                                   
+                            </div>                            
+                        </div>
+                        <div class="row Separar">
+                            <div class="col-lg-4 text-right">                                        
+                                <strong>* Nombre: </strong>                                    
+                            </div> 
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar validar" id="txtNombre" disabled/>   
+                            </div> 
+                        </div>  
+                        <div class="row Separar">
+                            <div class="col-lg-4 text-right">                                        
+                                <strong>* Vial: </strong>                                    
+                            </div> 
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control datos limpiar habilitar validar" id="txtVial" />   
+                            </div> 
+                        </div>  
+                    </div>      
+                    <div class="modal-footer">        
+                        <button type="button" id="btGuardarAsignarBus" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>    
+                    </div> 
+                </div>  
+            </div>
+        </div>
+
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/plugins/bootstrap3-typeahead.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>

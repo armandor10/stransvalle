@@ -57,6 +57,21 @@ namespace BLL
                 return lrBuses;
             }
         }
+
+        public List<string> GetsVial() {
+            using (ctx = new tvEntities())
+            {
+                List<string> lVial = new List<string>();
+                List<buses> lBuses = ctx.buses.ToList();
+                foreach (var bus in lBuses)
+                {
+                    string str = bus.Vial;
+                    lVial.Add(str);
+                }
+                return lVial;
+            }
+        }
+
         public objRes InsertGrupo(string NombreGrupo)
         {
             using (ctx = new tvEntities())

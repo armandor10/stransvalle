@@ -29,6 +29,13 @@ namespace TransValle.Servicios
 
         [WebMethod]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public List<string> GetsVial() {
+            mBuses objBuses = new mBuses();
+            return objBuses.GetsVial();
+        }
+
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public objRes Insert(busesDto Reg)
         {
             Reg.FechaMatricula = new DateTime(Reg.AñoMatricula, Reg.MesMatricula, Reg.DiaMatricula);

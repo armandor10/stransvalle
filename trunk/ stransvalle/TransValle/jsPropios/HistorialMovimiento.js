@@ -13,6 +13,7 @@
     var recorridos;
     var lEsDto;
     var velocimetro = 'images/velocimetro3.png'
+    var lBuses2;
 
     var _addHandlers = function () {
 
@@ -82,6 +83,7 @@
     var _createElements = function () {
         CargarDatosBasicos();
         TraerRutas();
+        CargarBuses();
     };
     var _VerificarPermisos = function () {
         var user = varLocal.getUser();
@@ -119,6 +121,16 @@
                 });
             });
         });
+    };
+
+    var CargarBuses = function () {        
+        BusesDAO.GetVial(function (result) {
+            var lBuses = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+            //alert( JSON.stringify(lBuses));
+            $("#Vial").autocomplete({
+                source: lBuses
+            });
+        });        
     };
 
     var addReloj = function (location, title) {
