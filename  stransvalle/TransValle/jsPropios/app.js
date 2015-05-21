@@ -11,7 +11,8 @@ ServiceProxy = function (baseUrl) //constructor for the proxy
 ServiceProxy.prototype =
 {
     _defaultErrorHandler: function (xhr, status, error) {
-        alert(JSON.stringify(xhr));
+        //alert(JSON.stringify(xhr));
+        console.log(JSON.stringify(xhr));
     },
     _defaultBefore: function (xhr) {
     },
@@ -51,6 +52,9 @@ var BusesDAO = (function () {
     return {
         Gets: function (fCorrecto) {
             proxy._doAjax("GET", "Gets", null, fCorrecto, null, true);
+        },
+        GetVial: function (fCorrecto) {
+            proxy._doAjax("GET", "GetsVial", null, fCorrecto, null, true);
         },
         InsertGrupo: function (NombreGrupo, fCorrecto) {
             var Parametro = {
@@ -180,6 +184,12 @@ var PersonasDAO = (function () {
                 Cedula: "'" + Cedula + "'"
             }
             proxy._doAjax("GET", "Delete", Parametro, fCorrecto, null, true);
+        },
+        InsertOrUpdateAsignarBus: function (objPer, fCorrecto) {
+            var Parametro = {
+                persDto: JSON.stringify(objPer)
+            }
+            proxy._doAjax("GET", "InsertOrUpdateAsignarBus", Parametro, fCorrecto, null, true);
         }
     }
 }());

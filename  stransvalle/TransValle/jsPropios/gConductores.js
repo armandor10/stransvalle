@@ -6,6 +6,7 @@
     var indexSeleccionado;
     var table;
     var mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+    var lBuses;
 
     var _addHandlers = function () {
         $("#CreatePDF").click(function () {
@@ -34,6 +35,10 @@
             var confirmacion = confirm("Desea eliminar este registro?");
             if (confirm) Eliminar();
         });
+        $("#AsignarBus").click(function () {
+            verAsignarBus();
+            $('#ModalAsignarBus').modal('show');
+        });
         $('#tConductores tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
@@ -43,10 +48,42 @@
                 $(this).addClass('selected');
             }
         });
+
+        $("#btGuardarAsignarBus").click(function () {
+            if (_validarVial($('#txtVial').val())) {
+
+                var objPer = {
+                    Cedula: $('#txtNumDoc').val(),
+                    Vial: $('#txtVial').val()
+                };
+
+                PersonasDAO.InsertOrUpdateAsignarBus(objPer, function (result) {
+                    //var respuesta = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+                    alert("Asignación guardada!!!");
+                    CargarConductores();
+                });
+
+            } else {
+                alert("El Vial no existe!!!");
+            }
+        });
     };
     var _createElements = function () {
         CargarDatosBasicos();
         createTable();
+        cargarBus();
+    };
+
+    var _validarVial = function (vial) {
+        var ban = false;
+        $.each(lBuses, function (index, item) {            
+            if (item == vial) {
+                //alert(item);
+                ban = true;
+                return true;
+            }
+        });
+        return ban;
     };
     var GuardarNuevo = function () {
         if (_esValidoDatos()) {
@@ -145,6 +182,11 @@
         byaPage._setDatosCampos("datos", lConductores[indexSeleccionado]);
         $(".habilitar").byaSetHabilitar(false);
         $("#btnGuardar").byaSetHabilitar(false);
+    };
+    var verAsignarBus = function () {
+        $("#txtNumDoc").val(lConductores[indexSeleccionado].Cedula);
+        $("#txtNombre").val(lConductores[indexSeleccionado].Nombres + " " + lConductores[indexSeleccionado].Apellidos);
+        $("#txtVial").val(lConductores[indexSeleccionado].Vial);
     };
     var Eliminar = function () {
         PersonasDAO.Delete(lConductores[indexSeleccionado].Cedula, function (result) {
@@ -257,6 +299,16 @@
                 "order": [[5, "asc"]]
             });
             //new $.fn.dataTable.FixedColumns(table);
+        });
+    };
+    var cargarBus = function () {
+        BusesDAO.GetVial(function (result) {
+            lBuses = (typeof result.d) == 'string' ? eval('(' + result.d + ')') : result.d;
+            //alert( JSON.stringify(lBuses));
+            //$("#Vial").autocomplete({
+            //    source: lBuses
+            //});
+            $("#txtVial").typeahead({ source: lBuses });
         });
     };
 

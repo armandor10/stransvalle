@@ -76,6 +76,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\jquery-ui.css" />
     <Content Include="css\plugins\DataTables\jquery.dataTables.css" />
     <Content Include="gConductores.html" />
     <Content Include="css\bootstrap-rtl.css" />
@@ -119,6 +120,7 @@
     <Content Include="jsPropios\Rutas.js" />
     <Content Include="jsPropios\varLocal.js" />
     <Content Include="jsPropios\VisualizarRuta.js" />
+    <Content Include="js\jquery-ui.js" />
     <Content Include="js\plugins\autoNumeric.js" />
     <Content Include="js\bootstrap-table.js" />
     <Content Include="js\bootstrap.js" />
@@ -130,6 +132,7 @@
     <Content Include="js\modernizr.js" />
     <Content Include="js\plugins\bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
     <Content Include="js\plugins\bootstrap-datetimepicker\moment-with-locales.js" />
+    <Content Include="js\plugins\bootstrap3-typeahead.min.js" />
     <Content Include="js\plugins\DataTables\dataTables.bootstrap.js" />
     <Content Include="js\plugins\DataTables\dataTables.fixedColumns.js" />
     <Content Include="js\plugins\DataTables\jquery.dataTables.js" />
