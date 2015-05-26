@@ -33,7 +33,7 @@
         });
         $("#btnEliminar").click(function () {
             var confirmacion = confirm("Desea eliminar este registro?");
-            if (confirm) Eliminar();
+            if (confirmacion) Eliminar();
         });
         $("#AsignarBus").click(function () {
             verAsignarBus();
